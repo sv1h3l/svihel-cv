@@ -1,0 +1,63 @@
+{
+    "companyHella": {
+        "header": "Společnost",
+        "label": "HELLA AUTOTECHNIK NOVA, s.r.o.",
+        "company": true,
+        "job": "MES Full-Stack vývojáře",
+        "firstCard": true,
+        "values": [
+            "Implementace a podpora softwaru pro výrobní MES systém.",
+            "Vývoj progresivních webových aplikací pro zefektivnění výroby světlometů.",
+            "Konzultace v oblasti vývoje a podpory MES systému.",
+            "Spolupráce na mezinárodních projektech, komunikace v anglickém jazyce."
+        ]
+    },
+    "projectUnitExplorer": {
+        "header": "Projekt",
+        "label": "Unit Explorer",
+        "company": false,
+        "firstCard": false,
+        "values": [
+            "Jedná se o progresivní webovou aplikaci určenou k detailnímu zobrazení informací o konkrétním světlometu.",
+            "Aplikace poskytuje přehled o průběhu testování, naměřených hodnotách, jednotlivých komponentách a dalších technických parametrech.",
+            "I když je primárně optimalizována pro mobilní zařízení, je plně kompatibilní i s desktopovými platformami.",
+            "Frontend je realizován pomocí HTML, CSS a Vaadin, zatímco backend je v programovacím jazyce Java."
+        ]
+    },
+    "projectProjectServer": {
+        "header": "Projekt",
+        "label": "Project Server",
+        "company": false,
+        "firstCard": false,
+        "values": [
+            "Jedná se o progresivní webovou aplikaci určenou pro spouštění JNLP projektů a sledování jejich běhu na různých zařízeních ve firmě.",
+            "Aplikace nahrazuje zastaralý projektový server, který byl kompletně přepracován a rozšířen o nové funkce.",
+            "Primárním zaměřením aplikace je desktopové použití, nicméně je funkční i na mobilních zařízeních.",
+            "Frontend aplikace je postaven na technologiích HTML, CSS a Vaadin, zatímco backend je implementován v Javě."
+        ]
+    },
+    "diplomaThesis": {
+        "header": "Diplomová práce",
+        "label": "ClickFit",
+        "company": false,
+        "firstCard": true,
+        "values": [
+            "Má diplomová práce se zabývá vývojem webové aplikace pro tvorbu a správu tréninkových plánů, která kombinuje automatické generování a manuální tvorbu tréninkových plánů.",
+            "Aplikace bude umožňovat uživatelům registrovat se, vytvářet a upravovat vlastní cvičební plány, sledovat pokroky prostřednictvím grafů a nastavovat cíle.",
+            "Součástí bude i databáze cviků s popisy, možnost přidávat vlastní cviky, a také funkce pro komunikaci s ostatními uživateli.",
+            "Technologie využívané při vývoji zahrnují React, MaterialUI, Tailwind, TypeScript, Node.js a Next.js."
+        ]
+    },
+    "bachelorThesis": {
+        "header": "Bakalářská práce",
+        "label": "Paziaatus",
+        "company": false,
+        "firstCard": false,
+        "values": [
+            "Jako bakalářskou práci jsem vytvořil hazardní desktopovou hru s RPG prvky a tématikou Star Wars, která je založena na konceptu již existujících her (Pazaak, Gladiatus, Shakes and Fidget, ...), avšak s originálním provedením.",
+            "V rámci práce jsem se zabýval nejen implementací samotné hry, ale také analýzou herních technologií a metodiky vývoje.",
+            "Hra implementuje algoritmus počítačového protihráče, který je schopen analyzovat situaci a vytvořit strategii během karetní partie.",
+            "Herní logika je napsána v programovacím jazyce Java a vizuální prvky jsem vytvořil pomocí modelu DALLE-E 2 a grafickém editoru Photoshop."
+        ]
+    }
+}

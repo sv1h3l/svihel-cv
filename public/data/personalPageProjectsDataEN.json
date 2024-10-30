@@ -1,0 +1,63 @@
+{
+    "companyHella": {
+        "header": "Company",
+        "label": "HELLA AUTOTECHNIK NOVA, s.r.o.",
+        "company": true,
+        "job": "MES Full-Stack Developer",
+        "firstCard": true,
+        "values": [
+            "Implementation and support of software for manufacturing MES system.",
+            "Development of progressive web-based applications to streamline headlight production.",
+            "Consultancy on MES system development and support.",
+            "Cooperation on international projects, communication in English language."
+        ]
+    },
+    "projectUnitExplorer": {
+        "header": "Project",
+        "label": "Unit Explorer",
+        "company": false,
+        "firstCard": false,
+        "values": [
+            "This is a progressive web application designed to display detailed information about a specific headlight.",
+            "The application provides an overview of the testing process, measured values, individual components and other technical parameters.",
+            "Although primarily optimized for mobile devices, it is also fully compatible with desktop platforms.",
+            "The frontend is implemented using HTML, CSS and Vaadin, while the backend is in Java programming language."
+        ]
+    },
+    "projectProjectServer": {
+        "header": "Project",
+        "label": "Project Server",
+        "company": false,
+        "firstCard": false,
+        "values": [
+            "It is a progressive web application designed to run JNLP projects and monitor their progress on different devices in the company.",
+            "The application replaces the outdated project server, which has been completely redesigned and enhanced with new features.",
+            "The primary focus of the app is desktop use, however it is functional on mobile devices as well.",
+            "The frontend of the application is built on HTML, CSS and Vaadin technologies, while the backend is implemented in Java."
+        ]
+    },
+    "diplomaThesis": {
+        "header": "Diploma thesis",
+        "label": "ClickFit",
+        "company": false,
+        "firstCard": true,
+        "values": [
+            "My thesis deals with the development of a web application for the creation and management of training plans, which combines automatic generation and manual creation of training plans.",
+            "The application will allow users to register, create and edit their own workout plans, track progress through graphs and set goals.",
+            "It will also include an exercise database with descriptions, the ability to add custom exercises, and features for communicating with other users.",
+            "Technologies used in development include React, MaterialUI, Tailwind, TypeScript, Node.js, and Next.js."
+        ]
+    },
+    "bachelorThesis": {
+        "header": "Bachelor thesis",
+        "label": "Paziaatus",
+        "company": false,
+        "firstCard": false,
+        "values": [
+            "For my bachelor thesis, I created a gambling desktop game with RPG elements and a Star Wars theme, based on the concept of existing games (Pazaak, Gladiatus, Shakes and Fidget, ...) but with an original implementation.",
+            "As part of my work, I not only implemented the game itself, but also analyzed the game technology and development methodology.",
+            "The game implements a computer opponent algorithm that is able to analyze the situation and create a strategy during a card game",
+            "The game logic is written in the Java programming language and I created the visual elements using the DALLE-E 2 model and the Photoshop graphics editor."
+        ]
+    }
+}
