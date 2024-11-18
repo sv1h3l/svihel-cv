@@ -22,30 +22,31 @@
     ],
     "certificates": [
         {
-            "key": "PLÁNOVANÉ",
-            "primaryValue": "CS50’s Úvod do umělé inteligence s Pythonem",
+            "key": "PLÁNOVANÝ",
+            "primaryValue": "CS50’s Introduction to Artificial Intelligence with Python",
             "secondaryValue": "Harvardova univerzita, Cambridge, Massachusetts"
         },
         {
-            "key": "PLÁNOVANÉ",
-            "primaryValue": "CS50’s Úvod do kybernetické bezpečnosti",
-            "secondaryValue": "Harvardova univerzita, Cambridge, Massachusetts"
-        },
-        {
-            "key": "PROBÍHAJÍCÍ",
-            "primaryValue": "CS50’s Webové programování s Pythonem a JavaScriptem",
+            "key": "PLÁNOVANÝ",
+            "primaryValue": "CS50’s Introduction to Cybersecurity",
             "secondaryValue": "Harvardova univerzita, Cambridge, Massachusetts"
         },
         {
             "key": "PROBÍHAJÍCÍ",
-            "primaryValue": "CS50’s Informatika pro odborníky v podnikání",
+            "primaryValue": "CS50’s Web Programming with Python and JavaScript",
             "secondaryValue": "Harvardova univerzita, Cambridge, Massachusetts"
+        },
+        {
+            "key": "DOKONČENÝ",
+            "primaryValue": "CS50’s Computer Science for Business Professionals",
+            "secondaryValue": "Harvardova univerzita, Cambridge, Massachusetts",
+            "tertiaryValue": "https://certificates.cs50.io/144b3b1d-db34-45d6-a6e7-49f34e8b95c0.pdf"
         }
     ],
     "skills": [
         {
             "key": "Frontend",
-            "primaryValue": "HTML, CSS, TypeScript, JavaScript, Tailwind, React, Next.js, MaterialUI, Vaadin"
+            "primaryValue": "HTML, CSS, TypeScript, JavaScript, Tailwind, React, Next.js, Material UI, Vaadin"
         },
         {
             "key": "Backend",

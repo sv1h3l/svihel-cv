@@ -56,7 +56,7 @@
         "values": [
             "For my bachelor thesis, I created a gambling desktop game with RPG elements and a Star Wars theme, based on the concept of existing games (Pazaak, Gladiatus, Shakes and Fidget, ...) but with an original implementation.",
             "As part of my work, I not only implemented the game itself, but also analyzed the game technology and development methodology.",
-            "The game implements a computer opponent algorithm that is able to analyze the situation and create a strategy during a card game",
+            "The game implements a computer opponent algorithm that is able to analyze the situation and create a strategy during a card game.",
             "The game logic is written in the Java programming language and I created the visual elements using the DALLE-E 2 model and the Photoshop graphics editor."
         ]
     }

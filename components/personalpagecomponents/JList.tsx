@@ -19,7 +19,7 @@ export default function JList({ header, label, company, job, firstCard, isCzech,
 
             {company ? (
                 <>
-                    <p className=" mt-4 text-sm text-gray-400">{isCzech ? "Náplň mé pracovní činnosti" : "Description of my job as"}</p>
+                    <p className=" mt-4 text-sm text-gray-400">{isCzech ? "Náplň mé pracovní činnosti" : "Description of my job"}</p>
                     <h4 className={"text-lg font-medium"}>{job}</h4>
                 </>
             ) : (
@@ -33,9 +33,9 @@ export default function JList({ header, label, company, job, firstCard, isCzech,
                     ))}
                 </ul>
             ) : (
-                <div className=" list-disc list-outside ml-2 sm:ml-4 space-y-1 li-color mb-4">
+                <div className=" list-disc list-outside mx-2 sm:mx-4 space-y-1 li-color mb-4 text-justify">
                     {values.map((value, index) => (
-                        <p className="inline mr-1" key={index}>{value}</p>
+                        <p className="inline mr-1 " key={index}>{value}</p>
                     ))}
                 </div>
             )}

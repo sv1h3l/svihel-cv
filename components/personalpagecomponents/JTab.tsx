@@ -24,7 +24,6 @@ export default function JTab({ label, imageSrc, imageAlt, children }: TabProps) 
                 />
 
                 <h3 className="font-bold text-gray-200 text-2xl ">
-                    {/* TEXT COLOR - #E5E7EB */}
                     {label.toUpperCase()}
                 </h3>
             </div>

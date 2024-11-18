@@ -37,15 +37,16 @@
             "secondaryValue": "Harvard University, Cambridge, Massachusetts"
         },
         {
-            "key": "IN PROGRESS",
+            "key": "COMPLETED",
             "primaryValue": "CS50’s Computer Science for Business Professionals",
-            "secondaryValue": "Harvard University, Cambridge, Massachusetts"
+            "secondaryValue": "Harvard University, Cambridge, Massachusetts",
+            "tertiaryValue": "https://certificates.cs50.io/144b3b1d-db34-45d6-a6e7-49f34e8b95c0.pdf"
         }
     ],
     "skills": [
         {
             "key": "Frontend",
-            "primaryValue": "HTML, CSS, TypeScript, JavaScript, Tailwind, React, Next.js, MaterialUI, Vaadin"
+            "primaryValue": "HTML, CSS, TypeScript, JavaScript, Tailwind, React, Next.js, Material UI, Vaadin"
         },
         {
             "key": "Backend",
