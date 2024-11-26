@@ -8,8 +8,8 @@ You can visit the live version of my personal page here:   **[JakSviT](https://j
 
 ## Features
 
-- **Bilingual Support (Czech & English):** Easily switch between languages.
 - **Responsive Design:** Optimized for all devices.
+- **Bilingual Support (Czech & English):** Easily switch between languages.
 - **Dynamic Data:** Uses JSON files to fetch and display general information and project data.
 - **Interactive Components:** Custom reusable components for tabs, grids, lists, and buttons.
 - **Optimized Performance:** Lazy loading and optimized images with `next/image`.
