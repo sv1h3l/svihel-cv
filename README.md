@@ -1,40 +1,56 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Personal Website - Jakub Švihel
 
-## Getting Started
+This repository contains the source code for my personal website, built with **Next.js**, **React**, and **Tailwind CSS**. The website showcases my professional profile, projects, skills, and contact information.
 
-First, run the development server:
+You can visit the live version of my personal page here:   **[JakSviT](https://jak-svit-bbb6b.web.app/personalpage.html)**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+- **Responsive Design:** Optimized for all devices.
+- **Bilingual Support (Czech & English):** Easily switch between languages.
+- **Dynamic Data:** Uses JSON files to fetch and display general information and project data.
+- **Interactive Components:** Custom reusable components for tabs, grids, lists, and buttons.
+- **Optimized Performance:** Lazy loading and optimized images with `next/image`.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+---
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Components
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### **Key Custom Components**
+- **`JTab`**: Interactive tabs for organizing content.
+- **`JGrid`**: Flexible grid layout for presenting structured data.
+- **`JList`**: List view for detailed project information.
+- **`JButton`**: Custom buttons for various actions.
 
-## Learn More
+### **Dynamic Content**
+The website fetches data dynamically from JSON files located in the `/data` directory:
+- `personalPageGeneralDataCZ.json` / `personalPageGeneralDataEN.json`
+- `personalPageProjectsDataCZ.json` / `personalPageProjectsDataEN.json`
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Sections
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+1. **About Me**  
+   An introduction highlighting my interests, including IT, Japan, fitness, and investing.
 
-## Deploy on Vercel
+2. **Employment**  
+   Professional experience displayed dynamically using `JGrid`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. **Skills**  
+   A curated list of my technical and soft skills.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+4. **Education**  
+   Academic background with institutions and achievements.
+
+5. **Certificates**  
+   Certifications relevant to my professional growth.
+
+6. **Projects**
+   - **Commercial Sphere:** Professional projects like `Unit Explorer` and `Project Server`.
+   - **Academic Sphere:** Highlights of my bachelor’s and diploma theses, including video and document links.
+
+7. **Contact Information**  
+   Links to email, phone, LinkedIn, and GitHub.
