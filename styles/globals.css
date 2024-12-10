@@ -2,21 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* TAILWIND - custom classes */
-
-.border-1 {
-    border-width: 1px;
-}
-
-.w-1\/8 {
-    width: 12.5%;
-}
-
-.border-l-12 {
-    border-left-width: 12px;
-}
-
-html,
 body {
     scroll-behavior: smooth;
 }
@@ -39,25 +24,37 @@ body {
     }
 }
 
+/* TAILWIND - custom classes */
 
+.border-1 {
+    border-width: 1px;
+}
+
+.w-1\/8 {
+    width: 12.5%;
+}
+
+.border-l-12 {
+    border-left-width: 12px;
+}
+
+html,
 .li-color ::marker {
     color: #b7a71d;
-    /* Nastav barvu odrážek, například modrou */
 }
 
 ::-webkit-scrollbar {
     width: 12px;
-    background-color: #3C3D37;
+    background-color: #3c3d37;
 }
 
 ::-webkit-scrollbar-track {
     margin-top: 2px;
     margin-bottom: 3px;
-    background-color: #3C3D37;
+    background-color: #3c3d37;
 }
 
 ::-webkit-scrollbar-thumb {
-
     margin-top: 10px;
     background-color: #161513;
     border-radius: 10px;
@@ -65,9 +62,7 @@ body {
     border-top: 4px solid #b7a71d;
     border-bottom: 4px solid #b7a71d;
     border-left: 1px solid #2b2b27;
-
 }
-
 
 .h-22 {
     height: 5.5rem;
@@ -172,7 +167,6 @@ body {
 .w-24\/24 {
     width: 100%;
 }
-
 
 .min-w-xs {
     min-width: 20rem;

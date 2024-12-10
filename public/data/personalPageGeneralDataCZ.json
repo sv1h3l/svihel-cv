@@ -1,4 +1,6 @@
 {
+    "pageTitle": "Osobní stránka - Jakub Švihel",
+    "aboutMe": "Jsem nadšenec do informačních technologií, zejména pak do tvorby webových stránek a aplikací. Věřím, že celoživotní vzdělávání je klíčem k osobnímu i profesnímu růstu, a v každodenním životě se snažím držet jednoduchosti a minimalismu. Jsem velmi fascinován Japonskem a jeho bohatou kulturou, která mě v mnohém inspiruje a obohacuje. Kromě toho se aktivně věnuji fitness, které je nedílnou součástí mé každodenní rutiny, a dlouhodobě se zajímám o investování.",
     "education": [
         {
             "key": "2023 - SOUČASTNOST",
@@ -24,17 +26,20 @@
         {
             "key": "PLÁNOVANÝ",
             "primaryValue": "CS50’s Introduction to Artificial Intelligence with Python",
-            "secondaryValue": "Harvardova univerzita, Cambridge, Massachusetts"
+            "secondaryValue": "Harvardova univerzita, Cambridge, Massachusetts",
+            "tertiaryValue": "disable"
         },
         {
             "key": "PLÁNOVANÝ",
             "primaryValue": "CS50’s Introduction to Cybersecurity",
-            "secondaryValue": "Harvardova univerzita, Cambridge, Massachusetts"
+            "secondaryValue": "Harvardova univerzita, Cambridge, Massachusetts",
+            "tertiaryValue": "disable"
         },
         {
             "key": "PROBÍHAJÍCÍ",
             "primaryValue": "CS50’s Web Programming with Python and JavaScript",
-            "secondaryValue": "Harvardova univerzita, Cambridge, Massachusetts"
+            "secondaryValue": "Harvardova univerzita, Cambridge, Massachusetts",
+            "tertiaryValue": "disable"
         },
         {
             "key": "DOKONČENÝ",

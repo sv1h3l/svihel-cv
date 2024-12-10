@@ -1,4 +1,6 @@
 {
+    "pageTitle": "Personal Page - Jakub Švihel",
+    "aboutMe": "I am an information technology enthusiast, especially in web development and applications. I believe that lifelong learning is the key to personal and professional growth, and I try to keep things simple and minimalist in my everyday life. I am very fascinated by Japan and its rich culture, which inspires and enriches me in many ways. In addition, I have an active interest in fitness, which is an essential part of my daily routine, and a long-term interest in investing.",
     "education": [
         {
             "key": "2023 - PRESENT",
@@ -24,17 +26,20 @@
         {
             "key": "PLANNED",
             "primaryValue": "CS50’s Introduction to Artificial Intelligence with Python",
-            "secondaryValue": "Harvard University, Cambridge, Massachusetts"
+            "secondaryValue": "Harvard University, Cambridge, Massachusetts",
+            "tertiaryValue": "disable"
         },
         {
             "key": "PLANNED",
             "primaryValue": "CS50’s Introduction to Cybersecurity",
-            "secondaryValue": "Harvard University, Cambridge, Massachusetts"
+            "secondaryValue": "Harvard University, Cambridge, Massachusetts",
+            "tertiaryValue": "disable"
         },
         {
             "key": "IN PROGRESS",
             "primaryValue": "CS50’s Web Programming with Python and JavaScript",
-            "secondaryValue": "Harvard University, Cambridge, Massachusetts"
+            "secondaryValue": "Harvard University, Cambridge, Massachusetts",
+            "tertiaryValue": "disable"
         },
         {
             "key": "COMPLETED",

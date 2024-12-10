@@ -1,17 +1,15 @@
 import Image from "next/image";
-import JTab from "@/components/personalpagecomponents/JTab";
-import JGrid from "@/components/personalpagecomponents/JGrid";
 import { useEffect, useState } from "react";
-import JList from "@/components/personalpagecomponents/JList";
 import Head from "next/head";
 
-export default function PersonalPage() {
-    const [isCzech, setIsCzech] = useState(false);
-    const aboutMe = isCzech
-        ? "Jsem nadšenec do informačních technologií, zejména pak do tvorby webových stránek a aplikací. Věřím, že celoživotní vzdělávání je klíčem k osobnímu i profesnímu růstu, a v každodenním životě se snažím držet jednoduchosti a minimalismu. Jsem velmi fascinován Japonskem a jeho bohatou kulturou, která mě v mnohém inspiruje a obohacuje. Kromě toho se aktivně věnuji fitness, které je nedílnou součástí mé každodenní rutiny, a dlouhodobě se zajímám o investování."
-        : "I am an information technology enthusiast, especially in web development and applications. I believe that lifelong learning is the key to personal and professional growth, and I try to keep things simple and minimalist in my everyday life. I am very fascinated by Japan and its rich culture, which inspires and enriches me in many ways. In addition, I have an active interest in fitness, which is an essential part of my daily routine, and a long-term interest in investing.";
+import JTab from "@/components/personalpagecomponents/JTab";
+import JGrid from "@/components/personalpagecomponents/JGrid";
+import JList from "@/components/personalpagecomponents/JList";
+import JButton from "@/components/personalpagecomponents/JButton";
 
-    const pageTitle = isCzech ? "Osobní stránka - Jakub Švihel" : "Personal Page - Jakub Švihel";
+export default function PersonalPage() {
+    const [personalPageGeneralData, setPersonalPageGeneralData] = useState<PersonalPageGeneralData | null>(null);
+    const [personalPageProjectsData, setPersonalPageProjectsData] = useState<PersonalPageProjectsData | null>(null);
 
     interface GeneralData {
         key: string;
@@ -22,6 +20,8 @@ export default function PersonalPage() {
     }
 
     interface PersonalPageGeneralData {
+        pageTitle: string;
+        aboutMe: string;
         education: GeneralData[];
         employment: GeneralData[];
         certificates: GeneralData[];
@@ -45,9 +45,7 @@ export default function PersonalPage() {
         bachelorThesis: ProjectsData;
     }
 
-    const [personalPageGeneralData, setPersonalPageGeneralData] = useState<PersonalPageGeneralData | null>(null);
-
-    const [personalPageProjectsData, setPersonalPageProjectsData] = useState<PersonalPageProjectsData | null>(null);
+    const [isCzech, setIsCzech] = useState(false);
 
     useEffect(() => {
         fetch(isCzech ? "/data/personalPageGeneralDataCZ.json" : "/data/personalPageGeneralDataEN.json")
@@ -64,13 +62,13 @@ export default function PersonalPage() {
     return (
         <>
             <Head>
-                <title>{pageTitle}</title>
+                <title>{personalPageGeneralData?.pageTitle}</title>
                 <link
                     rel="icon"
                     href="/icons/favicon.ico"
                 />
             </Head>
-            <main className="bg-[#3C3D37] min-h-screen px-1 lg:px-2">
+            <main className="bg-[#3C3D37] min-h-screen px-1 lg:px-2 font-roboto ">
                 <div className="flex w-full flex-col pb-1 lg:pb-2 text-gray-200 items-center">
                     <div
                         className="bg-[#161513] border-t-2 relative border-[#b7a71d] rounded-b-3xl px-3 pt-1 pb-1 sm:px-6 sm:py-5  sm:gap-2 md:gap-4 items-center justify-center
@@ -99,12 +97,15 @@ export default function PersonalPage() {
                             <h2 className={`font-bold pr-1  ${isCzech ? "text-xl pt-0.5" : "text-lg "}`}>FULL-STACK {isCzech ? "VÝVOJÁŘ" : "DEVELOPER"}</h2>
                         </div>
 
-                        <button
-                            className="absolute right-0 top-0.5 text-sm font-bold h-6  w-8 pl-1 pb-6 rounded-bl-xl   outline outline-1 outline-[#2b2b27] border-b-2 border-b-[#b7a71d]  border-t-2 border-t-transparent hover:border-t-[#b7a71d] transition duration-200 ease-in-out  items-end"
-                            onClick={() => setIsCzech(!isCzech)}
-                        >
-                            {isCzech ? "EN" : "CS"}
-                        </button>
+                        {
+                            <JButton
+                                className="absolute right-0 top-0.5 h-6 w-8 pb-6 rounded-bl-xl"
+                                onClick={() => setIsCzech(!isCzech)}
+                                lang={true}
+                            >
+                                {isCzech ? "EN" : "CS"}
+                            </JButton>
+                        }
                     </div>
 
                     <JTab
@@ -112,17 +113,14 @@ export default function PersonalPage() {
                         imageSrc="about_me"
                         imageAlt="About me icon"
                     >
-                        <div className="px-1 sm:px-16 pt-3 text-justify">
-                            <p className="inline mr-1 ">{aboutMe}</p>
+                        <div className="px-1 sm:px-16 pt-3 sm:text-justify">
+                            <p className="inline mr-1 ">{personalPageGeneralData?.aboutMe}</p>
                         </div>
 
                         <div className="flex flex-col sm:flex-row mt-5 gap-4 sm:gap-20 lg:gap-10 justify-center items-start sm:items-center ml-1 mb-1">
                             <div className="flex flex-col lg:flex-row gap-4 lg:gap-10 w-60 sm:w-auto">
                                 <div className="flex items-center gap-2">
-                                    <button
-                                        className="px-1 rounded-lg size-8 outline outline-1 outline-[#2b2b27] border-b-2 border-b-[#b7a71d]  border-t-2 border-t-transparent hover:border-t-[#b7a71d] transition duration-200 ease-in-out"
-                                        onClick={() => (window.location.href = "tel:+420733249479")}
-                                    >
+                                    <JButton phone={true}>
                                         <Image
                                             className="w-24"
                                             src={`/icons/call.svg`}
@@ -130,15 +128,12 @@ export default function PersonalPage() {
                                             width={30}
                                             height={0}
                                         />
-                                    </button>
+                                    </JButton>
                                     <span>+420 733 249 479</span>
                                 </div>
 
                                 <div className="flex items-center gap-2">
-                                    <button
-                                        className="px-1 rounded-lg size-8 outline outline-1 outline-[#2b2b27] border-b-2 border-b-[#b7a71d]  border-t-2 border-t-transparent hover:border-t-[#b7a71d] transition duration-200 ease-in-out"
-                                        onClick={() => (window.location.href = "mailto:jakub.svihel@gnj.cz")}
-                                    >
+                                    <JButton email={true}>
                                         <Image
                                             className="w-24"
                                             src={`/icons/mail.svg`}
@@ -146,53 +141,35 @@ export default function PersonalPage() {
                                             width={30}
                                             height={0}
                                         />
-                                    </button>
+                                    </JButton>
                                     <span>jakub.svihel@gnj.cz</span>
                                 </div>
                             </div>
 
                             <div className="flex flex-col lg:flex-row gap-4 lg:gap-10 w-60 sm:w-auto">
                                 <div className="flex items-center gap-2">
-                                    <button
-                                        className="py-1 rounded-lg size-8 flex items-center justify-center outline outline-1 outline-[#2b2b27] border-b-2 border-b-[#b7a71d]  border-t-2 border-t-transparent hover:border-t-[#b7a71d] transition duration-200 ease-in-out"
-                                        onMouseDown={(e) => {
-                                            if (e.button === 1) {
-                                                window.open("https://www.linkedin.com/in/svihel-jakub", "_blank");
-                                            } else if (e.button === 0) {
-                                                window.location.href = "https://www.linkedin.com/in/svihel-jakub";
-                                            }
-                                        }}
-                                    >
+                                    <JButton href={"https://www.linkedin.com/in/svihel-jakub"}>
                                         <Image
-                                            className="w-24 p-1"
+                                            className="w-24"
                                             src="/icons/in.svg"
                                             alt="LinkedIn icon"
                                             height={0}
                                             width={28}
                                         />
-                                    </button>
+                                    </JButton>
                                     <span className="text-nowrap">linkedin.com/in/svihel-jakub</span>
                                 </div>
 
                                 <div className="flex items-center gap-2">
-                                    <button
-                                        className="py-1 rounded-lg size-8 flex items-center justify-center outline outline-1 outline-[#2b2b27] border-b-2 border-b-[#b7a71d]  border-t-2 border-t-transparent hover:border-t-[#b7a71d] transition duration-200 ease-in-out"
-                                        onMouseDown={(e) => {
-                                            if (e.button === 1) {
-                                                window.open("https://www.github.com/sv1h3l", "_blank");
-                                            } else if (e.button === 0) {
-                                                window.location.href = "https://www.github.com/sv1h3l";
-                                            }
-                                        }}
-                                    >
+                                    <JButton href={"https://www.linkedin.com/in/svihel-jakub"}>
                                         <Image
-                                            className="w-24 p-1"
+                                            className="w-24"
                                             src="/icons/git.svg"
                                             alt="GitHub icon"
                                             width={26}
                                             height={0}
                                         />
-                                    </button>
+                                    </JButton>
                                     <span>github.com/sv1h3l</span>
                                 </div>
                             </div>
@@ -307,32 +284,16 @@ export default function PersonalPage() {
                                     firstCard={personalPageProjectsData.bachelorThesis.firstCard}
                                     values={personalPageProjectsData.bachelorThesis.values}
                                 >
-                                    <div className="flex justify-center sm:justify-normal gap-12 mb-6">
-                                        <button
-                                            className="px-3  text-sm font-bold py-1  rounded-xl outline outline-1 outline-[#2b2b27] border-b-2 border-b-[#b7a71d]  border-t-2 border-t-transparent hover:border-t-[#b7a71d] transition duration-200 ease-in-out  items-center"
-                                            onMouseDown={(e) => {
-                                                if (e.button === 1) {
-                                                    window.open("https://youtu.be/hQASELXYlSs", "_blank");
-                                                } else if (e.button === 0) {
-                                                    window.location.href = "https://youtu.be/hQASELXYlSs";
-                                                }
-                                            }}
-                                        >
-                                            {isCzech ? "VIDEO UKÁZKA" : "VIDEO SAMPLE"}
-                                        </button>
+                                    <div className="flex justify-center sm:justify-normal gap-12 mb-6 sm:ml-4">
+                                        <JButton
+                                            label={isCzech ? "VIDEO UKÁZKA" : "VIDEO SAMPLE"}
+                                            href={"https://youtu.be/hQASELXYlSs"}
+                                        ></JButton>
 
-                                        <button
-                                            className=" px-3 text-sm font-bold py-1 rounded-xl outline outline-1 outline-[#2b2b27] border-b-2 border-b-[#b7a71d]  border-t-2 border-t-transparent hover:border-t-[#b7a71d] transition duration-200 ease-in-out  items-center"
-                                            onMouseDown={(e) => {
-                                                if (e.button === 1) {
-                                                    window.open("https://theses.cz/id/z1m772/doc.pdf", "_blank");
-                                                } else if (e.button === 0) {
-                                                    window.location.href = "https://theses.cz/id/z1m772/doc.pdf";
-                                                }
-                                            }}
-                                        >
-                                            {isCzech ? "DOKUMENTACE" : "DOCUMENTATION"}
-                                        </button>
+                                        <JButton
+                                            label={isCzech ? "DOKUMENTACE" : "DOCUMENTATION"}
+                                            href={"https://theses.cz/id/z1m772/doc.pdf"}
+                                        ></JButton>
                                     </div>
 
                                     <Image

@@ -33,7 +33,7 @@ export default function JList({ header, label, company, job, firstCard, isCzech,
                     ))}
                 </ul>
             ) : (
-                <div className=" list-disc list-outside mx-2 sm:mx-4 space-y-1 li-color mb-4 text-justify">
+                <div className=" list-disc list-outside mx-2 sm:mx-4 space-y-1 li-color mb-4 sm:text-justify">
                     {values.map((value, index) => (
                         <p className="inline mr-1 " key={index}>{value}</p>
                     ))}
