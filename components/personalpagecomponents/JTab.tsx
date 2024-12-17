@@ -11,7 +11,7 @@ interface TabProps {
 export default function JTab({ label, imageSrc, imageAlt, children }: TabProps) {
     return (
         <div
-            className="bg-[#161513] border-t-2 border-[#b7a71d] rounded-3xl mt-3  max-w-5xl w-full
+            className="bg-[#161513] shadow-md border-t-2 border-[#b7a71d] rounded-3xl mt-3  max-w-5xl w-full
             p-3 lg:p-4 lg:mt-4"
         >
             <div className="flex items-center ">
