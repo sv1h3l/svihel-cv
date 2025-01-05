@@ -44,8 +44,8 @@
 		"firstCard": true,
 		"values": [
 			"Tvorba zakázkových webových aplikací a stránek pro firmy i jednotlivce.",
-			"Poskytování komplexních služeb od návrhu UX/UI designu, přes full-stack vývoj až po finální nasazení a správu.",
-			"Zprostředkovávání digitalizace podnikání, optimalizace pracovních procesů a zlepšení online prezentace."
+			"Zprostředkování digitalizace podnikání a zlepšení online prezentace.",
+			"Poskytování komplexních služeb od návrhu UX/UI designu, přes full-stack vývoj až po finální nasazení a správu."
 		]
 	},
 	"oKrokNapred": {
@@ -54,10 +54,10 @@
 		"company": false,
 		"firstCard": false,
 		"values": [
-			"Webová stránka je navržena jako jednoduché a uživatelsky přívětivé řešení, které poskytuje přehledné a srozumitelné informace o rakovině, její prevenci a léčbě.",
-            "Tento projekt je neziskový a byl navržen a realizován s cílem pomoci široké veřejnosti získat cenné informace o tomto závažném zdravotním tématu.",
+			"Webová stránka poskytuje přehledné a srozumitelné informace o rakovině, její prevenci a možnostech léčby.",
+			"Tento neziskový projekt je realizován s cílem pomoci široké veřejnosti.",
 			"Stránka je optimalizována pro snadnou navigaci a rychlý přístup k důležitým informacím.",
-			"Použité technologie jsou React, Next.js, TypeScript, Tailwind CSS a Firebase."
+			"K jejímu vývoji jsou použity technologie React, Next.js, TypeScript, Tailwind CSS a Firebase."
 		]
 	},
 	"diplomaThesis": {

@@ -1,11 +1,12 @@
+import Head from "next/head";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import Head from "next/head";
 
-import JTab from "@/components/personalpagecomponents/JTab";
+import JButton from "@/components/personalpagecomponents/JButton";
+import JFullSizeImageButton from "@/components/personalpagecomponents/JFullSizeImageButton";
 import JGrid from "@/components/personalpagecomponents/JGrid";
 import JList from "@/components/personalpagecomponents/JList";
-import JButton from "@/components/personalpagecomponents/JButton";
+import JTab from "@/components/personalpagecomponents/JTab";
 
 export default function PersonalPage() {
 	const [personalPageGeneralData, setPersonalPageGeneralData] = useState<PersonalPageGeneralData | null>(null);
@@ -65,16 +66,20 @@ export default function PersonalPage() {
 		<>
 			<Head>
 				<title>{personalPageGeneralData?.pageTitle}</title>
+				<meta
+					name="theme-color"
+					content="#000000"
+				/>
 				<link
 					rel="icon"
 					href="/icons/favicon.ico"
 				/>
 			</Head>
-			<main className="bg-[#3C3D37] min-h-screen px-1 lg:px-2 font-roboto ">
+			<main className="bg-[#3C3D37] px-1 lg:px-2 font-roboto ">
 				<div className="flex w-full flex-col pb-1 lg:pb-2 text-gray-200 items-center">
 					<div
 						className="bg-[#161513] border-t-2 relative border-[#b7a71d] rounded-b-3xl px-3 pt-1 pb-1 sm:px-6 sm:py-5  sm:gap-2 md:gap-4 items-center justify-center
-                  max-w-lg flex flex-col sm:flex-row shadow-md">
+                  		max-w-lg flex flex-col sm:flex-row shadow-md">
 						<Image
 							className="w-24  my-1"
 							src={"/images/profile_picture.png"}
@@ -107,7 +112,6 @@ export default function PersonalPage() {
 							</JButton>
 						}
 					</div>
-
 					<JTab
 						label={isCzech ? "o mně" : "about me"}
 						imageSrc="about_me"
@@ -121,11 +125,11 @@ export default function PersonalPage() {
 								<div className="flex items-center gap-2">
 									<JButton phone={true}>
 										<Image
-											className="w-24"
-											src={`/icons/call.svg`}
+											className="w-5"
+											src={`/icons/phone.svg`}
 											alt="Phone icon"
-											width={30}
-											height={0}
+											width={0}
+											height={28}
 										/>
 									</JButton>
 									<span>+420 733 249 479</span>
@@ -134,8 +138,8 @@ export default function PersonalPage() {
 								<div className="flex items-center gap-2">
 									<JButton email={true}>
 										<Image
-											className="w-24"
-											src={`/icons/mail.svg`}
+											className="w-5"
+											src={`/icons/maill.svg`}
 											alt="Mail icon"
 											width={30}
 											height={0}
@@ -174,35 +178,30 @@ export default function PersonalPage() {
 							</div>
 						</div>
 					</JTab>
-
 					<JTab
 						label={isCzech ? "zaměstnání" : "employment"}
 						imageSrc="employment"
 						imageAlt="Employment icon">
 						{personalPageGeneralData && <JGrid gridArray={personalPageGeneralData?.employment} />}
 					</JTab>
-
 					<JTab
 						label={isCzech ? "dovednosti" : "skills"}
 						imageSrc="skills"
 						imageAlt="Skills icon">
 						{personalPageGeneralData && <JGrid gridArray={personalPageGeneralData?.skills} />}
 					</JTab>
-
 					<JTab
 						label={isCzech ? "vzdělání" : "education"}
 						imageSrc="education"
 						imageAlt="Education icon">
 						{personalPageGeneralData && <JGrid gridArray={personalPageGeneralData?.education} />}
 					</JTab>
-
 					<JTab
 						label={isCzech ? "certifikáty" : "certificates"}
 						imageSrc="certificates"
 						imageAlt="Certificates icon">
 						{personalPageGeneralData && <JGrid gridArray={personalPageGeneralData?.certificates} />}
 					</JTab>
-
 					<Image
 						className="pt-3 px-16 lg:pt-4"
 						src="/images/line.svg"
@@ -210,7 +209,6 @@ export default function PersonalPage() {
 						height={0}
 						alt="Horizontal line"
 					/>
-
 					<JTab
 						label={isCzech ? "komerční sféra" : "commercial sphere"}
 						imageSrc="employment"
@@ -247,7 +245,7 @@ export default function PersonalPage() {
 									job={personalPageProjectsData.selfEmployment.job}
 									firstCard={personalPageProjectsData.selfEmployment.firstCard}
 									isCzech={isCzech}
-									borderTop={true}
+									borderTop
 									values={personalPageProjectsData.selfEmployment.values}></JList>
 
 								<JList
@@ -255,25 +253,29 @@ export default function PersonalPage() {
 									label={personalPageProjectsData.oKrokNapred.label}
 									company={personalPageProjectsData.oKrokNapred.company}
 									firstCard={personalPageProjectsData.oKrokNapred.firstCard}
-									values={personalPageProjectsData.oKrokNapred.values}>
-									<div className="mb-5 ml-2 ">
-										<JButton
-											label={isCzech ? "ODKAZ" : "LINK"}
-											href={"https://oncology-x.web.app/"}></JButton>
-									</div>
+									values={personalPageProjectsData.oKrokNapred.values}
+									lastCard>
+									<>
 
-									<Image
-										className="rounded-lg mt-4"
-										src="/images/o_krok_napred.png"
-										width={1000}
-										height={0}
-										alt="Image of Paziak from game Paziaatus"
-									/>
+										<JButton
+											href={"https://oncology-x.web.app/"}
+											smaller>
+											<Image
+												className="w-24"
+												src="/icons/link.svg"
+												alt="Link icon"
+												height={0}
+												width={28}
+											/>
+										</JButton>
+
+										<JFullSizeImageButton imagesSrcs={["o_krok_napred-desktop", "o_krok_napred-mobile"]} />
+
+									</>
 								</JList>
 							</>
 						)}
 					</JTab>
-
 					<JTab
 						label={isCzech ? "akademická sféra" : "academic sphere"}
 						imageSrc="education"
@@ -293,45 +295,37 @@ export default function PersonalPage() {
 									company={personalPageProjectsData.bachelorThesis.company}
 									firstCard={personalPageProjectsData.bachelorThesis.firstCard}
 									values={personalPageProjectsData.bachelorThesis.values}
-									borderTop={true}>
-									<div className="flex gap-12 mb-5 ml-2 ">
+									borderTop
+									lastCard>
+									<>
 										<JButton
-											label={isCzech ? "VIDEO UKÁZKA" : "VIDEO SAMPLE"}
-											href={"https://youtu.be/hQASELXYlSs"}></JButton>
+											href={"https://theses.cz/id/z1m772/doc.pdf"}
+											smaller>
+											<Image
+												className="w-24"
+												src="/icons/certificates.svg"
+												alt="Link icon"
+												height={0}
+												width={28}
+											/>
+										</JButton>
 
 										<JButton
-											label={isCzech ? "DOKUMENTACE" : "DOCUMENTATION"}
-											href={"https://theses.cz/id/z1m772/doc.pdf"}></JButton>
-									</div>
+											href={"https://youtu.be/hQASELXYlSs"}
+											smaller>
+											<Image
+												className="w-24"
+												src="/icons/youtube.svg"
+												alt="Youtube icon"
+												height={0}
+												width={28}
+											/>
+										</JButton>
 
-									<Image
-										className="mb-4 rounded-lg mt-4"
-										src="/images/paziak.png"
-										width={1000}
-										height={0}
-										alt="Image of Paziak from game Paziaatus"
-									/>
-									<Image
-										className="mb-4 rounded-lg"
-										src="/images/inventory.png"
-										width={1000}
-										height={0}
-										alt="Image of inventory from game Paziaatus"
-									/>
-									<Image
-										className="mb-4 rounded-lg"
-										src="/images/migrate.png"
-										width={1000}
-										height={0}
-										alt="Image of migration from game Paziaatus"
-									/>
-									<Image
-										className="rounded-lg"
-										src="/images/map.png"
-										width={1000}
-										height={0}
-										alt="Image of map from game Paziaatus"
-									/>
+										<JFullSizeImageButton
+											imagesSrcs={["paziak", "inventory", "migrate", "map"]} // Pole více obrázků
+										/>
+									</>
 								</JList>
 							</>
 						)}

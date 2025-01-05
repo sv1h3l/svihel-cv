@@ -37,27 +37,27 @@
 		]
 	},
 	"selfEmployment": {
-		"header": "Vedlejší činnost",
+		"header": "Secondary activity",
 		"label": "Jakub Švihel Technologies",
 		"company": true,
-		"job": "Full-Stack vývojář",
+		"job": "Full-Stack Developer",
 		"firstCard": true,
 		"values": [
-			"Tvorba zakázkových webových aplikací a stránek pro firmy i jednotlivce.",
-			"Poskytování komplexních služeb od návrhu UX/UI designu, přes full-stack vývoj až po finální nasazení a správu.",
-			"Zprostředkovávání digitalizace podnikání, optimalizace pracovních procesů a zlepšení online prezentace."
+			"Creation of custom web applications and websites for companies and individuals.",
+			"Facilitating business digitization and improving online presence.",
+			"Providing comprehensive services from UX/UI design, through full-stack development to final deployment and management."
 		]
 	},
 	"oKrokNapred": {
-		"header": "Projekt",
+		"header": "Project",
 		"label": "O krok napřed",
 		"company": false,
 		"firstCard": false,
 		"values": [
-			"Webová stránka je navržena jako jednoduché a uživatelsky přívětivé řešení, které poskytuje přehledné a srozumitelné informace o rakovině, její prevenci a léčbě.",
-            "Tento projekt je neziskový a byl navržen a realizován s cílem pomoci široké veřejnosti získat cenné informace o tomto závažném zdravotním tématu.",
-			"Stránka je optimalizována pro snadnou navigaci a rychlý přístup k důležitým informacím.",
-			"Použité technologie jsou React, Next.js, TypeScript, Tailwind CSS a Firebase."
+			"The website provides clear and easy-to-understand information about cancer, its prevention and treatment options.",
+            "This non-profit project is undertaken to help the general public.",
+			"The site is optimized for easy navigation and quick access to important information.",
+			"React, Next.js, TypeScript, Tailwind CSS, and Firebase technologies are used to develop it."
 		]
 	},
 	"diplomaThesis": {
@@ -76,7 +76,7 @@
 		"header": "Bachelor thesis",
 		"label": "Paziaatus",
 		"company": false,
-		"firstCard": false,
+		"firstCard": true,
 		"values": [
 			"For my bachelor thesis, I created a gambling desktop game with RPG elements and a Star Wars theme, based on the concept of existing games (Pazaak, Gladiatus, Shakes and Fidget, ...) but with an original implementation.",
 			"As part of my work, I not only implemented the game itself, but also analyzed the game technology and development methodology.",
