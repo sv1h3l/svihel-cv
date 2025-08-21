@@ -8,7 +8,7 @@ import JGrid from "@/components/personalpagecomponents/JGrid";
 import JList from "@/components/personalpagecomponents/JList";
 import JTab from "@/components/personalpagecomponents/JTab";
 
-export default function PersonalPage() {
+export default function Index() {
 	const [personalPageGeneralData, setPersonalPageGeneralData] = useState<PersonalPageGeneralData | null>(null);
 	const [personalPageProjectsData, setPersonalPageProjectsData] = useState<PersonalPageProjectsData | null>(null);
 
@@ -164,7 +164,7 @@ export default function PersonalPage() {
 								</div>
 
 								<div className="flex items-center gap-2">
-									<JButton href={"https://www.linkedin.com/in/svihel-jakub"}>
+									<JButton href={"https://github.com/sv1h3l"}>
 										<Image
 											className="w-24"
 											src="/icons/git.svg"
