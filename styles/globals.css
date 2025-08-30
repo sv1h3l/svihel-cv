@@ -14,7 +14,7 @@ html,
 }
 
 ::-webkit-scrollbar {
-	width: 12px;
+	width: 10px;
 	background-color: #3c3d37;
 }
 
@@ -29,9 +29,8 @@ html,
 	background-color: #161513;
 	border-radius: 10px;
 
-	border-top: 4px solid #b7a71d;
-	border-bottom: 4px solid #b7a71d;
-	border-left: 1px solid #2b2b27;
+	border-top: 3px solid #b7a71d;
+	border-bottom: 3px solid #b7a71d;
 }
 
 /** Nastavení velikosti písma pro různě široká zařízení */

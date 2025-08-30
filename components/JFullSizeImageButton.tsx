@@ -18,7 +18,7 @@ export default function JFullSizeImageButton({ imagesSrcs }: JFullSizeImageButto
 				smaller>
 				<Image
 					className="w-24"
-					src="/icons/pictures.svg"
+					src="/icons/pictures.webp"
 					alt="Pictures icon"
 					height={0}
 					width={28}

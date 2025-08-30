@@ -1,9 +1,9 @@
 {
-    "pageTitle": "Personal Page - Jakub Švihel",
+    "pageTitle": "Jakub Švihel",
     "aboutMe": "I am an information technology enthusiast, especially in web development and applications. I believe that lifelong learning is the key to personal and professional growth, and I try to keep things simple and minimalist in my everyday life. I am very fascinated by Japan and its rich culture, which inspires and enriches me in many ways. In addition, I have an active interest in fitness, which is an essential part of my daily routine, and a long-term interest in investing.",
     "education": [
         {
-            "key": "2023 - PRESENT",
+            "key": "2023 - 2025",
             "goldValue": "Msc.",
             "primaryValue": "Applied Computer Science, Software Development",
             "secondaryValue": "Department of Computer Science, Palacký University, Olomouc"
@@ -17,7 +17,7 @@
     ],
     "employment": [
         {
-            "key": "2022 - PRESENT",
+            "key": "2022 - 2025",
             "primaryValue": "MES Full-Stack Developer",
             "secondaryValue": "HELLA AUTOTECHNIK NOVA, s.r.o."
         }
@@ -51,11 +51,11 @@
     "skills": [
         {
             "key": "Frontend",
-            "primaryValue": "HTML, CSS, TypeScript, JavaScript, Tailwind, React, Next.js, Material UI, Vaadin"
+            "primaryValue": "React, Next.js, TypeScript, Tailwind, Material UI, HTML, CSS, Vaadin"
         },
         {
             "key": "Backend",
-            "primaryValue": "Java SE / EE, Node.js"
+            "primaryValue": "Node.js, Java SE / EE"
         },
         {
             "key": "Other",

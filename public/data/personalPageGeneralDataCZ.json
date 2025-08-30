@@ -1,9 +1,9 @@
 {
-    "pageTitle": "Osobní stránka - Jakub Švihel",
+    "pageTitle": "Jakub Švihel",
     "aboutMe": "Jsem nadšenec do informačních technologií, zejména pak do tvorby webových stránek a aplikací. Věřím, že celoživotní vzdělávání je klíčem k osobnímu i profesnímu růstu, a v každodenním životě se snažím držet jednoduchosti a minimalismu. Jsem velmi fascinován Japonskem a jeho bohatou kulturou, která mě v mnohém inspiruje a obohacuje. Kromě toho se aktivně věnuji fitness, které je nedílnou součástí mé každodenní rutiny, a dlouhodobě se zajímám o investování.",
     "education": [
         {
-            "key": "2023 - SOUČASTNOST",
+            "key": "2023 - 2025",
             "goldValue": "Mgr.",
             "primaryValue": "Aplikovaná informatika, Vývoj softwaru",
             "secondaryValue": "Katedra informatiky, Univerzita Palackého, Olomouc"
@@ -17,7 +17,7 @@
     ],
     "employment": [
         {
-            "key": "2022 - SOUČASTNOST",
+            "key": "2022 - 2025",
             "primaryValue": "MES Full-Stack vývojář",
             "secondaryValue": "HELLA AUTOTECHNIK NOVA, s.r.o."
         }
@@ -51,11 +51,11 @@
     "skills": [
         {
             "key": "Frontend",
-            "primaryValue": "HTML, CSS, TypeScript, JavaScript, Tailwind, React, Next.js, Material UI, Vaadin"
+            "primaryValue": "React, Next.js, TypeScript, Tailwind, Material UI, HTML, CSS, Vaadin"
         },
         {
             "key": "Backend",
-            "primaryValue": "Java SE / EE, Node.js"
+            "primaryValue": "Node.js, Java SE / EE"
         },
         {
             "key": "Ostatní",

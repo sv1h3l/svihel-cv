@@ -36,7 +36,7 @@ const JButton: React.FC<JButtonProps> = ({ label, href, phone, email, lang, disa
 	};
 	return (
 		<button
-			className={`outline outline-1 outline-[#2b2b27] border-b-2 border-b-[#b7a71d] border-t-2 border-t-transparent
+			className={`outline outline-1 outline-[#2b2b27] border-b-2 border-b-[#b7a71d] border-t-2 border-t-transparent bg-[#232323]
                     ${disabled ? "opacity-50" : "hover:border-t-[#b7a71d] transition duration-200 ease-in-out "}
                     ${label ? "text-sm font-bold px-3 py-1" : `${smaller ? "size-7" : "size-8"}  px-1 `}
                     ${lang ? "text-sm font-bold " : "rounded-lg flex items-center justify-center"}

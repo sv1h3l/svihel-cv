@@ -40,10 +40,10 @@ export default function JFullSizeImage({ imagesSrcs, setShowImage }: FullSizeIma
 
 	return (
 		<div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-30 ">
-			<div className="bg-[#161513] shadow-md border-t-2 border-[#b7a71d] rounded-3xl flex justify-center items-center mx-1 ">
+			<div className="bg-[#191919] shadow-lg shadow-[#10101080] border-t-2 border-[#b7a71d] rounded-3xl flex justify-center items-center mx-1 max-h-[100dvh]">
 				<div className="relative p-2 pt-9 lg:pt-11 lg:p-6  ">
 					<Image
-						className="max-h-85vh w-auto h-auto rounded-2xl"
+						className=" w-auto h-auto rounded-2xl max-h-[90dvh]"
 						src={`/images/${imagesSrcs[currentIndex]}.png`} // Zobrazení aktuálního obrázku podle indexu
 						alt={"Full sized image."}
 						width={1}
@@ -57,7 +57,7 @@ export default function JFullSizeImage({ imagesSrcs, setShowImage }: FullSizeIma
 							setShowImageValue={false}
 							smaller>
 							<Image
-								src={`/icons/close.svg`}
+								src={`/icons/close.webp`}
 								alt={"Close button"}
 								width={30}
 								height={30}
@@ -80,7 +80,7 @@ export default function JFullSizeImage({ imagesSrcs, setShowImage }: FullSizeIma
 								smaller>
 								<Image
 									className="rotate-180 scale-125"
-									src={`/icons/arrow.svg`}
+									src={`/icons/arrow.webp`}
 									alt={"Next button"}
 									width={30}
 									height={30}
@@ -99,7 +99,7 @@ export default function JFullSizeImage({ imagesSrcs, setShowImage }: FullSizeIma
 								smaller>
 								<Image
 									className=" scale-125"
-									src={`/icons/arrow.svg`}
+									src={`/icons/arrow.webp`}
 									alt={"Previous button"}
 									width={30}
 									height={30}
