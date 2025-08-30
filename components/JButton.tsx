@@ -15,7 +15,7 @@ interface JButtonProps {
 	setShowImageValue?: boolean;
 }
 
-const JButton: React.FC<JButtonProps> = ({ label, href, phone, email, lang, disabled, smaller, children, className, onClick, setShowImage , setShowImageValue = false}) => {
+const JButton: React.FC<JButtonProps> = ({ label, href, phone, email, lang, disabled, smaller, children, className, onClick, setShowImage, setShowImageValue = false }) => {
 	const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
 		if (onClick) {
 			onClick(e);
@@ -34,6 +34,7 @@ const JButton: React.FC<JButtonProps> = ({ label, href, phone, email, lang, disa
 			window.location.href = `${href}`;
 		}
 	};
+
 	return (
 		<button
 			className={`outline outline-1 outline-[#2b2b27] border-b-2 border-b-[#b7a71d] border-t-2 border-t-transparent bg-[#232323]

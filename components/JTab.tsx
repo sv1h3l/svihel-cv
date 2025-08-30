@@ -9,15 +9,17 @@ interface TabProps {
     children: React.ReactNode;
     show: boolean;
     isCzech: boolean;
+    lastTab?: boolean;
 }
 
-export default function JTab({ labelCZ,labelEN, imageSrc, imageAlt, children, show, isCzech }: TabProps) {
+export default function JTab({ labelCZ,labelEN, imageSrc, imageAlt, children, show, isCzech, lastTab }: TabProps) {
     return (
         <div
-            className={`bg-[#191919] shadow-lg shadow-[#10101080] border-t-2 border-[#b7a71d] rounded-3xl mt-3  max-w-5xl w-full
-            p-3 lg:p-4 lg:mt-4
+            className={`bg-[#191919] shadow-lg shadow-[#10101080] border-t-2 border-[#b7a71d] rounded-3xl mt-5  max-w-5xl w-full
+            p-3 lg:p-4 lg:mt-6
             transition-all duration-700
-            ${show ? "opacity-100" : "opacity-0"}`}
+            ${show ? "opacity-100" : "opacity-0"}
+            ${lastTab && "mb-5"}`}
         >
             <div className="flex items-center ">
                 <Image

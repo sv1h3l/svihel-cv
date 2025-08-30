@@ -18,10 +18,7 @@
 		"company": false,
 		"firstCard": false,
 		"values": [
-			"This is a progressive web application designed to display detailed information about a specific headlight.",
-			"The application provides an overview of the testing process, measured values, individual components and other technical parameters.",
-			"Although primarily optimized for mobile devices, it is also fully compatible with desktop platforms.",
-			"The frontend is implemented using HTML, CSS and Vaadin, while the backend is in Java programming language."
+			"This is a progressive web application designed to display detailed information about a specific headlight. The application provides an overview of the testing process, measured values, individual components and other technical parameters. Although primarily optimized for mobile devices, it is also fully compatible with desktop platforms. The frontend is implemented using HTML, CSS and Vaadin, while the backend is in Java programming language."
 		]
 	},
 	"projectProjectServer": {
@@ -30,10 +27,7 @@
 		"company": false,
 		"firstCard": false,
 		"values": [
-			"It is a progressive web application designed to run JNLP projects and monitor their progress on different devices in the company.",
-			"The application replaces the outdated project server, which has been completely redesigned and enhanced with new features.",
-			"The primary focus of the app is desktop use, however it is functional on mobile devices as well.",
-			"The frontend of the application is built on HTML, CSS and Vaadin technologies, while the backend is implemented in Java."
+			"It is a progressive web application designed to run JNLP projects and monitor their progress on different devices in the company. The application replaces the outdated project server, which has been completely redesigned and enhanced with new features. The primary focus of the app is desktop use, however it is functional on mobile devices as well. The frontend of the application is built on HTML, CSS and Vaadin technologies, while the backend is implemented in Java."
 		]
 	},
 	"selfEmployment": {
@@ -54,10 +48,7 @@
 		"company": false,
 		"firstCard": false,
 		"values": [
-			"The website provides clear and easy-to-understand information about cancer, its prevention and treatment options.",
-            "This non-profit project is undertaken to help the general public.",
-			"The site is optimized for easy navigation and quick access to important information.",
-			"React, Next.js, TypeScript, Tailwind CSS, and Firebase technologies are used to develop it."
+			"The website provides clear and easy-to-understand information about cancer, its prevention and treatment options. This non-profit project is undertaken to help the general public. The site is optimized for easy navigation and quick access to important information. React, Next.js, TypeScript, Tailwind CSS, and Firebase technologies are used to develop it."
 		]
 	},
 	"diplomaThesis": {
@@ -66,10 +57,7 @@
 		"company": false,
 		"firstCard": true,
 		"values": [
-			"My thesis deals with the development of a web application for the creation and management of training plans, which combines automatic generation and manual creation of training plans.",
-			"The application will allow users to register, create and edit their own workout plans, track progress through graphs and set goals.",
-			"It will also include an exercise database with descriptions, the ability to add custom exercises, and features for communicating with other users.",
-			"Technologies used in development include React, MaterialUI, Tailwind, TypeScript, Node.js, and Next.js."
+			"A modern web application for creating training plans can significantly simplify collaboration between clients and trainers while contributing to improved athletic performance. As part of a thesis was designed and implemented the application KlikFit, which allows users to create, manage, and view individual training plans, track athletic progress, and communicate with each other. Training plans can be created manually or automatically based on user-defined parameters. The application is built on React, Next.js, MaterialUI, Tailwind, TypeScript, Node.js, and MySQL technologies."
 		]
 	},
 	"bachelorThesis": {
@@ -78,10 +66,7 @@
 		"company": false,
 		"firstCard": true,
 		"values": [
-			"For my bachelor thesis, I created a gambling desktop game with RPG elements and a Star Wars theme, based on the concept of existing games (Pazaak, Gladiatus, Shakes and Fidget, ...) but with an original implementation.",
-			"As part of my work, I not only implemented the game itself, but also analyzed the game technology and development methodology.",
-			"The game implements a computer opponent algorithm that is able to analyze the situation and create a strategy during a card game.",
-			"The game logic is written in the Java programming language and I created the visual elements using the DALLE-E 2 model and the Photoshop graphics editor."
+			"For my bachelor thesis, I created a gambling desktop game with RPG elements and a Star Wars theme, based on the concept of existing games (Pazaak, Gladiatus, Shakes and Fidget, ...) but with an original implementation. As part of my work, I not only implemented the game itself, but also analyzed the game technology and development methodology. The game implements a computer opponent algorithm that is able to analyze the situation and create a strategy during a card game. The game logic is written in the Java programming language and I created the visual elements using the DALLE-E 2 model and the Photoshop graphics editor."
 		]
 	}
 }

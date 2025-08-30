@@ -18,10 +18,7 @@
 		"company": false,
 		"firstCard": false,
 		"values": [
-			"Jedná se o progresivní webovou aplikaci určenou k detailnímu zobrazení informací o konkrétním světlometu.",
-			"Aplikace poskytuje přehled o průběhu testování, naměřených hodnotách, jednotlivých komponentách a dalších technických parametrech.",
-			"I když je primárně optimalizována pro mobilní zařízení, je plně kompatibilní i s desktopovými platformami.",
-			"Frontend je realizován pomocí HTML, CSS a Vaadin, zatímco backend je v programovacím jazyce Java."
+			"Jedná se o progresivní webovou aplikaci určenou k detailnímu zobrazení informací o konkrétním světlometu. Aplikace poskytuje přehled o průběhu testování, naměřených hodnotách, jednotlivých komponentách a dalších technických parametrech. I když je primárně optimalizována pro mobilní zařízení, je plně kompatibilní i s desktopovými platformami. Frontend je realizován pomocí HTML, CSS a Vaadin, zatímco backend je v programovacím jazyce Java."
 		]
 	},
 	"projectProjectServer": {
@@ -30,10 +27,7 @@
 		"company": false,
 		"firstCard": false,
 		"values": [
-			"Jedná se o progresivní webovou aplikaci určenou pro spouštění JNLP projektů a sledování jejich běhu na různých zařízeních ve firmě.",
-			"Aplikace nahrazuje zastaralý projektový server, který byl kompletně přepracován a rozšířen o nové funkce.",
-			"Primárním zaměřením aplikace je desktopové použití, nicméně je funkční i na mobilních zařízeních.",
-			"Frontend aplikace je postaven na technologiích HTML, CSS a Vaadin, zatímco backend je implementován v Javě."
+			"Jedná se o progresivní webovou aplikaci určenou pro spouštění JNLP projektů a sledování jejich běhu na různých zařízeních ve firmě. Aplikace nahrazuje zastaralý projektový server, který byl kompletně přepracován a rozšířen o nové funkce. Primárním zaměřením aplikace je desktopové použití, nicméně je funkční i na mobilních zařízeních. Frontend aplikace je postaven na technologiích HTML, CSS a Vaadin, zatímco backend je implementován v Javě."
 		]
 	},
 	"selfEmployment": {
@@ -54,10 +48,7 @@
 		"company": false,
 		"firstCard": false,
 		"values": [
-			"Webová stránka poskytuje přehledné a srozumitelné informace o rakovině, její prevenci a možnostech léčby.",
-			"Tento neziskový projekt je realizován s cílem pomoci široké veřejnosti.",
-			"Stránka je optimalizována pro snadnou navigaci a rychlý přístup k důležitým informacím.",
-			"K jejímu vývoji jsou použity technologie React, Next.js, TypeScript, Tailwind CSS a Firebase."
+			"Webová stránka poskytuje přehledné a srozumitelné informace o rakovině, její prevenci a možnostech léčby. Tento neziskový projekt je realizován s cílem pomoci široké veřejnosti. Stránka je optimalizována pro snadnou navigaci a rychlý přístup k důležitým informacím. K jejímu vývoji jsou použity technologie React, Next.js, TypeScript, Tailwind CSS a Firebase."
 		]
 	},
 	"diplomaThesis": {
@@ -66,7 +57,7 @@
 		"company": false,
 		"firstCard": true,
 		"values": [
-			"Moderní webová aplikace pro tvorbu tréninkových plánů může významně usnadnit spolupráci mezi klienty a trenéry a zároveň přispět ke zlepšení sportovní výkonnosti. V rámci diplomové práce byla navržena a implementována aplikace KlikFit, která umožňuje vytváření, správu a zobrazování individuálních tréninkových plánů, sledování sportovního pokroku a komunikaci mezi uživateli. Tréninkové plány lze vytvářet manuálně nebo automaticky na základě uživatelsky definovaných parametrů. Aplikace je postavena na technologiích React, Next.js, MaterialUI, Tailwind, TypeScript, Node.js a MySQL ."
+			"Moderní webová aplikace pro tvorbu tréninkových plánů může významně usnadnit spolupráci mezi klienty a trenéry a zároveň přispět ke zlepšení sportovní výkonnosti. V rámci diplomové práce byla navržena a implementována aplikace KlikFit, která umožňuje vytváření, správu a zobrazování individuálních tréninkových plánů, sledování sportovního pokroku a komunikaci mezi uživateli. Tréninkové plány lze vytvářet manuálně nebo automaticky na základě uživatelsky definovaných parametrů. Aplikace je postavena na technologiích React, Next.js, MaterialUI, Tailwind, TypeScript, Node.js a MySQL."
 		]
 	},
 	"bachelorThesis": {
@@ -75,10 +66,7 @@
 		"company": false,
 		"firstCard": false,
 		"values": [
-			"Jako bakalářskou práci jsem vytvořil hazardní desktopovou hru s RPG prvky a tématikou Star Wars, která je založena na konceptu již existujících her (Pazaak, Gladiatus, Shakes and Fidget, ...), avšak s originálním provedením.",
-			"V rámci práce jsem se zabýval nejen implementací samotné hry, ale také analýzou herních technologií a metodiky vývoje.",
-			"Hra implementuje algoritmus počítačového protihráče, který je schopen analyzovat situaci a vytvořit strategii během karetní partie.",
-			"Herní logika je napsána v programovacím jazyce Java a vizuální prvky jsem vytvořil pomocí modelu DALLE-E 2 a grafickém editoru Photoshop."
+			"Jako bakalářskou práci jsem vytvořil hazardní desktopovou hru s RPG prvky a tématikou Star Wars, která je založena na konceptu již existujících her (Pazaak, Gladiatus, Shakes and Fidget, ...), avšak s originálním provedením. V rámci práce jsem se zabýval nejen implementací samotné hry, ale také analýzou herních technologií a metodiky vývoje. Hra implementuje algoritmus počítačového protihráče, který je schopen analyzovat situaci a vytvořit strategii během karetní partie. Herní logika je napsána v programovacím jazyce Java a vizuální prvky jsem vytvořil pomocí modelu DALLE-E 2 a grafickém editoru Photoshop."
 		]
 	}
 }

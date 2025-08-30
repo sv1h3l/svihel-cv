@@ -38,23 +38,45 @@ export default function JFullSizeImage({ imagesSrcs, setShowImage }: FullSizeIma
 		};
 	}, []);
 
+	const [show, setShow] = useState(false);
+
+	useEffect(() => {
+		setTimeout(() => setShow(true), 1);
+	}, []);
+
+// Funkce pro zavření (s animací)
+const handleClose = () => {
+	setShow(false); // fade-out
+	setTimeout(() => {
+		setShowImage(false); // odmount po animaci
+	}, 500); // musí odpovídat délce transition-all duration-500
+};
+
+
 	return (
-		<div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-30 ">
+		<div
+			className={`
+						fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-30
+						transition-all duration-500
+                        ${show ? "opacity-100" : "opacity-0"}
+					`}>
 			<div className="bg-[#191919] shadow-lg shadow-[#10101080] border-t-2 border-[#b7a71d] rounded-3xl flex justify-center items-center mx-1 max-h-[100dvh]">
 				<div className="relative p-2 pt-9 lg:pt-11 lg:p-6  ">
 					<Image
 						className=" w-auto h-auto rounded-2xl max-h-[90dvh]"
-						src={`/images/${imagesSrcs[currentIndex]}.png`} // Zobrazení aktuálního obrázku podle indexu
-						alt={"Full sized image."}
+						src={`/images/${imagesSrcs[currentIndex]}.webp`} // Zobrazení aktuálního obrázku podle indexu
+						alt={"Full sized image"}
 						width={1}
 						height={1}
+						priority
 					/>
+
+					
 
 					<div className="absolute right-5 lg:right-9 top-1 lg:top-2">
 						<JButton
 							className="bg-[#161513]"
-							setShowImage={setShowImage}
-							setShowImageValue={false}
+							onClick={handleClose}
 							smaller>
 							<Image
 								src={`/icons/close.webp`}
@@ -72,7 +94,7 @@ export default function JFullSizeImage({ imagesSrcs, setShowImage }: FullSizeIma
 										
 										absolute left-1/2 transform -translate-x-1/2 top-1 lg:top-2
 										flex justify-center ">
-							<JButton	
+							<JButton
 								className="bg-[#161513]"
 								setShowImage={setShowImage}
 								setShowImageValue={false}
