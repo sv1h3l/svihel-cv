@@ -57,7 +57,7 @@
 		"company": false,
 		"firstCard": true,
 		"values": [
-			"Moderní webová aplikace pro tvorbu tréninkových plánů může významně usnadnit spolupráci mezi klienty a trenéry a zároveň přispět ke zlepšení sportovní výkonnosti. V rámci diplomové práce byla navržena a implementována aplikace KlikFit, která umožňuje vytváření, správu a zobrazování individuálních tréninkových plánů, sledování sportovního pokroku a komunikaci mezi uživateli. Tréninkové plány lze vytvářet manuálně nebo automaticky na základě uživatelsky definovaných parametrů. Aplikace je postavena na technologiích React, Next.js, MaterialUI, Tailwind, TypeScript, Node.js a MySQL."
+			"V rámci diplomové práce byla navržena a implementována webová aplikace KlikFit, která umožňuje vytváření, správu a zobrazování individuálních tréninkových plánů, sledování sportovního pokroku a komunikaci mezi uživateli. Tréninkové plány lze vytvářet manuálně nebo automaticky na základě uživatelsky definovaných parametrů. Aplikace je postavena na technologiích React, Next.js, MaterialUI, Tailwind, TypeScript, Node.js a MySQL."
 		]
 	},
 	"bachelorThesis": {

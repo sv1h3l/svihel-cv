@@ -57,7 +57,7 @@
 		"company": false,
 		"firstCard": true,
 		"values": [
-			"A modern web application for creating training plans can significantly simplify collaboration between clients and trainers while contributing to improved athletic performance. As part of a thesis was designed and implemented the application KlikFit, which allows users to create, manage, and view individual training plans, track athletic progress, and communicate with each other. Training plans can be created manually or automatically based on user-defined parameters. The application is built on React, Next.js, MaterialUI, Tailwind, TypeScript, Node.js, and MySQL technologies."
+			"As part of my diploma thesis, I designed and implemented the web application KlikFit, which allows users to create, manage, and view individual training plans, track athletic progress, and communicate with each other. Training plans can be created manually or automatically based on user-defined parameters. The application is built on React, Next.js, MaterialUI, Tailwind, TypeScript, Node.js, and MySQL technologies."
 		]
 	},
 	"bachelorThesis": {

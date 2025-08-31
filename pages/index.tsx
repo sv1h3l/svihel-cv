@@ -113,7 +113,7 @@ export default function Index({
 					property="og:image"
 					content="https://svihel-cv.web.app/images/profile_picture.webp"
 				/>
-                
+
 				<meta
 					name="theme-color"
 					content="#3C3D37"
@@ -156,8 +156,8 @@ export default function Index({
 							/>
 
 							<div className="relative grid pr-[0.2rem]">
-								<h2 className={`text-[1.24rem] pt-0.5 font-bold  text-nowrap  text-gray-200 transition-all duration-500 col-start-1 row-start-1 ${isCzech ? "opacity-100" : "opacity-0 "}`}>FULL-STACK VÝVOJÁŘ</h2>
-								<h2 className={`text-[1.125rem] font-bold  text-nowrap  text-gray-200 transition-all duration-500 col-start-1 row-start-1 ${isCzech ? "opacity-0 " : "opacity-100"}`}>FULL-STACK DEVELOPER</h2>
+								<h2 className={`text-[1.24rem] pt-0.5 md:mt-0 mt-1 font-bold  text-nowrap  text-gray-200 transition-all duration-500 col-start-1 row-start-1 ${isCzech ? "opacity-100" : "opacity-0 "}`}>FULL-STACK VÝVOJÁŘ</h2>
+								<h2 className={`text-[1.125rem] font-bold md:mt-0 mt-1.5 text-nowrap  text-gray-200 transition-all duration-500 col-start-1 row-start-1 ${isCzech ? "opacity-0 " : "opacity-100"}`}>FULL-STACK DEVELOPER</h2>
 							</div>
 						</div>
 
@@ -166,7 +166,7 @@ export default function Index({
 								className="absolute right-[0.08rem] top-0.5 h-6 w-8 pb-6 rounded-bl-xl"
 								onClick={() => setIsCzech(!isCzech)}
 								lang={true}>
-								{isCzech ? "EN" : "CS"}
+								<p className="ml-0.5 mt-[0.075rem]">{isCzech ? "EN" : "CS"}</p>
 							</JButton>
 						}
 					</div>
