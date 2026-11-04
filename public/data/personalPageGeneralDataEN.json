@@ -1,65 +1,74 @@
 {
-    "pageTitle": "Jakub Švihel",
-    "aboutMe": "I am an information technology enthusiast, especially in web development and applications. I believe that lifelong learning is the key to personal and professional growth, and I try to keep things simple and minimalist in my everyday life. I am very fascinated by Japan and its rich culture, which inspires me in many ways. In addition, I have an active interest in fitness, which is an essential part of my daily routine, and a long-term interest in investing.",
-    "education": [
-        {
-            "key": "2023 - 2025",
-            "goldValue": "Msc.",
-            "primaryValue": "Applied Computer Science, Software Development",
-            "secondaryValue": "Department of Computer Science, Palacký University, Olomouc"
-        },
-        {
-            "key": "2020 - 2023",
-            "goldValue": "Bc.",
-            "primaryValue": "Computer Science, Programming and software development",
-            "secondaryValue": "Department of Computer Science, Palacký University, Olomouc"
-        }
-    ],
-    "employment": [
-        {
-            "key": "2022 - 2025",
-            "primaryValue": "MES Full-Stack Developer",
-            "secondaryValue": "HELLA AUTOTECHNIK NOVA, s.r.o."
-        }
-    ],
-    "certificates": [
-        {
-            "key": "PLANNED",
-            "primaryValue": "CS50’s Introduction to Artificial Intelligence with Python",
-            "secondaryValue": "Harvard University, Cambridge, Massachusetts",
-            "tertiaryValue": "disable"
-        },
-        {
-            "key": "PLANNED",
-            "primaryValue": "CS50’s Introduction to Cybersecurity",
-            "secondaryValue": "Harvard University, Cambridge, Massachusetts",
-            "tertiaryValue": "disable"
-        },
-        {
-            "key": "IN PROGRESS",
-            "primaryValue": "CS50’s Web Programming with Python and JavaScript",
-            "secondaryValue": "Harvard University, Cambridge, Massachusetts",
-            "tertiaryValue": "disable"
-        },
-        {
-            "key": "COMPLETED",
-            "primaryValue": "CS50’s Computer Science for Business Professionals",
-            "secondaryValue": "Harvard University, Cambridge, Massachusetts",
-            "tertiaryValue": "https://certificates.cs50.io/144b3b1d-db34-45d6-a6e7-49f34e8b95c0.pdf"
-        }
-    ],
-    "skills": [
-        {
-            "key": "Frontend",
-            "primaryValue": "React, Next.js, TypeScript, Tailwind, Material UI, HTML, CSS, Vaadin"
-        },
-        {
-            "key": "Backend",
-            "primaryValue": "Node.js, Java SE / EE"
-        },
-        {
-            "key": "Other",
-            "primaryValue": "SQL, Git, PWA, Firebase, graphics"
-        }
-    ]
+	"pageTitle": "Jakub Švihel",
+	"aboutMe": "I am an information technology enthusiast, especially in web development and applications. I believe that lifelong learning is the key to personal and professional growth, and I try to keep things simple and minimalist in my everyday life. I am very fascinated by Japan and its rich culture, which inspires me in many ways. In addition, I have an active interest in fitness, which is an essential part of my daily routine, and a long-term interest in investing.",
+	"education": [
+		{
+			"key": "2023 - 2025",
+			"goldValue": "Msc.",
+			"primaryValue": "Applied Computer Science, Software Development",
+			"secondaryValue": "Department of Computer Science, Palacký University, Olomouc"
+		},
+		{
+			"key": "2020 - 2023",
+			"goldValue": "Bc.",
+			"primaryValue": "Computer Science, Programming and software development",
+			"secondaryValue": "Department of Computer Science, Palacký University, Olomouc"
+		}
+	],
+	"employment": [
+		{
+			"key": "2025 - 2026",
+			"primaryValue": "Full-Stack Developer",
+			"secondaryValue": "Atreo Digital s.r.o."
+		},
+		{
+			"key": "2022 - 2025",
+			"primaryValue": "MES Full-Stack Developer",
+			"secondaryValue": "HELLA AUTOTECHNIK NOVA, s.r.o."
+		}
+	],
+	"certificates": [
+		{
+			"key": "PLANNED",
+			"primaryValue": "CS50’s Introduction to Artificial Intelligence with Python",
+			"secondaryValue": "Harvard University, Cambridge, Massachusetts",
+			"tertiaryValue": "disable"
+		},
+		{
+			"key": "IN PROGRESS",
+			"primaryValue": "CS50’s Introduction to Cybersecurity",
+			"secondaryValue": "Harvard University, Cambridge, Massachusetts",
+			"tertiaryValue": "disable"
+		},
+		{
+			"key": "COMPLETED",
+			"primaryValue": "CS50’s Web Programming with Python and JavaScript",
+			"secondaryValue": "Harvard University, Cambridge, Massachusetts",
+			"tertiaryValue": "https://certificates.cs50.io/9263c85d-57a1-462e-9d9d-32d79e1dfe74.pdf"
+		},
+		{
+			"key": "COMPLETED",
+			"primaryValue": "CS50’s Computer Science for Business Professionals",
+			"secondaryValue": "Harvard University, Cambridge, Massachusetts",
+			"tertiaryValue": "https://certificates.cs50.io/144b3b1d-db34-45d6-a6e7-49f34e8b95c0.pdf"
+		}
+	],
+	"skills": [
+		{
+			"key": "Frontend",
+			"primaryValue": "TypeScript, React, Next.js, Tailwind CSS, Zod, Figma"
+		},
+		{
+			"key": "Backend & DB",
+			"primaryValue": "Node.js, NestJS, PostgreSQL, Neon, Redis, Drizzle, TypeORM"
+		},
+		{
+			"key": "DevOps & QA",
+			"primaryValue": "Docker, Git, Jest, Playwright, Cloudflare Pages, AI CLI Workflows"
+		},
+		{
+			"key": "Languages",
+			"primaryValue": "Czech C2, English B2"
+		}
+	]
 }

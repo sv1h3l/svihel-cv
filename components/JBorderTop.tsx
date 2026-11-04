@@ -1,27 +1,15 @@
+import { motion } from 'framer-motion';
+
+const silkSpring = { type: 'spring' as const, stiffness: 260, damping: 30 };
+
 export default function JBorderTop() {
 	return (
-		<div
-			className="bg-[#161513] border-t-2  border-[#3C3D37] 
-            absolute left-0 right-0 -top-0.5 -mx-4 sm:-mx-6 lg:-mx-9  pointer-events-none "
-		/>
+		<motion.div
+			className="pointer-events-none absolute left-0 right-0 -top-px origin-center select-none"
+			initial={{ opacity: 0, scaleX: 0 }}
+			animate={{ opacity: 1, scaleX: 1 }}
+			transition={silkSpring}>
+			<div className="relative h-px w-full bg-gradient-to-r from-transparent via-neutral-700 to-transparent" />
+		</motion.div>
 	);
-}
-
-{
-	/*
-	export default function JBorderTop() {
-		return (
-			<div className="absolute left-0 right-0 ">
-				<div
-					className="bg-[#3C3D37] border-t-12  border-[#3C3D37] rounded-t-3xl 
-				absolute -left-0.5 -right-0.5  -mx-4 sm:-mx-6 lg:-mx-9 pt-4 pointer-events-none "
-				/>
-				<div
-					className="bg-[#161513] border-t-2  border-[#b7a71d] rounded-t-3xl 
-				absolute left-0 right-0 mt-1.5 lg:mt-1.5 -mx-4 sm:-mx-6 lg:-mx-9 py-5 pointer-events-none "
-				/>
-			</div>
-		);
-	}
-	*/
 }

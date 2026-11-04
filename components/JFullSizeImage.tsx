@@ -1,136 +1,144 @@
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import JButton from "./JButton";
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
+import { AnimatePresence, motion } from 'framer-motion';
+import { ChevronLeft, ChevronRight, X } from 'lucide-react';
+import JButton from './JButton';
 
 interface FullSizeImageProps {
-	imagesSrcs: string[]; // Pole obrázků
+	imagesSrcs: string[];
 	setShowImage: (show: boolean) => void;
 }
 
+const spring = { type: 'spring' as const, stiffness: 350, damping: 25 };
+
 export default function JFullSizeImage({ imagesSrcs, setShowImage }: FullSizeImageProps) {
-	// Stav pro aktuální obrázek
 	const [currentIndex, setCurrentIndex] = useState(0);
 
-	// Funkce pro změnu obrázku
 	const showNextImage = () => {
-		setCurrentIndex((prevIndex) => (prevIndex + 1) % imagesSrcs.length); // Zobrazí další obrázek, pokud je poslední, vrátí se na první
+		setCurrentIndex((prevIndex) => (prevIndex + 1) % imagesSrcs.length);
 	};
 
 	const showPrevImage = () => {
-		setCurrentIndex((prevIndex) => (prevIndex - 1 + imagesSrcs.length) % imagesSrcs.length); // Zobrazí předchozí obrázek, pokud je první, přejde na poslední
+		setCurrentIndex((prevIndex) => (prevIndex - 1 + imagesSrcs.length) % imagesSrcs.length);
 	};
 
-	/** Funkce pro skrytí scrollbaru a neposouvání obsahu pozadí. */
 	useEffect(() => {
-		// Uložení aktuální šířky scrollbaru
 		const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+		const originalOverflow = document.body.style.overflow;
 
-		// Zakáže scrollování a přidá padding pro kompenzaci šířky scrollbaru
-		document.body.style.overflow = "hidden";
-		document.body.style.marginRight = `${scrollbarWidth}px`;
-		document.body.style.backgroundColor = "#3C3D37";
+		document.body.style.overflow = 'hidden';
+		document.body.style.paddingRight = `${scrollbarWidth}px`;
 
-		// Obnoví původní stav při skrytí komponenty
 		return () => {
-			document.body.style.overflow = "auto";
-			document.body.style.marginRight = "0";
-			document.body.style.backgroundColor = "#fff";
+			document.body.style.overflow = originalOverflow;
+			document.body.style.paddingRight = '';
 		};
 	}, []);
 
-	const [show, setShow] = useState(false);
-
 	useEffect(() => {
-		setTimeout(() => setShow(true), 1);
-	}, []);
+		const handleKeyDown = (event: KeyboardEvent) => {
+			if (event.key === 'Escape') {
+				setShowImage(false);
+			} else if (event.key === 'ArrowLeft') {
+				setCurrentIndex((prevIndex) => (prevIndex - 1 + imagesSrcs.length) % imagesSrcs.length);
+			} else if (event.key === 'ArrowRight') {
+				setCurrentIndex((prevIndex) => (prevIndex + 1) % imagesSrcs.length);
+			}
+		};
 
-// Funkce pro zavření (s animací)
-const handleClose = () => {
-	setShow(false); // fade-out
-	setTimeout(() => {
-		setShowImage(false); // odmount po animaci
-	}, 500); // musí odpovídat délce transition-all duration-500
-};
+		window.addEventListener('keydown', handleKeyDown);
 
+		return () => window.removeEventListener('keydown', handleKeyDown);
+	}, [imagesSrcs.length, setShowImage]);
 
-	return (
-		<div
-			className={`
-						fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-30
-						transition-all duration-500
-                        ${show ? "opacity-100" : "opacity-0"}
-					`}>
-			<div className="bg-[#191919] shadow-lg shadow-[#10101080] border-t-2 border-[#b7a71d] rounded-3xl flex justify-center items-center mx-1 max-h-[100dvh]">
-				<div className="relative p-2 pt-9 lg:pt-11 lg:p-6  ">
-					<Image
-						className=" w-auto h-auto rounded-2xl max-h-[90dvh]"
-						src={`/images/${imagesSrcs[currentIndex]}.webp`} // Zobrazení aktuálního obrázku podle indexu
-						alt={"Full sized image"}
-						width={1}
-						height={1}
-						priority
+	return createPortal(
+		<motion.div
+			role="dialog"
+			aria-modal="true"
+			aria-label="Image gallery"
+			className="fixed inset-0 flex items-center justify-center bg-black/85 backdrop-blur-xl z-50"
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
+			exit={{ opacity: 0 }}
+			transition={{ duration: 0.2 }}>
+			<div className="absolute right-4 top-4 lg:right-8 lg:top-8 z-50">
+				<JButton
+					className="bg-neutral-900/90 border-neutral-700/80"
+					onClick={() => setShowImage(false)}
+					title="Close">
+					<X
+						className="size-4 text-neutral-400 group-hover:text-neutral-200"
+						strokeWidth={1.5}
+						aria-hidden="true"
 					/>
-
-					
-
-					<div className="absolute right-5 lg:right-9 top-1 lg:top-2">
-						<JButton
-							className="bg-[#161513]"
-							onClick={handleClose}
-							smaller>
-							<Image
-								src={`/icons/close.webp`}
-								alt={"Close button"}
-								width={30}
-								height={30}
-							/>
-						</JButton>
-					</div>
-
-					{/* Tlačítka pro přepínání obrázků */}
-					{imagesSrcs.length > 1 && (
-						<div
-							className="bg-[#161513] shadow-md rounded-lg
-										
-										absolute left-1/2 transform -translate-x-1/2 top-1 lg:top-2
-										flex justify-center ">
-							<JButton
-								className="bg-[#161513]"
-								setShowImage={setShowImage}
-								setShowImageValue={false}
-								onClick={showPrevImage}
-								smaller>
-								<Image
-									className="rotate-180 scale-125"
-									src={`/icons/arrow.webp`}
-									alt={"Next button"}
-									width={30}
-									height={30}
-								/>
-							</JButton>
-
-							<p className="w-20 text-center pt-0.5">
-								{currentIndex + 1} / {imagesSrcs.length}
-							</p>
-
-							<JButton
-								className="bg-[#161513]"
-								setShowImage={setShowImage}
-								setShowImageValue={false}
-								onClick={showNextImage}
-								smaller>
-								<Image
-									className=" scale-125"
-									src={`/icons/arrow.webp`}
-									alt={"Previous button"}
-									width={30}
-									height={30}
-								/>
-							</JButton>
-						</div>
-					)}
-				</div>
+				</JButton>
 			</div>
-		</div>
+
+			<motion.div
+				className="relative flex justify-center items-center max-h-screen p-4 sm:p-12 w-full"
+				initial={{ opacity: 0, scale: 0.98 }}
+				animate={{ opacity: 1, scale: 1 }}
+				transition={spring}>
+				<AnimatePresence
+					mode="wait"
+					initial={false}>
+					<motion.div
+						key={currentIndex}
+						initial={{ opacity: 0, x: 24 }}
+						animate={{ opacity: 1, x: 0 }}
+						exit={{ opacity: 0, x: -24 }}
+						transition={spring}>
+						<Image
+							className="w-auto h-auto rounded-2xl object-contain max-h-[82vh] border border-neutral-800 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8)]"
+							src={`/images/${imagesSrcs[currentIndex]}.webp`}
+							alt={`Full sized image ${currentIndex + 1}`}
+							width={1920}
+							height={1080}
+							priority
+						/>
+					</motion.div>
+				</AnimatePresence>
+
+				{imagesSrcs.length > 1 && (
+					<div className="absolute bottom-6 sm:bottom-10 left-1/2 transform -translate-x-1/2 bg-neutral-900/90 backdrop-blur-md border border-neutral-700/70 rounded-full px-5 py-2 flex items-center gap-5 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.6)]">
+						<motion.button
+							type="button"
+							onClick={showPrevImage}
+							whileHover={{ scale: 1.05 }}
+							whileTap={{ scale: 0.9 }}
+							transition={spring}
+							aria-label="Previous image"
+							className="p-1 text-neutral-400 hover:text-neutral-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400/40 rounded-full">
+							<ChevronLeft
+								className="size-4"
+								strokeWidth={1.5}
+								aria-hidden="true"
+							/>
+						</motion.button>
+
+						<p className="text-xs font-mono font-medium text-neutral-300 tracking-wider leading-none">
+							<span className="text-neutral-200 font-bold">{currentIndex + 1}</span> / {imagesSrcs.length}
+						</p>
+
+						<motion.button
+							type="button"
+							onClick={showNextImage}
+							whileHover={{ scale: 1.05 }}
+							whileTap={{ scale: 0.9 }}
+							transition={spring}
+							aria-label="Next image"
+							className="p-1 text-neutral-400 hover:text-neutral-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400/40 rounded-full">
+							<ChevronRight
+								className="size-4"
+								strokeWidth={1.5}
+								aria-hidden="true"
+							/>
+						</motion.button>
+					</div>
+				)}
+			</motion.div>
+		</motion.div>,
+		document.body,
 	);
 }

@@ -1,0 +1,249 @@
+# ==============================================================================
+#  EXEKUČNÍ PLÁN: Portfolio Redesign (Linear / Raycast / Vercel estetika)
+#  Soubor: .opencode/plans/001-portfolio-redesign.yaml
+#  Vytvořeno: 2026-10-30
+# ==============================================================================
+
+plan:
+  id: "001-portfolio-redesign"
+  title: "Prémiový redesign portfolia — Framer Motion + Lucide React"
+  target_aesthetic: "Linear / Raycast / Vercel — minimalistický, taktilní, dark-mode-first"
+  driver: "AGENTS.md — Design System & Visual Guardrails"
+  repo_status:
+    - "framer-motion ^14.8.0: Nainstalováno (NEPŘIDÁVAT)"
+    - "lucide-react ^1.65.0: Nainstalováno (NEPŘIDÁVAT)"
+    - "next/image: Ponechat pro fotografie a screenshoty"
+  icon_replacement_deadline: "Žádné .webp/.svg ikony nesmí zůstat v komponentách"
+
+  # ---------------------------------------------------------------------------
+  # GLOBÁLNÍ HARD-CONSTRAINTS (platí pro VŠECHNY kroky, porušení = FAIL)
+  # ---------------------------------------------------------------------------
+  constraints:
+    data_contract:
+      rule: "NEUPRAVOVAT žádný klíč ani hodnotu v public/data/*.json."
+      files:
+        - "public/data/personalPageGeneralDataCZ.json"
+        - "public/data/personalPageGeneralDataEN.json"
+        - "public/data/personalPageProjectsDataCZ.json"
+        - "public/data/personalPageProjectsDataEN.json"
+      forbidden: "Žádný hardcode textů z JSON do komponent; žádné mazání/přejmenování klíčů (key, goldValue, primaryValue, secondaryValue, tertiaryValue, header, label, company, job, firstCard, values)."
+    prop_contract:
+      rule: "Veřejné props komponent zůstávají zpětně kompatibilní (podpisy níže)."
+      contracts:
+        - "JBorderTop: bez props"
+        - "JButton: label?, href?, lang?, disabled?, smaller?, children?, className?, onClick?, title? (props phone/email/setShowImage/setShowImageValue jsou dead-code → odstranit v kroku 1, konzumenti v kroku 3 upraveni)"
+        - "JGrid: gridArray: GridRow[] (key, goldValue?, primaryValue, secondaryValue?, tertiaryValue?)"
+        - "JList: header, label, company, job?, firstCard, lastCard?, isCzech?, borderTop?, values: string[], children?"
+        - "JTab: labelCZ, labelEN, imageSrc ('about_me'|'employment'|'skills'|'education'|'certificates'), imageAlt?, children, show, isCzech, lastTab?"
+        - "JFullSizeImage: imagesSrcs: string[], setShowImage: (v: boolean) => void"
+        - "JFullSizeImageButton: imagesSrcs: string[]"
+    bitmap_assets:
+      keep_as_photos:
+        rule: "Fotografie a screenshoty NEJSOU ikony — zůstávají jako .webp v next/image."
+        paths:
+          - "/images/profile_picture.webp (hero fotografie)"
+          - "/images/*.webp (screenshoty projektů v galerii: map, paziak, inventory, diary, sports, plan, o_krok_napred-*, profile-mobile, connection-mobile, migrate)"
+      delete_after_refactor:
+        icon_bitmaps_stale:
+          - "public/icons/*.webp (about_me, arrow, close, education, employment, git, in, link, mail, phone, pictures, skills, youtube)"
+          - "public/icons/link.svg, mail.svg, phone.svg (inline nahrazeno lucide)"
+        keep:
+          - "public/icons/favicon.ico (favicon není UI ikona)"
+          - "public/icons/certificates.svg (nepoužívá se v kódu → smazat jen po ověření grepem)"
+    design_guardrails:
+      - "Specular edge: shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)] na všech kartách/tlačítkách"
+      - "Mikroskopické bordery: border-neutral-800/80 (nikdy plné barvy)"
+      - "Ambient glows: bg-amber-500/[0.04] blur-3xl pointer-events-none v rozích"
+      - "Taktilní odezva: whileTap={{ scale: 0.97 }} + whileHover na každém interaktivním prvku"
+      - "Focus ring: focus-visible:ring-2 focus-visible:ring-amber-400/40"
+      - "Mono micro-badges: font-mono text-[10px] tracking-wider uppercase"
+      - "ŽÁDNÉ transition duration-* CSS třídy na prvcích s Framer Motion (nahradit springem)"
+      - "ŽÁDNÉ raw emoji, ŽÁDNÉ bitmapové ikony"
+    motion_presets:
+      spring_standard: "type: 'spring', stiffness: 350, damping: 25"
+      spring_gentle: "type: 'spring', stiffness: 260, damping: 28"
+      entry: "initial: { opacity: 0, y: 8 } → animate: { opacity: 1, y: 0 }"
+      stagger_container: "variants container: staggerChildren: 0.08, delayChildren: 0.05"
+    icon_migrations:
+      tab_icons:
+        about_me: "lucide 'User'"
+        employment: "lucide 'Briefcase'"
+        skills: "lucide 'Code2'"
+        education: "lucide 'GraduationCap'"
+        certificates: "lucide 'Award'"
+      ui_icons:
+        gallery_trigger: "lucide 'Images'"
+        close_modal: "lucide 'X'"
+        prev_image: "lucide 'ChevronLeft'"
+        next_image: "lucide 'ChevronRight'"
+        link_action_JGrid: "lucide 'ExternalLink'"
+        pdf_button: "lucide 'FileText'"
+        open_project: "lucide 'ArrowUpRight'"
+        contact_phone: "lucide 'Phone'"
+        contact_mail: "lucide 'Mail'"
+      brand_icon_exception:
+        note: "lucide-react 1.65 NEOBSAHUJE brand ikony (Github/Linkedin/Youtube byly odebrány)."
+        rule: "Značky GitHub, LinkedIn, YouTube zachovat jako inline SVG path (povoleno AGENTS.md: 'use lucide-react or inline SVG paths'). Vzhled sjednotit: strokeWidth 1.8, size ~3.5."
+        paths: "Kontaktní panel v hero + YouTube tlačítko u bakalářky."
+
+  # ---------------------------------------------------------------------------
+  # KROKY (atomické, exekuovat sekvenčně v pořadí 1→5)
+  # ---------------------------------------------------------------------------
+  steps:
+    - id: 1
+      title: "Refaktoring pomocných prvků — JBorderTop.tsx, JButton.tsx"
+      status: DONE
+      depends_on: []
+      files:
+        - "components/JBorderTop.tsx"
+        - "components/JButton.tsx"
+      key_changes:
+        JBorderTop:
+          - "Zachovat vizuální DNA: taut difúzní aura + ostrá 1px linie + centrální amber mikro-uzel."
+          - "Přidat Framer Motion entrance: motion.div initial={{ scaleX: 0, opacity: 0 }} animate={{ scaleX: 1, opacity: 1 }} se spring (stiffness 350, damping 25), transform-origin center."
+          - "Žádná změna veřejného API (bez props)."
+        JButton:
+          - "Opravit pre-existující typovou chybu: přidat title?: string do JButtonProps (pages/index.tsx předává title na 4 místech; nyní tsc hlásí 4× TYPE ERROR)."
+          - "Nahradit tradiční <button> za polymorfní motion komponentu: href → motion.a (target='_blank' + rel='noopener noreferrer' automaticky), jinak motion.button."
+          - "Odstranit dead-code props: phone, email, label, setShowImage, setShowImageValue (jedinou závislost na setShowImage odstraňuje krok 3)."
+          - "Zachovat props lang, disabled, smaller, children, className, onClick."
+          - "Nahradit CSS přechody (transition-all duration-300) za motion: whileHover={{ y: -1 }}, whileTap={{ scale: 0.97 }} so springem."
+          - "Nahradit onMouseDown navigaci (window.location.href) sémantickým <a href> nebo onClick — zachovat podporu middle-clicku přirozeně."
+          - "Zachovat specular vrchní odlesk, ambientní svit při hoveru (group-hover efekty), focus-visible:ring-2 ring-amber-400/40."
+          - "Zachovat lang variantu (amber tón) beze změny vizuálu."
+      verification:
+        - "grep -rn --include='*.tsx' 'setShowImage\\|phone\\|email' components pages | grep -v 'JFullSizeImage' → žádný výskyt dead props (kromě plánovaných v kroku 3)"
+        - "npx tsc --noEmit"
+
+    - id: 2
+      title: "Refaktoring obsahových bloků — JGrid.tsx, JList.tsx, JTab.tsx"
+      status: DONE
+      depends_on: [1]
+      files:
+        - "components/JGrid.tsx"
+        - "components/JList.tsx"
+        - "components/JTab.tsx"
+      key_changes:
+        JGrid:
+          - "Nahradit inline SVG (odkaz) za lucide 'ExternalLink' (size-3.5, strokeWidth 1.8)."
+          - "Zachovat beze zbytku badge logiku k terciárním klíčům: PROBÍHAJÍCÍ / IN PROGRESS (amber + ping), DOKONČENÝ / COMPLETED (emerald), PLÁNOVANÝ / PLANNED (indigo), jinak neutrální mono badge."
+          - "Zachovat tertiaryValue === 'disable' → disabled tlačítko; href z tertiaryValue jinak."
+          - "Zachovat chip režim: primaryValue obsahuje ',' a nemá goldValue → split(', ') na skill chips."
+          - "Framer Motion: kontejner s variants staggerChildren: 0.08; každý řádek motion.div initial {opacity: 0, y: 8}."
+          - "Chips: whileHover jemný posun bordery na amber-500/40 (nahradit CSS duration-200)."
+          - "Žádná změna props gridArray ani datového kontraktu GridRow."
+        JList:
+          - "Zachovat všechny props a strukturu (header badge, titulek, panel jobu s 'Role'/'Position', values jako <ul>/odstavce)."
+          - "Diamantové bulletpointy ponechat jako CSS prvky (nejsou bitmapové ikony)."
+          - "Framer Motion: whileInView / variants pro hlavičku a hodnoty (staggerChildren 0.08)."
+          - "Panel jobu + children container: přidat whileHover na action bar (JButton užívá motion z kroku 1)."
+          - "JBorderTop zůstává volán při borderTop — beze změny."
+        JTab:
+          - "Nahradit interní TabIcon switch (inline SVG) za mapu lucide ikon: about_me→User, employment→Briefcase, skills→Code2, education→GraduationCap, certificates→Award (props imageSrc se NEMĚNÍ)."
+          - "Entrance: nahradit CSS show (opacity/translate) za motion.section initial/animate řízené prop show se springem."
+          - "JAZYK: nahradit dvojité absolutně pozicované <h3> za AnimatePresence + motion.h3 (key=locale, y: ±8 → 0, opacity)."
+          - "Zachovat specular hranu, ambientní glows, stavový 'Active' badge."
+          - "Odstranit transition-all duration-* (nahradit motion)."
+      verification:
+        - "grep -rn 'TabIcon\\|<svg' components/JTab.tsx → 0 výskytů inline SVG"
+        - "grep -rn 'transition-all duration' components/JGrid.tsx components/JList.tsx components/JTab.tsx → pouze povolené micro-detaily nebo 0"
+        - "npx tsc --noEmit"
+
+    - id: 3
+      title: "Refaktoring modalu galerie — JFullSizeImage.tsx, JFullSizeImageButton.tsx"
+      status: DONE
+      depends_on: [1]
+      files:
+        - "components/JFullSizeImage.tsx"
+        - "components/JFullSizeImageButton.tsx"
+      key_changes:
+        JFullSizeImage:
+          - "Nahradit /icons/close.webp → lucide 'X'; /icons/arrow.webp (+rotate-180 hack) → lucide 'ChevronLeft' / 'ChevronRight'."
+          - "Nahradit ruční setTimeout(300) open/close orchestr (show state) za AnimatePresence: backdrop motion.div (scale 0.98→1, opacity), kartu motion.div se springem."
+          - "Ponechat parent-controlled mount (setShowImage(false) z AnimatePresence onExitComplete)."
+          - "Přepínání obrázků: AnimatePresence mode='wait' + motion obraz keyed currentIndex (mírný x-slide + fade)."
+          - "Zachovat next/image (width 1920, height 1080, priority), počítadlo (currentIndex+1)/(imagesSrcs.length), scroll-lock useEffect s kompenzací scrollbaru + úklid na unmount."
+          - "Doplnit tlačítka prev/next whileTap={{ scale: 0.9 }}."
+          - "Volitelně: escape klávesa zavírá modal (accessibility nic navíc, žádné nové depky)."
+        JFullSizeImageButton:
+          - "Nahradit /icons/pictures.webp → lucide 'Images'."
+          - "Odstranit interní JButton setShowImage/setShowImageValue coupling (odstraněné v kroku 1): lokální state + onClick."
+          - "Zachovat props imagesSrcs: string[]."
+          - "whileTap na trigger buttonu (převzato z kroku 1)."
+      verification:
+        - "grep -rn '/icons/' components/ → 0 výskytů bitmapových ikon"
+        - "grep -rn 'setTimeout(setShowImage' components/ → 0 (uzavírání přes AnimatePresence)"
+        - "npx tsc --noEmit"
+
+    - id: 4
+      title: "Refaktoring orchestrace a hero sekce — pages/index.tsx"
+      status: DONE
+      depends_on: [1, 2, 3]
+      files:
+        - "pages/index.tsx"
+      key_changes:
+        hero:
+          - "Odstranit 6× setTimeout cascade (showHeader/showAboutMe/…) → jeden motion container s variants: staggerChildren 0.08; každá sekce motion komponenta (header hero, jednotlivé JTab sekce, oddělovač, footer)."
+          - "JTab prop show napojit na Framer Variants (krok 2) místo flagů."
+        language_switching:
+          - "Hero titulky: AnimatePresence + motion.h2 keyed isCzech (mode='wait')."
+          - "About me: AnimatePresence + motion.p keyed locale namísto dvou absolutních <p>."
+          - "JGrid/JList obsah: nahradit duální render ('hidden opacity-0') jedním renderem dat z personalPageGeneralData{isCzech?'CZ':'EN'} obaleným AnimatePresence (data z JSON beze změn)."
+        contact_icons:
+          - "Kontaktní panel: inline SVG → lucide Phone, Mail; LinkedIn/GitHub → inline SVG brand paths (výjimka, viz constraints.icon_migrations.brand_icon_exception)."
+        children_icons:
+          - "Tlačítka v JList children: PDF → lucide FileText; Open Project → lucide ArrowUpRight; YouTube → inline SVG brand path."
+        preserve:
+          - "Head/SEO meta, og:mages (profile_picture.webp zůstává — fotografie), canonical, favicon.ico."
+          - "next/image pro profile_picture.webp (priorita, sizes)."
+          - "Status indikátory (ping emerald), status kapsle, footer, ambientní aury."
+          - "getStaticProps a všechny props z JSON bez jediné změny dat/kontraktů."
+          - "JButton lang toggle (CS↔EN) — vizuál beze změny, motion z kroku 1."
+        cleanup_hint: "Po dokončení kroku smazat nepoužívané /icons/*.webp a .svg (viz constraints.bitmap_assets.delete_after_refactor) a ověřit grepem."
+      verification:
+        - "grep -rn 'setTimeout' pages/index.tsx → 0 výskytů cascade timeoutů"
+        - "grep -rn '<svg' pages/index.tsx → povoleny POUZE brand SVG (LinkedIn/GitHub/YouTube)"
+        - "grep -rn \"'hidden opacity\" pages/index.tsx → 0 (jazykové duály přes AnimatePresence)"
+        - "diff public/data/*.json → beze změny (git status)"
+        - "npx tsc --noEmit"
+
+    - id: 5
+      title: "Verifikace typů a produkčního buildu"
+      status: DONE
+      depends_on: [1, 2, 3, 4]
+      files: []
+      key_changes:
+        - "Typová kontrola celého projektu."
+        - "Produkční build pro ověření SSR/getStaticProps a bundle."
+        - "Opticky zkontrolovat npm run dev: hero stagger, přepínač jazyků (AnimatePresence), galerie (open/close/prev/next), focus ring."
+        - "Lint jako doplňková brána (AGENTS.md: next lint)."
+      verification:
+        - "npx tsc --noEmit"
+        - "npm run lint"
+        - "npx next build"
+        - "npm run build"
+      warning:
+        - "package.json build = 'next build && firebase deploy' → PRODUKČNÍ DEPLOY!"
+        - "rule: npx next build běž vždy jako lokální verifikaci; npm run build (vč. deploy) spustit POUZE po explicitním souhlasu uživatele."
+
+  # ---------------------------------------------------------------------------
+  # DEFINICE ÚSPĚCHU (exit criteria celého plánu)
+  # ---------------------------------------------------------------------------
+  acceptance_criteria:
+    - "npx tsc --noEmit a npx next build projdou bez chyb a varování."
+    - "0 výskytů <Image src='...webp'> na ikony; lucide-react na všech generických ikonách."
+    - "Všechny CSS transition/duration na interaktivních prvcích nahrazeny Framer Motion springy (stiffness 350, damping 25)."
+    - "whileTap/whileHover na všech tlačítkách a trigger elementech."
+    - "AnimatePresence řídí: přepínač jazyků (hero + taby + obsah) a galerijní modal (mount/exit/include změny obrázků)."
+    - "git diff public/data → prázdný; žádné datové klíče nezměněny."
+    - "Vizuál: specular highlights, mikroskopické bordery, ambient glows, mono micro-badges (AGENTS.md sekce 1–4)."
+    - "Firemní čtyři CESTA zachovány: tel/mailto/linkedin/github kontaktní panel funkční."
+  risks:
+    - risk: "lucide-react 1.65 nemá brand ikony (Github/Linkedin/Youtube)"
+      mitigation: "Brand značky zůstávají jako inline SVG (povoleno AGENTS.md); viz constraints.brand_icon_exception."
+    - risk: "npm run build spouští firebase deploy"
+      mitigation: "Lokálně verifikovat npx next build; deploy jen na vyžádání (krok 5 warning)."
+    - risk: "JButton dead-props (setShowImage) odstraňované v kroku 1, konzument modalu upraven až v kroku 3"
+      mitigation: "Kroky exekuovat sekvenčně dle depends_on; krok 1 zachová dočasnou kompatibilitu onClick (custom implementace v JFullSizeImageButton)."
+    - risk: "JTab prop imageSrc je string mapovaný na lucide — rozbití při přejmenování"
+      mitigation: "imageSrc hodnoty se NEMĚNÍ; mapa ikon interní v JTab.tsx."

@@ -1,0 +1,271 @@
+# ==============================================================================
+#  EXEKUČNÍ PLÁN: Luxury Minimal Redesign (finální prémiový refaktoring)
+#  Soubor: .opencode/plans/002-luxury-minimal-redesign.yaml
+#  Vytvořeno: 2026-10-30
+#  Předchůdce: 001-portfolio-redesign.yaml (DONE) — funkční báze byla zachována
+# ==============================================================================
+
+plan:
+  id: "002-luxury-minimal-redesign"
+  title: "Luxury Minimal Redesign — satén, mikro-linky, typografická sebejistota"
+  target_aesthetic: "Tichý luxus: onyx/charcoal satén, matné mikro-linky, typografické akcenty, žádné neonové výkřiky"
+  driver: "AGENTS.md — Design System & Visual Guardrails + korekce designových deficitů z plánu 001"
+  repo_status:
+    - "framer-motion ^14.8.0: Nainstalováno (NEPŘIDÁVAT)"
+    - "lucide-react ^1.65.0: Nainstalováno (NEPŘIDÁVAT)"
+    - "next/image: Ponechat pro fotografie a screenshoty"
+  predecessor_analysis:
+    summary: "Plán 001 zajistil funkční přechod na lucide + Framer Motion, ale zavedl vizuální klišé: ikonové 'kostičky' v tabech, kapsli 'Active', neonové amber kosočtverce/glows, squircle rám kolem fotky, zelené stavové tečky a pružiny (350/25) s náznakem odskakování."
+    resolved_now:
+      - "hero: hranatý kontejner kolem fotky + zelená tečka + ping animace"
+      - "JTab: ikonová krabička, badge 'Active', agresivní amber hover záblesky"
+      - "JList/JGrid/JBorderTop: neonové badge, zářící kosočtverce, glow efekty"
+      - "JButton: těžkopádný povrch, přeplácané amber aury"
+      - "motion: pružiny stiffness 350/damping 25 → hedvábné 260/30"
+    preserved_from_001:
+      - "Lucide ikony v galerii/kontaktech (X, ChevronLeft/Right, Images, Phone, Mail, FileText, ArrowUpRight, ExternalLink)"
+      - "Brand SVG výjimka (LinkedIn, GitHub, YouTube) — inline path, strokeWidth 1.8"
+      - "AnimatePresence orchestrace (galerie, jazyk), scroll-lock, keyboard nav v galerii"
+      - "getStaticProps, SEO/Head, canonical, favicon, všechna data z public/data/*.json"
+
+  # ---------------------------------------------------------------------------
+  # GLOBÁLNÍ HARD-CONSTRAINTS (platí pro VŠECHNY kroky, porušení = FAIL)
+  # ---------------------------------------------------------------------------
+  constraints:
+    data_contract:
+      rule: "NEUPRAVOVAT žádný klíč ani hodnotu v public/data/*.json. Verifikovat git diff po každém kroku."
+      files:
+        - "public/data/personalPageGeneralDataCZ.json"
+        - "public/data/personalPageGeneralDataEN.json"
+        - "public/data/personalPageProjectsDataCZ.json"
+        - "public/data/personalPageProjectsDataEN.json"
+      forbidden: "Žádný hardcode textů z JSON do komponent; žádné mazání/přejmenování klíčů (key, goldValue, primaryValue, secondaryValue, tertiaryValue, header, label, company, job, firstCard, values)."
+    prop_contract:
+      rule: "Veřejné props komponent zůstávají provozně kompatibilní napříč kroky."
+      changes_agreed:
+        - "JTab: imageSrc/imageAlt se stávají NEPOVINNÝMI a ignorovanými (krok 2); call-sites v pages/index.tsx zbaveny těchto props až v kroku 4 (mezikrok kompiluje)."
+        - "JTab: nová VOLITELNÁ prop index?: string ('01'…'07') — předává ji pages/index.tsx v kroku 4."
+        - "JBorderTop: bez props (beze změny)."
+        - "JButton: href?, lang?, disabled?, smaller?, children?, className?, onClick?, title? (beze změny)."
+        - "JGrid: gridArray: GridRow[] (beze změny)."
+        - "JList: header, label, company, job?, firstCard, lastCard?, isCzech?, borderTop?, values, children? (beze změny)."
+        - "JFullSizeImage / JFullSizeImageButton: beze změny API — plná funkčnost galerie ZACHOVÁNA."
+    bitmap_assets:
+      rule: "Žádné nové bitmapové ikony; fotografie/screenshoty zůstávají v next/image."
+      keep:
+        - "/images/profile_picture.webp (hero fotografie)"
+        - "/images/*.webp (screenshoty galerie)"
+        - "/icons/favicon.ico"
+    typography_orchestration:
+      language_swap_pattern: "AnimatePresence mode='wait' + key=locale; POUZE cross-fade (opacity 0↔1, y ≤ 4px), exit duration ≤ 0.2 s — žádné y:±8 skoky."
+      micro_labels: "font-mono text-[10px] tracking-widest uppercase text-neutral-400/70 (metadata tagy nikdy neonové)."
+      typographic_dash: "Odrážky nahradit en-dash '—' (text-neutral-600, leading-relaxed, mt-0.5) nebo matným bodem size-1 bg-neutral-700/80; ŽÁDNÉ rotované kosočtverce s glow."
+
+  # ---------------------------------------------------------------------------
+  # DESIGN TOKENS — nový hmatový standard pro všechny kroky
+  # ---------------------------------------------------------------------------
+  design_tokens:
+    motion:
+      silk_spring: "type: 'spring', stiffness: 260, damping: 30 (kontrolovaná fyzika, žádný odskok)"
+      sedate_spring: "type: 'spring', stiffness: 200, damping: 34 (pro jemné hover-y)"
+      fade_swap: "opacity-only cross-fade, duration 0.18–0.22 s, ease 'easeOut' — jazykové přepnutí"
+      entry: "initial { opacity: 0, y: 8 } → animate { opacity: 1, y: 0 } (silk_spring)"
+      stagger: "staggerChildren: 0.08, delayChildren: 0.05 (beze změny — je hedvábný)"
+      tap_response: "whileTap { scale: 0.97 }, whileHover { y: -1 } — bez komického bounce"
+    surfaces:
+      satin_button: "bg-neutral-900/[0.55] + backdrop-blur-xl + vrchní satén bg-gradient-to-b from-white/[0.06] to-transparent"
+      satin_card: "bg-gradient-to-b from-[#161515]/[0.85] via-[#101010]/[0.75] to-[#0c0c0c]/[0.85] (onyx/charcoal satén, matný)"
+      sheen_edge: "border-white/[0.08] (knoflíky), border-neutral-800/75 (karty); hover max border-white/[0.14]"
+      specular: "shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)]"
+      card_shadow: "shadow-[0_4px_24px_-8px_rgba(0,0,0,0.55)] — bez negativního glow"
+      hairline_top: "h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent (staticky); hover via-white/[0.1] — ŽÁDNÝ amber záblesk"
+      divider_line: "h-px bg-gradient-to-r from-neutral-800/60 via-neutral-800/25 to-transparent"
+      ambient_glow: "bg-amber-500/[0.03] nebo bg-white/[0.02] blur-3xl pointer-events-none — max [0.04], bez nárůstu při hoveru nad [0.05]"
+    badges:
+      mute_capsule: "px-2 py-0.5 rounded-md font-mono text-[10px] tracking-widest uppercase bg-neutral-900/60 border border-neutral-800/60 text-neutral-400/80"
+      amber_whisper: "bg-amber-500/[0.05] border-amber-500/15 text-amber-200/60 — ŽÁDNÝ glow, ŽÁDNÝ ping"
+      emerald_whisper: "bg-emerald-500/[0.05] border-emerald-500/15 text-emerald-200/60"
+      indigo_whisper: "bg-indigo-500/[0.05] border-indigo-500/15 text-indigo-200/60"
+      section_index: "font-mono text-[11px] font-medium tracking-[0.25em] text-neutral-600 tabular-nums"
+    focus:
+      ring: "focus-visible:ring-2 focus-visible:ring-amber-400/40 (bez změny — přístupnost)"
+
+  # ---------------------------------------------------------------------------
+  # KROKY (atomické, exekuovat sekvenčně 1→5, všechny PENDING)
+  # ---------------------------------------------------------------------------
+  steps:
+    - id: 1
+      title: "Redesign JBorderTop.tsx a JButton.tsx — nový hmatový standard, tlumené světlo"
+      status: DONE
+      depends_on: []
+      files:
+        - "components/JBorderTop.tsx"
+        - "components/JButton.tsx"
+      key_changes:
+        JBorderTop:
+          - "ODSTRANIT: centrální amber kosočtverec (rotate-45 + shadow-[0_0_8px]) a dvojitou amber linii s blur-aurou."
+          - "NAHRADIT: jediná mikro-linka h-px bg-gradient-to-r from-transparent via-neutral-700/40 to-transparent ztracená do tmy."
+          - "Volitelně: matný mikro-bod size-1 rounded-full bg-neutral-700/60 uprostřed (bez rotate, bez glow)."
+          - "Motion: zachovat scaleX 0→1 + opacity, ale silk_spring (260/30); transform-origin center; bez overshootu."
+          - "API beze změny; voláno pouze z JList (borderTop) — kontrakt zachován."
+        JButton:
+          - "Saténový povrch: bg-neutral-900/[0.55] + backdrop-blur-xl + saténový horní přeliv bg-gradient-to-b from-white/[0.06] via-transparent to-transparent."
+          - "Ultra-jemná hrana: border-white/[0.08] (light-catching); hover max border-white/[0.14] + bg-white/[0.03]; ŽÁDNÝ amber hover border z base stylu."
+          - "Specular: zachovat inset_0_1px_0_0 white/8; zjemnit stín na 0_2px_6px_-2px rgba(0,0,0,0.5)."
+          - "ODSTRANIT glowVariants (amber gradient overlay + group-hover via-amber-300/40 hairline) → nahradit statickou white/[0.15] hairlinou, hover white/[0.22]."
+          - "contentVariants: ztlumit scale 1.05→1.0 (pouze opacity 0.85→1) — žádná 'lupa'."
+          - "Motion: interactionVariants na silk_spring (260/30); whileTap scale 0.97; hover y -1."
+          - "lang varianta: ztlumit na text-amber-200/80 bg-amber-500/[0.06] border-amber-500/20; hover border-amber-500/30 text-amber-100 — matný, bez aury."
+          - "Rounding: smaller → rounded-lg, výchozí → rounded-xl (perfektní konzistence)."
+          - "Zachovat: polymorfní motion.a/motion.button, href target/rel, disabled, focus-visible ring, title, className merge."
+      verification:
+        - "grep -n 'rotate-45\\|shadow-\\[0_0_8px\\|amber-500/20' components/JBorderTop.tsx → 0 výskytů"
+        - "grep -n 'glowVariants\\|via-amber-300' components/JButton.tsx → 0 výskytů"
+        - "grep -rn 'stiffness: 350' components/JBorderTop.tsx components/JButton.tsx → 0 (silk 260/30)"
+        - "npx tsc --noEmit"
+
+    - id: 2
+      title: "Přepracování JTab.tsx — bez ikonových krabiček, bez badge 'Active', saténový gradient"
+      status: DONE
+      depends_on: [1]
+      files:
+        - "components/JTab.tsx"
+      key_changes:
+        header:
+          - "ODSTRANIT kompletně: tabIcons mapu, lucide importy (Award, Briefcase, Code2, GraduationCap, User), ikonovou krabičku size-10 + její amber hover záblesky."
+          - "NAHRADIT: jemný monospaced index sekce index?: string ('01'…'07') — font-mono text-[11px] tracking-[0.25em] text-neutral-600 tabular-nums, oddělený tenkým hairline sloupcem (w-px h-4 bg-neutral-800) před titulkem."
+          - "Pokud index není předán: header zůstává čistý (pouze titulek) — bez náhradního glyph-boxu."
+          - "imageSrc/imageAlt props: ponechat v rozhraní jako OPTIONAL deprecované, NEPOUŽÍVAT v renderu (call-sites odstraněny v kroku 4)."
+        active_badge:
+          - "ODSTRANIT celý blok kapsle 'Active' (čáry 94–97 vč. hover amber efektů)."
+        card_surface:
+          - "Pozadí: satén onyx/charcoal — bg-gradient-to-b from-[#161515]/[0.85] via-[#101010]/[0.75] to-[#0c0c0c]/[0.85], backdrop-blur-xl."
+          - "Border: border-neutral-800/75; hover border-neutral-700/70 (NEBO amber — žádné barevné rise)."
+          - "Top hairline: via-white/[0.06] staticky; hover via-white/[0.1] (ODSTRANIT 'via-amber-400/40')."
+          - "Ambient glows: -top levarý bod max bg-amber-500/[0.03], spodní white/[0.02]; remove group-hover násobení na [0.07] — max [0.04]."
+          - "Divider pod headerem: h-px bg-gradient-to-r from-neutral-800/60 via-neutral-800/25 to-transparent."
+        motion:
+          - "sectionVariants + headingVariants na silk_spring (260/30); jazykový swap titulku čistý cross-fade (opacity-only, exit 0.18 s) — spec fade_swap."
+      verification:
+        - "grep -n 'tabIcons\\|LucideIcon\\|size-10' components/JTab.tsx → 0 výskytů"
+        - "grep -n 'Active' components/JTab.tsx → 0 výskytů"
+        - "grep -n 'via-amber-400/40\\|bg-amber-500/\\[0.07\\]' components/JTab.tsx → 0 výskytů"
+        - "npx tsc --noEmit"
+
+    - id: 3
+      title: "Přepracování JList.tsx a JGrid.tsx — tlumené badge, čisté seznamy bez neonových kosočtverců"
+      status: DONE
+      depends_on: [1]
+      files:
+        - "components/JList.tsx"
+        - "components/JGrid.tsx"
+      key_changes:
+        JList:
+          - "Header badge ('Company'/'Project'/'Secondary activity'): z neonu text-amber-400/90 bg-amber-500/[0.08] border-amber-500/25 → mute_capsule (bg-neutral-900/60, border-neutral-800/60, text-neutral-400/80); ODSTRANIT vnitřní tečku."
+          - "Job panel: ODSTRANIT rotovaný amber kosočtverec s glow → typografická en-dash '—' text-neutral-600 nebo matný bod size-1 rounded-full bg-neutral-700/80."
+          - "Text jobu: text-amber-200/90 → text-neutral-200; 'Role'/'Position' label zůstává mono neutral-500."
+          - "Odrážky <ul>: nahradit rotované kosočtverce (vč. group-hover amber glow) za en-dash '—' text-neutral-600 (mt-0.5) — typografický edikt design_tokens.typographic_dash."
+          - "Action bar (children container): border-neutral-800/80 zůstává; hover bez amber; backdrop-blur-md beze změny."
+        JGrid:
+          - "Stavové badge ztlumit na whisper tóny: IN PROGRESS → amber_whisper BEZ animate-ping a BEZ shadow-[0_0_12px]; COMPLETED → emerald_whisper bez glow stínu; PLANNED → indigo_whisper; neutrální badge beze změny (již mute)."
+          - "goldValue badge: bg-amber-500/[0.12] text-amber-300 border-amber-500/35 + shadow → ztlumit na bg-amber-500/[0.06] text-amber-200/70 border-amber-500/15, bez shadow."
+          - "Skill chips: ponechat, ale ODSTRANIT vnitřní tečku-nebo zachovat matně bg-neutral-700/80 (bez group-hover:bg-amber-400); hover chipu border-neutral-600 + text-neutral-200 (ŽÁDNÝ amber border/text rise)."
+          - "ExternalLink tlačítko: nový satén JButton zdědí z kroku 1; className override zjednodušit (bez hover:border-amber-500/40)."
+        motion_both:
+          - "Všechny springy (container/row/item) na silk_spring 260/30; staggerChildren 0.08 zachován."
+      verification:
+        - "grep -rn 'shadow-\\[0_0_8px\\|rotate-45\\|animate-ping' components/JList.tsx components/JGrid.tsx → 0 výskytů"
+        - "grep -rn 'stiffness: 350' components/JList.tsx components/JGrid.tsx → 0 výskytů"
+        - "npx tsc --noEmit"
+
+    - id: 4
+      title: "Přepracování pages/index.tsx — čistá kruhová fotka bez tečky, moderní hero, prémiový footer"
+      status: DONE
+      depends_on: [1, 2, 3]
+      files:
+        - "pages/index.tsx"
+      key_changes:
+        profile_photo:
+          - "ODSTRANIT squircle kontejner: rounded-2xl + p-1 + bg-gradient-to-b from-neutral-800 to-neutral-950 + shadow-[0_8px_20px] + vnitřní rounded-xl."
+          - "NAHRADIT: čistý kruh size-28 sm:size-32 rounded-full overflow-hidden s mikroskopickou matnou linkou border border-white/[0.06] (žádný stín, žádné p-1)."
+          - "ODSTRANIT whileHover scale 1.05 na fotce (přirozený klid)."
+          - "Zachovat: next/image fill, sizes 112/128px, priority, alt."
+        status_dot:
+          - "ODSTRANIT celý blok zelené stavové tečky (absolutní badbge -bottom-1 -right-1 vč. shadow-md) — 'messenger chat' efekt."
+        hero_layout:
+          - "Vzdušnější rytmus: gap-6→gap-8/10, header padding zachován p-6 sm:p-8 md:p-10; jemnější horní hairline via-white/[0.06] (benefit kroku 2 konzistence)."
+          - "Dostupnost kapsle: ODSTRANIT animate-ping + zelenou tečku → statický matný bod size-1.5 rounded-full bg-neutral-600 + mono text neutral-400/70; kapsle border-neutral-800/60 bg-neutral-950/50."
+          - "h1: ponechat tracking-tight text-neutral-100 (max text-6xl); URIAM MIRO: 'text-5xl' cap na md."
+          - "Subtitle: slash '/'-akcent ztlumit z text-amber-400/90 → text-amber-400/50; text neutral-400; swap přes fade_swap (cross-fade, žádné y:±8)."
+          - "Metadata tagy: pod subtitulem mono řádek bez barev — např. 'CZ / REMOTE' s text-neutral-500 tracking-widest (UI label, ne data z JSON)."
+        contact_panel:
+          - "Ikonové krabičky: size-8 rounded-lg bg-neutral-800/80 border-neutral-700/60 → matné bg-neutral-900/50 border-white/[0.06]; ikony text-neutral-500 group-hover:text-neutral-300 (ODSTRANIT amber hovery)."
+          - "Řádky: hover:border-amber-500/40 → hover:border-white/[0.12] + bg-white/[0.02] (satén)."
+        divider_footer:
+          - "'Portfolio' oddělovač: linka via-neutral-800/40; kapsle zůstává mono neutral-500 (bez barev)."
+          - "Footer: ODSTRANIT zelenou tečku → matný bod bg-neutral-600; 'Czech Republic • Remote' → mono text-neutral-500; právní řádek beze změny."
+        motion_orchestr:
+          - "Nahradit jedinou konstantu spring (350/25) → silkSpring (260/30) pro hero/SEKCE/footer/whileHover y: -2 kontaktů."
+          - "swapVariants/LanguageSwap: opacity-only (y ≤ 4px), exit 0.18 s — jazykové přepnutí je tichý cross-fade."
+        tab_call_sites:
+          - "ODSTRANIT props imageSrc/imageAlt na všech 7× JTab; PŘIDAT index='01'..'07' v pořadí: About(01), Employment(02), Skills(03), Education(04), Certificates(05), Commercial(06), Academic(07)."
+          - "labelCZ/labelEN/show/isCzech/lastTab zůstávají beze změny."
+        preserve:
+          - "Head/SEO, canonical, favicon, getStaticProps, JFullSizeImage, JFullSizeImageButton, jazyk toggle (JButton lang), všechny JSON props — bez jediné datové změny."
+          - "Ikonové importy: Phone, Mail, ArrowUpRight, FileText, brand SVG — zůstávají (strokeWidth 1.8; barvy ztlumeny dle kroků výše)."
+      verification:
+        - "grep -n 'animate-ping\\|bg-emerald-400\\|size-1.5 rotate' pages/index.tsx → 0 výskytů"
+        - "grep -n 'rounded-2xl' pages/index.tsx → 0 výskytů v hero (fotka kulatá)"
+        - "grep -n 'imageSrc' pages/index.tsx → 0 výskytů"
+        - "grep -n 'index=' pages/index.tsx → 7 výskytů (01–07)"
+        - "grep -n 'stiffness: 350' pages/index.tsx → 0 výskytů"
+        - "git status public/data/ → čistý (žádné diff v JSON)"
+        - "npx tsc --noEmit"
+
+    - id: 5
+      title: "Verifikace TypeScriptu a produkčního buildu"
+      status: DONE
+      depends_on: [1, 2, 3, 4]
+      files: []
+      key_changes:
+        - "Typová kontrola celého projektu npx tsc --noEmit."
+        - "Lokální produkční build npx next build (SSR/getStaticProps/bundle)."
+        - "Lint gate: npx next lint."
+        - "Vizuální kontrola npm run dev (desktop + mobilní šířka):"
+        - "  - hero: čistý kruh bez tečky, vzdušná hierarchie, metadata tagy"
+        - "  - taby: index 01–07, žádné ikonové krabičky ani 'Active'"
+        - "  - satén karet: onyx gradient bez žlutých záblesků, mikro-linky"
+        - "  - jazyk CS/EN: tichý cross-fade (hero titulek, tab titulky, JGrid/JList obsah)"
+        - "  - galerie: open/close/prev/next, keyboard, scroll-lock (funkčnost preserved)"
+        - "  - tlačítka: satén, border-white/[0.08], tap 0.97 bez bounce"
+      verification:
+        - "npx tsc --noEmit"
+        - "npx next build"
+        - "npx next lint"
+        - "git diff public/data → prázdný"
+      warning:
+        - "package.json build = 'next build && firebase deploy' → PRODUKČNÍ DEPLOY!"
+        - "rule: npm run build NEspouštět bez explicitního souhlasu uživatele; vždy npx next build lokálně."
+
+  # ---------------------------------------------------------------------------
+  # DEFINICE ÚSPĚCHU (exit criteria)
+  # ---------------------------------------------------------------------------
+  acceptance_criteria:
+    - "npx tsc --noEmit a npx next build projdou bez chyb."
+    - "Fotka: čistý kruh s matnou mikro-linkou, bez kontejneru, bez zelené tečky, bez hover-zoom."
+    - "JTab: monospaced index 01–07 místo ikon, žádný 'Active' badge, saténový onyx gradient, hairline via-white (žádné amber hover záblesky)."
+    - "JList/JGrid/JBorderTop/JButton: žádné neonové amber kosočtverce/glows/ping; badge whisper tóny; en-dash odrážky; saténové tlačítko border-white/[0.08]."
+    - "Motion: výhradně silk_spring 260/30 (a sedate), cross-fade jazykových přepnutí ≤ 0.2 s, staggerChildren 0.08 zachován."
+    - "0 výskytů 'stiffness: 350' v celém src (grep components pages)."
+    - "git diff public/data → prázdný; žádné datové klíče nezměněny."
+    - "Galerie (JFullSizeImage) a přepínač jazyků plně funkční (API komponent beze změny)."
+    - "Focus ring focus-visible:ring-amber-400/40 na všech interaktivních prvcích (přístupnost)."
+  risks:
+    - risk: "JTab imageSrc prop odstraněn v kroku 2, call-sites upraveny až v kroku 4"
+      mitigation: "imageSrc/imageAlt ponechány jako OPTIONAL deprecované v kroku 2 → mezikroková kompilace prochází; krok 4 odstraní call-site props (grep ověření)."
+    - risk: "npm run build spouští firebase deploy"
+      mitigation: "Verifikovat npx next build; deploy pouze na explicitní vyžádání (krok 5 warning)."
+    - risk: "Ztráta vizuální identity při kompletním odstranění amber akcentů"
+      mitigation: "Amber zůstává jako WHISPER (text-amber-200/60, bg-amber-500/[0.05], slash '/'-akcent ztlumen na /50) — akcent zachován, hlasitost ztišena."
+    - risk: "Prop index chybně očíslován při budoucím přidání tabu"
+      mitigation: "Indexy jsou explicitní props z pages/index.tsx (01–07); nové taby dostávají další číslo v pořadí — zdokumentováno v kroku 4."

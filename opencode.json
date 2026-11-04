@@ -1,0 +1,28 @@
+{
+	"$schema": "https://opencode.ai/config.json",
+	"model": "bailian-token-plan-personal/deepseek-v4.1-flash",
+	"lsp": true,
+	"permission": {
+		"read": {
+			"**/.env*": "deny",
+			".env*": "deny"
+		},
+		"skill": {
+			"customize-opencode": "deny"
+		}
+	},
+	"formatter": {
+		"prettier": {
+			"command": ["npx", "prettier", "--write"]
+		}
+	},
+	"watcher": {
+		"ignore": ["node_modules", "**/node_modules", ".git", ".next", "**/.next", "dist", "**/dist", "data", "dump", ".idea", ".vscode", ".claude", ".codex", "coverage", "build"]
+	},
+	"mcp": {
+		"chrome-devtools": {
+			"type": "local",
+			"command": ["npx", "-y", "chrome-devtools-mcp"]
+		}
+	}
+}

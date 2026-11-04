@@ -1,65 +1,74 @@
 {
-    "pageTitle": "Jakub Švihel",
-    "aboutMe": "Jsem nadšenec do informačních technologií, zejména do tvorby webových stránek a aplikací. Věřím, že celoživotní vzdělávání je klíčem k osobnímu i profesnímu růstu, a v každodenním životě se snažím držet jednoduchosti a minimalismu. Jsem velmi fascinován Japonskem a jeho bohatou kulturou, která mě v mnohém inspiruje. Kromě toho se aktivně věnuji fitness, které je nedílnou součástí mé každodenní rutiny, a dlouhodobě se zajímám o investování.",
-    "education": [
-        {
-            "key": "2023 - 2025",
-            "goldValue": "Mgr.",
-            "primaryValue": "Aplikovaná informatika, Vývoj softwaru",
-            "secondaryValue": "Katedra informatiky, Univerzita Palackého, Olomouc"
-        },
-        {
-            "key": "2020 - 2023",
-            "goldValue": "Bc.",
-            "primaryValue": "Informatika, Programování a vývoj softwaru",
-            "secondaryValue": "Katedra informatiky, Univerzita Palackého, Olomouc"
-        }
-    ],
-    "employment": [
-        {
-            "key": "2022 - 2025",
-            "primaryValue": "MES Full-Stack vývojář",
-            "secondaryValue": "HELLA AUTOTECHNIK NOVA, s.r.o."
-        }
-    ],
-    "certificates": [
-        {
-            "key": "PLÁNOVANÝ",
-            "primaryValue": "CS50’s Introduction to Artificial Intelligence with Python",
-            "secondaryValue": "Harvardova univerzita, Cambridge, Massachusetts",
-            "tertiaryValue": "disable"
-        },
-        {
-            "key": "PLÁNOVANÝ",
-            "primaryValue": "CS50’s Introduction to Cybersecurity",
-            "secondaryValue": "Harvardova univerzita, Cambridge, Massachusetts",
-            "tertiaryValue": "disable"
-        },
-        {
-            "key": "PROBÍHAJÍCÍ",
-            "primaryValue": "CS50’s Web Programming with Python and JavaScript",
-            "secondaryValue": "Harvardova univerzita, Cambridge, Massachusetts",
-            "tertiaryValue": "disable"
-        },
-        {
-            "key": "DOKONČENÝ",
-            "primaryValue": "CS50’s Computer Science for Business Professionals",
-            "secondaryValue": "Harvardova univerzita, Cambridge, Massachusetts",
-            "tertiaryValue": "https://certificates.cs50.io/144b3b1d-db34-45d6-a6e7-49f34e8b95c0.pdf"
-        }
-    ],
-    "skills": [
-        {
-            "key": "Frontend",
-            "primaryValue": "React, Next.js, TypeScript, Tailwind, Material UI, HTML, CSS, Vaadin"
-        },
-        {
-            "key": "Backend",
-            "primaryValue": "Node.js, Java SE / EE"
-        },
-        {
-            "key": "Ostatní",
-            "primaryValue": "SQL, Git, PWA, Firebase, grafika"
-        }
-    ]
+	"pageTitle": "Jakub Švihel",
+	"aboutMe": "Jsem nadšenec do informačních technologií, zejména do tvorby webových stránek a aplikací. Věřím, že celoživotní vzdělávání je klíčem k osobnímu i profesnímu růstu, a v každodenním životě se snažím držet jednoduchosti a minimalismu. Jsem velmi fascinován Japonskem a jeho bohatou kulturou, která mě v mnohém inspiruje. Kromě toho se aktivně věnuji fitness, které je nedílnou součástí mé každodenní rutiny, a dlouhodobě se zajímám o investování.",
+	"education": [
+		{
+			"key": "2023 - 2025",
+			"goldValue": "Mgr.",
+			"primaryValue": "Mgr. Aplikovaná informatika, Vývoj softwaru",
+			"secondaryValue": "Katedra informatiky, Univerzita Palackého, Olomouc"
+		},
+		{
+			"key": "2020 - 2023",
+			"goldValue": "Bc.",
+			"primaryValue": "Informatika, Programování a vývoj softwaru",
+			"secondaryValue": "Katedra informatiky, Univerzita Palackého, Olomouc"
+		}
+	],
+	"employment": [
+		{
+			"key": "2025 - 2026",
+			"primaryValue": "Full-Stack vývojář",
+			"secondaryValue": "Atreo Digital s.r.o."
+		},
+		{
+			"key": "2022 - 2025",
+			"primaryValue": "MES Full-Stack vývojář",
+			"secondaryValue": "HELLA AUTOTECHNIK NOVA, s.r.o."
+		}
+	],
+	"certificates": [
+		{
+			"key": "PLÁNOVANÝ",
+			"primaryValue": "CS50’s Introduction to Artificial Intelligence with Python",
+			"secondaryValue": "Harvardova univerzita, Cambridge, Massachusetts",
+			"tertiaryValue": "disable"
+		},
+		{
+			"key": "PROBÍHAJÍCÍ",
+			"primaryValue": "CS50’s Introduction to Cybersecurity",
+			"secondaryValue": "Harvardova univerzita, Cambridge, Massachusetts",
+			"tertiaryValue": "disable"
+		},
+		{
+			"key": "DOKONČENÝ",
+			"primaryValue": "CS50’s Web Programming with Python and JavaScript",
+			"secondaryValue": "Harvardova univerzita, Cambridge, Massachusetts",
+			"tertiaryValue": "https://certificates.cs50.io/9263c85d-57a1-462e-9d9d-32d79e1dfe74.pdf"
+		},
+		{
+			"key": "DOKONČENÝ",
+			"primaryValue": "CS50’s Computer Science for Business Professionals",
+			"secondaryValue": "Harvardova univerzita, Cambridge, Massachusetts",
+			"tertiaryValue": "https://certificates.cs50.io/144b3b1d-db34-45d6-a6e7-49f34e8b95c0.pdf"
+		}
+	],
+	"skills": [
+		{
+			"key": "Frontend",
+			"primaryValue": "TypeScript, React, Next.js, Tailwind CSS, Zod, Figma"
+		},
+		{
+			"key": "Backend & DB",
+			"primaryValue": "Node.js, NestJS, PostgreSQL, Neon, Redis, Drizzle, TypeORM"
+		},
+		{
+			"key": "DevOps & QA",
+			"primaryValue": "Docker, Git, Jest, Playwright, Cloudflare Pages, AI CLI Workflows"
+		},
+		{
+			"key": "Jazyky",
+			"primaryValue": "Čeština C2, Angličtina B2"
+		}
+	]
 }

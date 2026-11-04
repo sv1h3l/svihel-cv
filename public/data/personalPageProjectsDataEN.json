@@ -51,22 +51,49 @@
 			"The website provides clear and easy-to-understand information about cancer, its prevention and treatment options. This non-profit project is undertaken to help the general public. The site is optimized for easy navigation and quick access to important information. React, Next.js, TypeScript, Tailwind CSS, and Firebase technologies are used to develop it."
 		]
 	},
-	"diplomaThesis": {
-		"header": "Diploma thesis",
-		"label": "ClickFit",
-		"company": false,
+	"universityPalacky": {
+		"header": "Institution",
+		"label": "Palacký University Olomouc",
+		"company": true,
 		"firstCard": true,
+		"values": [
+			"Department of Computer Science, Palacký University Olomouc — placeholder to be filled."
+		]
+	},
+	"diplomaThesis": {
+		"header": "Project",
+		"label": "Diploma thesis",
+		"company": false,
+		"firstCard": false,
 		"values": [
 			"As part of my diploma thesis, I designed and implemented the web application KlikFit, which allows users to create, manage, and view individual training plans, track athletic progress, and communicate with each other. Training plans can be created manually or automatically based on user-defined parameters. The application is built on React, Next.js, MaterialUI, Tailwind, TypeScript, Node.js, and MySQL technologies."
 		]
 	},
 	"bachelorThesis": {
-		"header": "Bachelor thesis",
-		"label": "Paziaatus",
+		"header": "Project",
+		"label": "Bachelor thesis",
 		"company": false,
-		"firstCard": true,
+		"firstCard": false,
 		"values": [
 			"For my bachelor thesis, I created a gambling desktop game with RPG elements and a Star Wars theme, based on the concept of existing games (Pazaak, Gladiatus, Shakes and Fidget, ...) but with an original implementation. As part of my work, I not only implemented the game itself, but also analyzed the game technology and development methodology. The game implements a computer opponent algorithm that is able to analyze the situation and create a strategy during a card game. The game logic is written in the Java programming language and I created the visual elements using the DALLE-E 2 model and the Photoshop graphics editor."
+		]
+	},
+	"gymnasiumNovyJicin": {
+		"header": "Institution",
+		"label": "Gymnázium Nový Jičín",
+		"company": true,
+		"firstCard": false,
+		"values": [
+			"Gymnázium Nový Jičín — placeholder to be filled."
+		]
+	},
+	"maturitaThesis": {
+		"header": "Project",
+		"label": "Matura thesis",
+		"company": false,
+		"firstCard": false,
+		"values": [
+			"Matura thesis topic and description — placeholder to be filled."
 		]
 	}
 }

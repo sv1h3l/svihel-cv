@@ -1,7 +1,8 @@
-import Image from "next/image";
-import { useState } from "react";
-import JButton from "./JButton";
-import JFullSizeImage from "./JFullSizeImage";
+import { useState } from 'react';
+import { AnimatePresence } from 'framer-motion';
+import { Images } from 'lucide-react';
+import JButton from './JButton';
+import JFullSizeImage from './JFullSizeImage';
 
 interface JFullSizeImageButtonProps {
 	imagesSrcs: string[];
@@ -13,23 +14,23 @@ export default function JFullSizeImageButton({ imagesSrcs }: JFullSizeImageButto
 	return (
 		<>
 			<JButton
-				setShowImage={setShowImage}
-				setShowImageValue={true}
-				smaller>
-				<Image
-					className="w-24"
-					src="/icons/pictures.webp"
-					alt="Pictures icon"
-					height={0}
-					width={28}
+				onClick={() => setShowImage(true)}
+				title="Open gallery">
+				<Images
+					className="size-4 text-neutral-400 group-hover:text-neutral-200"
+					strokeWidth={1.5}
+					aria-hidden="true"
 				/>
 			</JButton>
 
-			{showImage && (
-				<JFullSizeImage
-					imagesSrcs={imagesSrcs}
-					setShowImage={setShowImage}></JFullSizeImage>
-			)}
+			<AnimatePresence>
+				{showImage && (
+					<JFullSizeImage
+						imagesSrcs={imagesSrcs}
+						setShowImage={setShowImage}
+					/>
+				)}
+			</AnimatePresence>
 		</>
 	);
 }

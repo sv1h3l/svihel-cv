@@ -1,0 +1,384 @@
+# ==============================================================================
+#  EXEKUČNÍ PLÁN: Precision & Optical Polish (design-systémová preciznost)
+#  Soubor: .opencode/plans/003-precision-polish-redesign.yaml
+#  Vytvořeno: 2026-10-31
+#  Předchůdce: 002-luxury-minimal-redesign.yaml (DONE)
+# ==============================================================================
+
+plan:
+  id: "003-precision-polish-redesign"
+  title: "Precision & Optical Polish — optické centrování, rytmika, akademická restrukturalizace, Linear/Stripe standard"
+  target_aesthetic: "Perfektní optické centrování každého glyphu, nepřerušované vlasové linky, taktilní satén, nula kaskádových hoverů, typografická sebejistota design systému Linear/Stripe."
+  driver: "Uživatelské zadání 14 bodů precision-polish nad výstupem plánu 002."
+
+  # ---------------------------------------------------------------------------
+  # ANALÝZA SOUČASNÉHO STAVU (vstupy do plánu, nalezené deficity)
+  # ---------------------------------------------------------------------------
+  analyza_soucasneho_stavu:
+    JButton:
+      - "Base satén OK; CHYBÍ leading-none na content span a mikro kompenzace font metrik (text sedí opticky níže)."
+      - "content span má flex items-center justify-center w-full h-full, ale bez leading-none — CS/EN a ikony padají pod střed."
+      - "smaller size-8 rounded-lg; default size-10 rounded-xl — dualita zůstává tokenem (akce projektů přejdou na default)."
+    JTab:
+      - "Header: flex items-center gap-4; index text-[11px]; divider h-4 w-px bg-neutral-800; h3 bez leading-none — osa není matematicky centrována."
+      - "Padding p-5 sm:p-7 lg:p-8 vs. požadovaná škála p-4 sm:p-7 lg:p-8; mt-6 jednotná pro všechny taby."
+      - "section má class group; top hairline group-hover:via-white/[0.1]; nutný audit, že vnitřní group-hover (JButton/contacts) nebinduje na tuto skupinu."
+    JList:
+      - "Job panel: full-width pruh rounded-xl border p-3 s en-dash a labelem Role/Position — redundance (oba odstranit)."
+      - "Header badge: identický neutrální styl pro Company i Project; komponenta má k dispozici prop company pro diferenciaci."
+      - "Odrážky: dash má mt-0.5 + leading-relaxed — padá pod optický první řádek."
+      - "Children wrapper: rounded-2xl border p-1 + whileHover y -1 — společný panel kolem tlačítek (odstranit)."
+      - "Rytmika: firstCard mt-1 / ostatní mt-9 / mb-9 — nekonzistentní."
+    JGrid:
+      - "Certifikáty: samostatný JButton (size-7, ExternalLink stroke 1.8) vedle status badge — nahradit hybridním badgem [ STATUS | akce ]."
+      - "Levý sloupec má md:justify-end, ale externí tlačítko rozhazuje osu; po integraci čisté md:justify-end text-end."
+      - "Badges a chips bez leading-none (vertikální asymetrie)."
+    JBorderTop:
+      - "Matný bod size-1 rounded-full uprostřed — odstranit; gradient from-transparent via-neutral-700/40 nahradit dle tokenu."
+    pages_index:
+      - "Hero pořadí: dostupnost-kapsle → h1 → pozice → CZ/REMOTE; požadováno h1 → pozice → metadata řádek."
+      - "Lomítko / před pozicí není opticky centrováno — padá pod střed verzálek."
+      - "Dostupnost: statický šedý bod bez pulsu; požadován emerald whisper + jemná opacity pulzace + jemný podklad."
+      - "Divider PORTFOLIO: my-10 sm:my-14 — asymetrie; požadováno my-16 sm:my-20 lg:my-24."
+      - "Ikony: strokeWidth 1.8 napříč (Phone/Mail/ArrowUpRight/FileText/brand svg/gallery) — požadováno 1.5 až 1.6."
+      - "Akademická sféra: 2 bloky (diplomaThesis, bachelorThesis) bez institucí — požadována restrukturalizace podle vzoru komerční sféry."
+    JFullSizeImageButton:
+      - "className override hover:border-amber-500/50 + group-hover:text-amber-300 — starý amber hover; nahradit neutrálem."
+    data:
+      - "personalPageProjectsDataCZ/EN má 7 entit; akademické teze jsou samostatné bloky; CHYBÍ univerzita, gymnázium, maturitní práce."
+      - "Kontrakt ProjectsData: header, label, company, job (volitelné), firstCard, values."
+
+  # ---------------------------------------------------------------------------
+  # GLOBÁLNÍ HARD-CONSTRAINTS (porušení = FAIL)
+  # ---------------------------------------------------------------------------
+  constraints:
+    build_safety:
+      - "package.json build spouští firebase deploy → NIKDY npm run build; verifikace vždy npx next build."
+      - "Po každém kroku musí projít npx tsc --noEmit."
+    data_contract_003:
+      - "Změny dat POVOLENY POUZE v akademické sféře (krok 6): úprava header/label/firstCard u diplomaThesis a bachelorThesis + NOVÉ entity universityPalacky, gymnasiumNovyJicin, maturitaThesis (placeholder)."
+      - "Všechny ostatní entity (komerční sféra, generalData JSON) zůstávají bit-per-bit nedotčené."
+      - "Kontrakt ProjectsData zachován: každá entita má header, label, company, firstCard, values; job nesmí přibýt tam, kde nebyl."
+      - "Values stávajících tezí (diplomaThesis, bachelorThesis) zůstávají beze změny textu."
+    prop_contract_003:
+      - "JButton: API beze změny."
+      - "JTab: API beze změny."
+      - "JList: NOVÁ OPTIONAL prop nested?: boolean (vnořené akademické projekty); prop isCzech zůstává v rozhraní (kompatibilita call-sites), ale v renderu se přestane používat (Role/Position mizí)."
+      - "JGrid: API beze změny (gridArray: GridRow[]); certifikátová akce integrována do renderu badge přes tertiaryValue."
+      - "JFullSizeImage / JFullSizeImageButton: API beze změny; galerie plně funkční (ESC, šipky, scroll-lock, portál)."
+    motion_standard:
+      - "silkSpring { type: spring, stiffness: 260, damping: 30 } — jediná UI pružina; galerijní spring 350/25 v JFullSizeImage je modální výjimka (zachována)."
+      - "Puls dostupnosti: framer-motion opacity loop [0.35, 1, 0.35], duration 2.6, repeat Infinity, ease easeInOut — ŽÁDNÝ animate-ping, ŽÁDNÝ scale."
+    typography:
+      - "leading-none na všech mono mikro-labely a badge; kompenzace pt-[0.5px] / pt-[1px] dle fontu."
+      - "Badge Company vs Project: jemná diferenciace (viz design_tokens.badges)."
+      - "En-dash odrážky: leading-none + mt-[0.35rem] (optický první řádek)."
+    hover_isolation:
+      - "Hover karty JTab smí změnit POUZE border karty (neutral-800/75 → neutral-700/70) a top hairline (via-white/[0.06] → via-white/[0.1])."
+      - "Žádné vnitřní group-hover nesmí nabindovat na group karty; interaktivní prvky si nesou vlastní group."
+
+  # ---------------------------------------------------------------------------
+  # DESIGN TOKENS 003 (rozšiřují tokeny 002)
+  # ---------------------------------------------------------------------------
+  design_tokens:
+    spacing:
+      card_padding: "p-4 sm:p-7 lg:p-8 (JTab karty); hero showcase p-6 sm:p-8 lg:p-10 (záměrná hierarchie)"
+      section_gap: "mt-6 sm:mt-8 mezi JTab sekcemi"
+      list_rhythm: "firstCard mt-0; ostatní mt-8 sm:mt-10; mb-9; lastCard mb-2; nested mt-6"
+      divider_portfolio: "my-16 sm:my-20 lg:my-24"
+      action_gap: "gap-2 sm:gap-2.5 mezi samostatnými JButton akcemi"
+    hero:
+      order: "h1 → pozice (h2) → metadata řádek (CZ/REMOTE + dostupnost)"
+      slash: "inline-flex items-center justify-center leading-none select-none text-neutral-500 size-4 mr-2"
+      availability: "text: font-mono text-[10px] tracking-widest uppercase text-neutral-400/70; bod: size-1.5 rounded-full bg-emerald-400/80 + halo blur-[2px] bg-emerald-400/15"
+      meta_row: "font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-500"
+    badges:
+      company_label: "border-neutral-700/50 bg-neutral-800/40 text-neutral-300/90"
+      project_label: "border-neutral-800/60 bg-neutral-900/60 text-neutral-500"
+      role_capsule: "inline-flex items-center gap-2 rounded-lg border border-amber-500/15 bg-amber-500/[0.05] px-2.5 py-1 font-mono text-[11px] tracking-wide text-amber-200/70 leading-none pt-[1px]"
+      hybrid_badge: "[ STATUS | akce ] — status + w-px h-3 dělič v barvě stavu + inline SVG šipka v jednom containeru; hover povyšuje container"
+    dividers:
+      hairline_plain: "h-px bg-gradient-to-r from-neutral-800/80 via-neutral-800/30 to-transparent — BEZ bodu, BEZ přerušení"
+      tab_header_divider: "my-5 h-px bg-gradient-to-r from-neutral-800/60 via-neutral-800/25 to-transparent (zachováno)"
+    iconography:
+      stroke_lucide: "strokeWidth 1.5 (všechny lucide ikony UI)"
+      stroke_brand_svg: "strokeWidth 1.6 (inline brand LinkedIn, GitHub)"
+      optical_box: "size-3.5 v badge/řádku; size-4 v samostatných akcích"
+    focus:
+      ring: "focus-visible:ring-2 focus-visible:ring-amber-400/40 (přístupnost, beze změny)"
+
+  # ---------------------------------------------------------------------------
+  # LOGICKÉ FÁZE (seskupení kroků, stavy [PENDING])
+  # ---------------------------------------------------------------------------
+  faze:
+    - id: "A"
+      nazev: "Preciznost základů — font metrika, vlasové linky, osa hlavičky"
+      kroky: [1, 2]
+      status: DONE
+    - id: "B"
+      nazev: "Obsahové komponenty — JList role/badges/akce, JGrid hybridní certifikáty"
+      kroky: [3, 4]
+      status: DONE
+    - id: "C"
+      nazev: "Hero hierarchie, akademická restrukturalizace dat, ikonografický standard"
+      kroky: [5, 6, 7]
+      status: DONE
+    - id: "D"
+      nazev: "Finální gate — types, lint, build, vizuální checklist"
+      kroky: [8]
+      status: DONE
+
+  # ---------------------------------------------------------------------------
+  # KROKY (atomické, exekuovat sekvenčně 1→8, všechny [PENDING])
+  # ---------------------------------------------------------------------------
+  steps:
+    - id: 1
+      title: "JButton.tsx — optické centrování obsahu; JBorderTop.tsx — čistá vlasová linka bez bodu"
+      status: DONE
+      depends_on: []
+      files:
+        - "components/JButton.tsx"
+        - "components/JBorderTop.tsx"
+      key_changes:
+        JButton:
+          - "baseClassName: přidat leading-none k flex containeru."
+          - "content span: zachovat flex items-center justify-center w-full h-full + přidat leading-none a pt-[0.5px] (mikro kompenzace fontu dolu)."
+          - "lang varianta: stejná kompenzace pt-[0.5px] — CS/EN text přesně centrovaný."
+          - "Beze změny: satén, border-white/[0.08], inset 1px highlight, focus ring, silkSpring 260/30, whileTap 0.97."
+        JBorderTop:
+          - "ODSTRANIT matný bod (size-1 rounded-full uprostřed)."
+          - "Nový gradient: h-px bg-gradient-to-r from-neutral-800/80 via-neutral-800/30 to-transparent."
+          - "Motion scaleX 0→1 + opacity na silkSpring zachovat; pozice absolute -top-px zachovat."
+      verification:
+        - "grep -n 'rounded-full' components/JBorderTop.tsx → 0 výskytů"
+        - "grep -n 'from-neutral-800/80' components/JBorderTop.tsx → 1 výskyt"
+        - "grep -n 'leading-none' components/JButton.tsx → 2 a více výskytů"
+        - "grep -nF 'pt-[0.5px]' components/JButton.tsx → 1 a více výskytů"
+        - "npx tsc --noEmit"
+
+    - id: 2
+      title: "JTab.tsx — centrovaná osa hlavičky, spacing škála, izolace hoveru karty"
+      status: DONE
+      depends_on: [1]
+      files:
+        - "components/JTab.tsx"
+      key_changes:
+        header_axis:
+          - "header → flex items-center gap-3 (z gap-4), leading-none."
+          - "index span: přidat leading-none; zbytek zachovat (font-mono text-[11px] tracking-[0.25em] text-neutral-600 tabular-nums)."
+          - "divider: h-4 → h-3.5, w-px bg-neutral-800 (optický dělník)."
+          - "h3: přidat leading-none; font-semibold tracking-tight zůstává."
+          - "Cíl: absolutní vertikální centrovaná osa index | linka | titulek."
+        spacing:
+          - "Karta: p-5 sm:p-7 lg:p-8 → p-4 sm:p-7 lg:p-8."
+          - "mt-6 → mt-6 sm:mt-8 (rytmus sekcí); lastTab mb-10 lg:mb-16 zůstává."
+        hover_isolation:
+          - "group na sekci ponechat POUZE pro vlastní top hairline (group-hover:via-white/[0.1]) a border hovery."
+          - "Audit: žádné další group-hover uvnitř renderu; vnitřní komponenty reagují jen na vlastní direct hover."
+        dividers:
+          - "Header divider my-5 s gradientem via-neutral-800/25 zůstává nepřerušený."
+      verification:
+        - "grep -n 'gap-3' components/JTab.tsx → 1 výskyt v headeru"
+        - "grep -n 'h-3.5' components/JTab.tsx → 1 výskyt (dělník)"
+        - "grep -nF 'p-4 sm:p-7 lg:p-8' components/JTab.tsx → 1 výskyt"
+        - "grep -nF 'mt-6 sm:mt-8' components/JTab.tsx → 1 výskyt"
+        - "grep -n 'group-hover' components/JTab.tsx → výskyt POUZE na top hairline spanu"
+        - "npx tsc --noEmit"
+
+    - id: 3
+      title: "JList.tsx — role jako saténová kapsle, diferenciace Company/Project, optické odrážky, volné akce"
+      status: DONE
+      depends_on: [1]
+      files:
+        - "components/JList.tsx"
+      key_changes:
+        role_capsule:
+          - "ODSTRANIT full-width job pruh a label Role/Position."
+          - "Job → kompaktní kapsle pod h4 dle tokenu role_capsule (amber satin whisper, pt-[1px]); bez en-dash prefixu."
+          - "isCzech se v renderu přestane používat; prop zůstává v rozhraní (kompatibilita call-sites)."
+        badge_differentiation:
+          - "company=true → company_label token; company=false → project_label token."
+          - "Oba: inline-flex items-center leading-none pt-[0.5px] px-2 py-0.5 rounded-md font-mono text-[10px] uppercase tracking-widest."
+        bullets:
+          - "Dash: leading-none + mt-[0.35rem]; keep shrink-0 select-none text-sm text-neutral-600."
+          - "Hodnota textu: text-sm leading-relaxed text-neutral-300/90 sm:text-[15px] zůstává; li flex items-start gap-3.5 zůstává."
+        actions:
+          - "ODSTRANIT společný kontejner (rounded-2xl border p-1 whileHover) kolem children."
+          - "Children v čisté řadě: flex items-center gap-2 sm:gap-2.5 self-start sm:self-center — každý JButton samostatný."
+        rhythm:
+          - "firstCard: mt-1 → mt-0; ostatní mt-9 → mt-8 sm:mt-10; mb-9 a lastCard mb-2 zůstávají."
+          - "NOVÁ OPTIONAL prop nested?: boolean → sm:ml-10 lg:ml-12 sm:border-l sm:border-neutral-800/50 sm:pl-6 lg:pl-8, mt-6."
+          - "borderTop pt-8 zůstává."
+      verification:
+        - "grep -n 'Position' components/JList.tsx → 0 výskytů; grep -n 'Role' → 0 výskytů"
+        - "grep -n 'rounded-2xl' components/JList.tsx → 0 výskytů (panel pryč)"
+        - "grep -nF 'mt-[0.35rem]' components/JList.tsx → 1 výskyt"
+        - "grep -n 'nested' components/JList.tsx → 1 a více výskytů"
+        - "npx tsc --noEmit"
+
+    - id: 4
+      title: "JGrid.tsx — hybridní certifikátový badge, pravé zarovnání, optické centrování"
+      status: DONE
+      depends_on: [1]
+      files:
+        - "components/JGrid.tsx"
+      key_changes:
+        hybrid_badge:
+          - "ODSTRANIT samostatný JButton s ExternalLink; odstranit import JButton a ExternalLink (nahradí inline SVG šipka)."
+          - "renderBadge dostane kontext celého gridRow (key + tertiaryValue)."
+          - "Je-li tertiaryValue reálné URL (není disable): badge = <a href target=_blank rel=noopener noreferrer title={primaryValue}> s obsahem: status text + dělič w-px h-3 (barva dle stavu: emerald/amber/indigo při 20%) + inline SVG šipka ArrowUpRight (size-3.5, strokeWidth 1.5)."
+          - "Container: inline-flex items-center gap-2 rounded-lg border px-2.5 py-1 font-mono text-[11px] leading-none pt-[1px] cursor-pointer; hover povýší border a bg daného stavu; focus-visible ring amber."
+          - "disable → čistý badge bez akce a bez děliče; stavový bod size-1.5 zůstává."
+        alignment:
+          - "Levý sloupec: flex items-center gap-x-2.5 pt-1 md:justify-end text-start md:text-end — striktně vpravo na md dle vzoru dovedností."
+        optical:
+          - "Všechny badge: leading-none + pt-[1px]."
+          - "Skill chips: leading-none + pt-[1px]; whileHover y:-1 a silkSpring zůstávají; hover border-neutral-600/60 text-neutral-200 (bez amber)."
+          - "goldValue: přidat leading-none pt-[0.5px]; whisper tóny zůstávají."
+      verification:
+        - "grep -n 'ExternalLink' components/JGrid.tsx → 0 výskytů"
+        - "grep -n 'import JButton' components/JGrid.tsx → 0 výskytů"
+        - "grep -n 'tertiaryValue' components/JGrid.tsx → 2 a více výskytů"
+        - "grep -nF 'w-px h-3' components/JGrid.tsx → 1 a více výskytů"
+        - "grep -n 'md:justify-end' components/JGrid.tsx → 1 výskyt"
+        - "grep -n 'leading-none' components/JGrid.tsx → 2 a více výskytů"
+        - "npx tsc --noEmit"
+
+    - id: 5
+      title: "pages/index.tsx — přísná hero hierarchie, puls dostupnosti, optické lomítko, PORTFOLIO divider"
+      status: DONE
+      depends_on: [1, 2]
+      files:
+        - "pages/index.tsx"
+      key_changes:
+        hero_order:
+          - "Textový blok: 1) h1 (pageTitle), 2) h2 pozice FULL-STACK, 3) metadata řádek."
+          - "ODSTRANIT dostupnost-kapsli z pozice nad h1 (původní rounded-full)."
+        position_h2:
+          - "swapVariants opacity-only zůstává."
+          - "Lomítko jako samostatný span: inline-flex items-center justify-center leading-none select-none text-neutral-500 size-4 mr-2 — opticky na cap-height, nikdy pod účařím."
+          - "Text pozice: leading-none; wrapper h-7 sm:h-8 zůstává pro stabilní výšku swapu."
+        metadata_row:
+          - "Pod pozicí: mt-3 flex flex-wrap items-center gap-3 font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-500."
+          - "Segment 1: CZ / REMOTE."
+          - "Segment 2 (dostupnost): inline-flex items-center gap-2; bod size-1.5 rounded-full bg-emerald-400/80 s jemným halo (absolute inset-0 bg-emerald-400/15 blur-[2px] rounded-full) a framer-motion opacity pulsem [0.35, 1, 0.35] 2.6 s repeat Infinity."
+          - "Text dostupnosti: text-neutral-400/70 — Dostupný pro projekty / Available for opportunities."
+          - "Puls POUZE opacity — žádný animate-ping, žádný scale."
+        spacing_dividers:
+          - "Hero mb-8 sm:mb-10 → mb-6 sm:mb-8 (konzistence s mt-6 sm:mt-8 tabů); hero padding p-6 sm:p-8 md:p-10 zůstává (showcase hierarchie)."
+          - "Divider PORTFOLIO: my-10 sm:my-14 → my-16 sm:my-20 lg:my-24 (symetrické odsazení)."
+        iconography:
+          - "Phone, Mail, ArrowUpRight, FileText: strokeWidth 1.8 → 1.5 (size-3.5 zůstává)."
+          - "Brand SVG LinkedIn/GitHub: strokeWidth 1.8 → 1.6."
+        call_sites:
+          - "oKrokNapred a akademické akce: JButton smaller → bez smaller (default size-10 dle kroku 3/7 standardu akcí)."
+          - "Kontaktní řádky a galerie: bez strukturální změny; vlastní group kontexty zachovány."
+      verification:
+        - "grep -nF 'strokeWidth={1.8}' pages/index.tsx → 0 výskytů"
+        - "grep -nF 'my-16 sm:my-20 lg:my-24' pages/index.tsx → 1 výskyt"
+        - "grep -nF 'size-4 mr-2' pages/index.tsx → 1 výskyt (lomítko)"
+        - "grep -n 'animate-ping' pages/index.tsx → 0 výskytů"
+        - "npx tsc --noEmit"
+
+    - id: 6
+      title: "Akademická restrukturalizace — interfacy + JSON data (diplom/bakalář/maturita, instituce)"
+      status: DONE
+      depends_on: [3]
+      files:
+        - "public/data/personalPageProjectsDataCZ.json"
+        - "public/data/personalPageProjectsDataEN.json"
+        - "pages/index.tsx (interface PersonalPageProjectsData + call-sites akademického tabu)"
+      key_changes:
+        data_cz_en:
+          - "diplomaThesis: header Diplomová práce → Projekt; label KlikFit → Diplomová práce; company false; firstCard true → false; values BEZE ZMĚNY textu."
+          - "bachelorThesis: header → Projekt; label → Bakalářská práce; firstCard → false; values beze změny."
+          - "NOVÁ universityPalacky: header Instituce (EN Institution), label Univerzita Palackého v Olomouci (EN Palacký University Olomouc), company true, firstCard true, values [placeholder 1 řádek o katedře]."
+          - "NOVÁ gymnasiumNovyJicin: header Instituce, label Gymnázium Nový Jičín, company true, firstCard false, values [placeholder 1 řádek]."
+          - "NOVÁ maturitaThesis: header Projekt, label Maturitní práce (EN Matura thesis), company false, firstCard false, values [placeholder k doplnění]."
+          - "ŽÁDNÁ jiná entita se nesmí změnit; klíče job na nových entitách NEVYTVÁŘET (chráněno kontraktem)."
+        index_call_sites:
+          - "interface PersonalPageProjectsData: přidat universityPalacky, gymnasiumNovyJicin, maturitaThesis."
+          - "Akademický tab JTab index=07: nová struktura shora dolů — universityPalacky (company), diplomaThesis (nested), bachelorThesis (nested), gymnasiumNovyJicin (company, borderTop), maturitaThesis (nested, lastCard)."
+          - "Akce zůstávají: diplomaThesis PDF + galerie; bachelorThesis PDF + YouTube + galerie; maturitaThesis placeholder BEZ akcí."
+          - "lastCard prop přesunout na maturitaThesis."
+      verification:
+        - "node -e JSON.parse obou projektových JSON souborů (validní)"
+        - "git diff public/data → změny POUZE v academic klíčích + nové entity"
+        - "grep -n 'universityPalacky' pages/index.tsx → 2 a více výskytů"
+        - "npx tsc --noEmit"
+
+    - id: 7
+      title: "Ikonografický standard + dočištění amber hoverů galerie (JFullSizeImageButton, JFullSizeImage)"
+      status: DONE
+      depends_on: [5, 6]
+      files:
+        - "components/JFullSizeImageButton.tsx"
+        - "components/JFullSizeImage.tsx"
+      key_changes:
+        JFullSizeImageButton:
+          - "Odstranit className override border-neutral-700/60 hover:border-amber-500/50 → výchozí neutrální satén JButton."
+          - "Images: size-4 zůstává, strokeWidth 1.8 → 1.5; group-hover:text-amber-300 → group-hover:text-neutral-200."
+        JFullSizeImage:
+          - "X, ChevronLeft, ChevronRight: strokeWidth 1.8 → 1.5 (size-4/size-5 zůstávají)."
+          - "Odstranit hover:border-amber-500/50 overridy na tlačítkách (close) → neutrál; hover:text-amber-400 na chevronech → hover:text-neutral-200."
+          - "Galerijní spring 350/25 zůstává dokumentovanou MODÁLNÍ výjimkou."
+          - "Counter 1/4: zachovat (mono mikrolabel s leading-none)."
+      verification:
+        - "grep -n 'amber' components/JFullSizeImageButton.tsx → 0 výskytů"
+        - "grep -n 'amber' components/JFullSizeImage.tsx → 0 výskytů (kromě dokumentované none)"
+        - "grep -nF 'strokeWidth={1.8}' components/ → 0 výskytů v celém components/"
+        - "npx tsc --noEmit"
+
+    - id: 8
+      title: "Finální gate — typy, lint, produkční build, datová stabilita, vizuální checklist"
+      status: DONE
+      depends_on: [1, 2, 3, 4, 5, 6, 7]
+      files: []
+      key_changes:
+        - "npx tsc --noEmit (celý projekt)."
+        - "npx next lint (bez warningů)."
+        - "npx next build lokálně (nepoužívat npm run build — firebase deploy)."
+        - "git diff public/data → pouze akademické klíče + nové entity."
+        - "Grep celé repo: stiffness: 350 smí být pouze v JFullSizeImage.tsx (modální výjimka)."
+        - "Grep celé repo: animate-ping → 0; rotate-45 → 0."
+        - "Vizuální checklist (dev, desktop + mobil 390px):"
+        - "  hero: h1 → pozice → metadata řádek; lomítko na cap-height; pulzující emerald bod s halem"
+        - "  taby: index | dělník h-3.5 | titulek na jedné ose; p-4 sm:p-7 lg:p-8; hover karty nemění vnitřní texty"
+        - "  JList: Company vs Project badge diferenciace; role jako amber kapsle; odrážky na prvním řádku; akce volně v řadě"
+        - "  JGrid: certifikáty jako hybridní badge [DOKONČENÝ | ↖] s mikro děličem, vpravo na desktopu"
+        - "  akademie: univerzita → 2 vnořené teze (sen), gymnázium → maturita (sen), oddělovací linky bez bodů"
+        - "  PORTFOLIO divider: symetrické my-16/20/24"
+        - "  galerie: open/close/prev/next/keyboard/scroll-lock funkční; jazyk CS/EN cross-fade"
+      verification:
+        - "npx tsc --noEmit"
+        - "npx next lint"
+        - "npx next build"
+        - "git diff public/data (kontrola rozsahu)"
+      warning:
+        - "npm run build spouští firebase deploy — vždy npx next build."
+        - "Dev server FOUC artefakt (data-next-hide-fouc) je známý dev-only jev, ne chyba kódu."
+
+  # ---------------------------------------------------------------------------
+  # DEFINICE ÚSPĚCHU (exit criteria)
+  # ---------------------------------------------------------------------------
+  acceptance_criteria:
+    - "npx tsc --noEmit, npx next lint a npx next build projdou bez chyb."
+    - "Header JTab: index | w-px h-3.5 | h3 na absolutní vertikální ose s leading-none."
+    - "JList: role jako kompaktní amber-satin kapsle; Company badge odlišný od Project; bez full-width pruhu a bez Role/Position."
+    - "Jednotná vlasová linka bez bodů ve všech přechodech sekcí (grep rounded-full v JBorderTop = 0)."
+    - "JGrid certifikáty: integrovaný badge se statusem, mikro děličem a SVG akcí; žádný externí JButton/ExternalLink; badges vpravo na md."
+    - "Akademická sféra: instituce (UP, Gymnázium) s vnořenými projekty a oddělovací linkou; kontrakt a typová integrita JSON."
+    - "Hero: h1 → pozice → metadata řádek s CZ/REMOTE a pulzující dostupností; lomítko opticky centrováno."
+    - "Divider PORTFOLIO: my-16 sm:my-20 lg:my-24."
+    - "strokeWidth: 0 výskytů 1.8 v components/; lucide 1.5, brand SVG 1.6."
+    - "Hover JTab neovlivňuje inner texty/badge; 0 kaskádových barev."
+    - "grep repo: stiffness 350 jen v JFullSizeImage (modální výjimka); animate-ping → 0; rotate-45 → 0."
+  risks:
+    - risk: "Změna JSON dat může porušit kostru mimo akademii"
+      mitigation: "Krok 6 mění POUZE akademické klíče + nové entity; po kroku git diff public/data audit; komerční entity nedotčené."
+    - risk: "isCzech v JList přestává být používán"
+      mitigation: "Prop zůstává v rozhraní; call-sites dál kompilují; TS bez varování (destructuring jen použitých props)."
+    - risk: "Hybridní badge naruší přístupnost klávesnice"
+      mitigation: "Akce je <a href target=_blank> s focus-visible ring; tab-index přirozený."
+    - risk: "Galerijní amber nátěr byl součástí identity"
+      mitigation: "Amber zůstává whisper v rolích a dostupnosti; galerie přechází na neutrální satén dle 003."

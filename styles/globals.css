@@ -2,64 +2,52 @@
 @tailwind components;
 @tailwind utilities;
 
-/** Nastavení barvy pozadí systémových tlačítek telefonu a hladkého scrollování */
-body {
-	background-color: #3c3d37;
-	scroll-behavior: smooth;
+@layer base {
+	html {
+		scroll-behavior: smooth;
+		/* Moderní plynulé škálování písma místo skokových media queries */
+		font-size: clamp(12px, 1vw + 10px, 17.5px);
+	}
+
+	body {
+		/* Hluboká tmavá s vyhlazením písma */
+		@apply bg-neutral-950 text-neutral-300 antialiased;
+	}
+
+	/* Vlastní barva při označení textu myší (moderní detail) */
+	::selection {
+		@apply bg-neutral-800 text-neutral-100;
+	}
+
+	/* Zlatý akcent pro odrážky seznamů */
+	.li-color ::marker {
+		@apply text-yellow-500/90;
+	}
 }
 
-html,
-.li-color ::marker {
-	color: #b7a71d;
-}
-
+/* =========================================
+   MINIMALISTICKÝ SCROLLBAR (Webkit)
+   ========================================= */
 ::-webkit-scrollbar {
-	width: 10px;
-	background-color: #3c3d37;
+	width: 6px; /* Mnohem tenčí */
+	height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-	margin-top: 2px;
-	margin-bottom: 3px;
-	background-color: #3c3d37;
+	background: transparent; /* Zmizí tvrdé pozadí tracku */
 }
 
 ::-webkit-scrollbar-thumb {
-	margin-top: 10px;
-	background-color: #161513;
-	border-radius: 10px;
-
-	border-top: 3px solid #b7a71d;
-	border-bottom: 3px solid #b7a71d;
+	@apply bg-neutral-800 rounded-full;
 }
 
-/** Nastavení velikosti písma pro různě široká zařízení */
-@layer base {
-	html {
-		font-size: 12px;
-	}
-
-	@media (min-width: 640px) {
-		html {
-			font-size: 14px;
-		}
-	}
-
-	@media (min-width: 1024px) {
-		html {
-			font-size: 16px;
-		}
-	}
-
-	@media (min-width: 1536px) {
-		html {
-			font-size: 17.5px;
-		}
-	}
+::-webkit-scrollbar-thumb:hover {
+	@apply bg-neutral-700;
 }
 
-/** TAILWIND - custom classes */
-
+/* =========================================
+   CUSTOM TŘÍDY (Zůstatek)
+   ========================================= */
 .max-h-85vh {
 	max-height: 85vh;
 }
@@ -68,262 +56,7 @@ html,
 	max-width: 100vw;
 }
 
-.border-t-12 {
-	border-top-width: 12px;
-}
-
-.border-1 {
-	border-width: 1px;
-}
-
-.w-1\/8 {
-	width: 12.5%;
-}
-
-.border-l-12 {
-	border-left-width: 12px;
-}
-
-.h-22 {
-	height: 5.5rem;
-}
-
-.pt-1_5 {
-	padding-top: 0.375rem;
-}
-
-.h-1\/24 {
-	height: 4.1666667%;
-}
-
-.h-2\/24 {
-	height: 8.3333333%;
-}
-
-.h-3\/24 {
-	height: 12.5%;
-}
-
-.h-4\/24 {
-	height: 16.6666667%;
-}
-
-.h-5\/24 {
-	height: 20.8333333%;
-}
-
-.h-6\/24 {
-	height: 25%;
-}
-
-.h-7\/24 {
-	height: 29.1666667%;
-}
-
-.h-8\/24 {
-	height: 33.3333333%;
-}
-
-.h-9\/24 {
-	height: 37.5%;
-}
-
-.h-10\/24 {
-	height: 41.6666667%;
-}
-
-.h-11\/24 {
-	height: 45.8333333%;
-}
-
-.h-12\/24 {
-	height: 50%;
-}
-
-.h-13\/24 {
-	height: 54.1666667%;
-}
-
-.h-14\/24 {
-	height: 58.3333333%;
-}
-
-.h-15\/24 {
-	height: 62.5%;
-}
-
-.h-16\/24 {
-	height: 66.6666667%;
-}
-
-.h-17\/24 {
-	height: 70.8333333%;
-}
-
-.h-18\/24 {
-	height: 75%;
-}
-
-.h-19\/24 {
-	height: 79.1666667%;
-}
-
-.h-20\/24 {
-	height: 83.3333333%;
-}
-
-.h-21\/24 {
-	height: 87.5%;
-}
-
-.h-22\/24 {
-	height: 91.6666667%;
-}
-
-.h-23\/24 {
-	height: 95.8333333%;
-}
-
-.h-24\/24 {
-	height: 100%;
-}
-
-.w-1\/24 {
-	width: 4.1666667%;
-}
-
-.w-2\/24 {
-	width: 8.3333333%;
-}
-
-.w-3\/24 {
-	width: 12.5%;
-}
-
-.w-4\/24 {
-	width: 16.6666667%;
-}
-
-.w-5\/24 {
-	width: 20.8333333%;
-}
-
-.w-6\/24 {
-	width: 25%;
-}
-
-.w-7\/24 {
-	width: 29.1666667%;
-}
-
-.w-8\/24 {
-	width: 33.3333333%;
-}
-
-.w-9\/24 {
-	width: 37.5%;
-}
-
-.w-10\/24 {
-	width: 41.6666667%;
-}
-
-.w-11\/24 {
-	width: 45.8333333%;
-}
-
-.w-12\/24 {
-	width: 50%;
-}
-
-.w-13\/24 {
-	width: 54.1666667%;
-}
-
-.w-14\/24 {
-	width: 58.3333333%;
-}
-
-.w-15\/24 {
-	width: 62.5%;
-}
-
-.w-16\/24 {
-	width: 66.6666667%;
-}
-
-.w-17\/24 {
-	width: 70.8333333%;
-}
-
-.w-18\/24 {
-	width: 75%;
-}
-
-.w-19\/24 {
-	width: 79.1666667%;
-}
-
-.w-20\/24 {
-	width: 83.3333333%;
-}
-
-.w-21\/24 {
-	width: 87.5%;
-}
-
-.w-22\/24 {
-	width: 91.6666667%;
-}
-
-.w-23\/24 {
-	width: 95.8333333%;
-}
-
-.w-24\/24 {
-	width: 100%;
-}
-
-.min-w-xs {
-	min-width: 20rem;
-}
-
-.min-w-sm {
-	min-width: 24rem;
-}
-
-.min-w-md {
-	min-width: 28rem;
-}
-
-.min-w-lg {
-	min-width: 32rem;
-}
-
-.min-w-xl {
-	min-width: 36rem;
-}
-
-.min-w-2xl {
-	min-width: 42rem;
-}
-
-.min-w-3xl {
-	min-width: 48rem;
-}
-
-.min-w-4xl {
-	min-width: 56rem;
-}
-
-.min-w-5xl {
-	min-width: 64rem;
-}
-
-.min-w-6xl {
-	min-width: 72rem;
-}
-
-.min-w-7xl {
-	min-width: 80rem;
-}
+/* 
+ * POZNÁMKA: Všechny tvé .h-1/24 a .min-w-xs třídy byly smazány z tohoto souboru.
+ * Proč? Patří do tailwind.config.js (viz krok 2).
+ */
