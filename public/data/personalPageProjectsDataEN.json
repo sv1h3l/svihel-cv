@@ -1,7 +1,8 @@
 {
 	"companyHella": {
 		"header": "Company",
-		"label": "HELLA AUTOTECHNIK NOVA, s.r.o.",
+		"label": "Forvia Hella",
+		"description": "HELLA AUTOTECHNIK NOVA is part of FORVIA HELLA, an international automotive supplier focused on lighting technology and electronics.\n\nIts Mohelnice site develops, manufactures and tests automotive headlights. Its work spans engineering, optics and electronics as well as plastic components and lighting module assembly.\n\nThe site also includes testing laboratories and a prototype workshop. Czech teams contribute to international automotive lighting projects.",
 		"company": true,
 		"job": "MES Full-Stack Developer",
 		"firstCard": true,
@@ -15,6 +16,8 @@
 	"projectUnitExplorer": {
 		"header": "Project",
 		"label": "Unit Explorer",
+		"displayDescription": "This is a progressive web application designed to display detailed information about a specific headlight. The application provides an overview of the testing process, measured values, individual components and other technical parameters. Although primarily optimized for mobile devices, it is also fully compatible with desktop platforms.",
+		"technologies": ["HTML", "CSS", "Vaadin", "Java"],
 		"company": false,
 		"firstCard": false,
 		"values": [
@@ -24,6 +27,8 @@
 	"projectProjectServer": {
 		"header": "Project",
 		"label": "Project Server",
+		"displayDescription": "It is a progressive web application designed to run JNLP projects and monitor their progress on different devices in the company. The application replaces the outdated project server, which has been completely redesigned and enhanced with new features. The primary focus of the app is desktop use, however it is functional on mobile devices as well.",
+		"technologies": ["HTML", "CSS", "Vaadin", "Java"],
 		"company": false,
 		"firstCard": false,
 		"values": [
@@ -33,6 +38,7 @@
 	"selfEmployment": {
 		"header": "Secondary activity",
 		"label": "Jakub Švihel Technologies",
+		"description": "Custom web application development and digital solutions.",
 		"company": true,
 		"job": "Full-Stack Developer",
 		"firstCard": true,
@@ -45,6 +51,8 @@
 	"oKrokNapred": {
 		"header": "Project",
 		"label": "O krok napřed",
+		"displayDescription": "The website provides clear and easy-to-understand information about cancer, its prevention and treatment options. This non-profit project is undertaken to help the general public. The site is optimized for easy navigation and quick access to important information.",
+		"technologies": ["React", "Next.js", "TypeScript", "Tailwind CSS", "Firebase"],
 		"company": false,
 		"firstCard": false,
 		"values": [
@@ -54,15 +62,16 @@
 	"universityPalacky": {
 		"header": "Institution",
 		"label": "Palacký University Olomouc",
+		"description": "A university in Olomouc where I studied computer science.",
 		"company": true,
 		"firstCard": true,
-		"values": [
-			"Department of Computer Science, Palacký University Olomouc — placeholder to be filled."
-		]
+		"values": ["Department of Computer Science, Palacký University Olomouc — placeholder to be filled."]
 	},
 	"diplomaThesis": {
 		"header": "Project",
 		"label": "Diploma thesis",
+		"displayDescription": "As part of my diploma thesis, I designed and implemented the web application KlikFit, which allows users to create, manage, and view individual training plans, track athletic progress, and communicate with each other. Training plans can be created manually or automatically based on user-defined parameters.",
+		"technologies": ["React", "Next.js", "Material UI", "Tailwind CSS", "TypeScript", "Node.js", "MySQL"],
 		"company": false,
 		"firstCard": false,
 		"values": [
@@ -72,6 +81,8 @@
 	"bachelorThesis": {
 		"header": "Project",
 		"label": "Bachelor thesis",
+		"displayDescription": "For my bachelor thesis, I created a gambling desktop game with RPG elements and a Star Wars theme, based on the concept of existing games (Pazaak, Gladiatus, Shakes and Fidget, ...) but with an original implementation. As part of my work, I not only implemented the game itself, but also analyzed the game technology and development methodology. The game implements a computer opponent algorithm that is able to analyze the situation and create a strategy during a card game.",
+		"technologies": ["Java", "DALL·E 2", "Photoshop"],
 		"company": false,
 		"firstCard": false,
 		"values": [
@@ -81,19 +92,39 @@
 	"gymnasiumNovyJicin": {
 		"header": "Institution",
 		"label": "Gymnázium Nový Jičín",
+		"description": "A secondary school in Nový Jičín where I completed my studies.",
 		"company": true,
 		"firstCard": false,
-		"values": [
-			"Gymnázium Nový Jičín — placeholder to be filled."
-		]
+		"values": ["Gymnázium Nový Jičín — placeholder to be filled."]
 	},
 	"maturitaThesis": {
 		"header": "Project",
 		"label": "Matura thesis",
 		"company": false,
 		"firstCard": false,
+		"values": ["Matura thesis topic and description — placeholder to be filled."]
+	},
+	"atreoDigital": {
+		"header": "Company",
+		"label": "Atreo Digital s.r.o.",
+		"description": "Atreo Digital is an Ostrava-based company focused on developing websites and web applications.\n\nIt specialises in complex systems tailored to client needs and helps clients choose suitable technologies.\n\nIts development process emphasises ongoing communication and transparency about project progress, timelines and budgets.",
+		"company": true,
+		"job": "Full-Stack Developer",
+		"firstCard": false,
+		"values": ["Development and maintenance of frontend and backend applications.", "Code reviews, testing and deployment of changes.", "Analysis and implementation of computational models."]
+	},
+	"projectMonery": {
+		"header": "Project",
+		"label": "Monery",
+		"displayDescription": "A web application designed to aggregate, track, and analyze investment portfolios across multiple brokerages in a unified dashboard. The platform translates raw transaction data into actionable financial metrics, asset allocation breakdowns, and performance analytics.",
+		"technologies": ["React", "TypeScript", "Node.js", "REST API"],
+		"company": false,
+		"firstCard": false,
 		"values": [
-			"Matura thesis topic and description — placeholder to be filled."
+			"Architected and implemented core computational models for investment analytics, portfolio returns, and multi-currency performance tracking.",
+			"Developed end-to-end full-stack features, ranging from interactive analytical dashboards and visualization charts to backend data processing pipelines.",
+			"Designed data normalization workflows to aggregate and harmonize transaction histories from diverse brokerage platforms.",
+			"Conducted code reviews, validated the precision of financial calculation engines via unit tests, and managed production deployments."
 		]
 	}
 }

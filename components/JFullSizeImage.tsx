@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight, X } from 'lucide-react';
+import JIcon from './JIcon';
 import JButton from './JButton';
 
 interface FullSizeImageProps {
@@ -64,14 +64,9 @@ export default function JFullSizeImage({ imagesSrcs, setShowImage }: FullSizeIma
 			transition={{ duration: 0.2 }}>
 			<div className="absolute right-4 top-4 lg:right-8 lg:top-8 z-50">
 				<JButton
-					className="bg-neutral-900/90 border-neutral-700/80"
 					onClick={() => setShowImage(false)}
 					title="Close">
-					<X
-						className="size-4 text-neutral-400 group-hover:text-neutral-200"
-						strokeWidth={1.5}
-						aria-hidden="true"
-					/>
+					<JIcon name="close" />
 				</JButton>
 			</div>
 
@@ -109,12 +104,8 @@ export default function JFullSizeImage({ imagesSrcs, setShowImage }: FullSizeIma
 							whileTap={{ scale: 0.9 }}
 							transition={spring}
 							aria-label="Previous image"
-							className="p-1 text-neutral-400 hover:text-neutral-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400/40 rounded-full">
-							<ChevronLeft
-								className="size-4"
-								strokeWidth={1.5}
-								aria-hidden="true"
-							/>
+							className="rounded-lg border border-neutral-700/70 bg-gradient-to-b from-[#222222] to-[#151515] p-2 text-neutral-400 shadow-[0_8px_20px_-12px_rgba(0,0,0,0.8)] focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/40">
+							<JIcon name="chevron_left" />
 						</motion.button>
 
 						<p className="text-xs font-mono font-medium text-neutral-300 tracking-wider leading-none">
@@ -128,12 +119,8 @@ export default function JFullSizeImage({ imagesSrcs, setShowImage }: FullSizeIma
 							whileTap={{ scale: 0.9 }}
 							transition={spring}
 							aria-label="Next image"
-							className="p-1 text-neutral-400 hover:text-neutral-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400/40 rounded-full">
-							<ChevronRight
-								className="size-4"
-								strokeWidth={1.5}
-								aria-hidden="true"
-							/>
+							className="rounded-lg border border-neutral-700/70 bg-gradient-to-b from-[#222222] to-[#151515] p-2 text-neutral-400 shadow-[0_8px_20px_-12px_rgba(0,0,0,0.8)] focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/40">
+							<JIcon name="chevron_right" />
 						</motion.button>
 					</div>
 				)}

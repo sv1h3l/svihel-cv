@@ -9,7 +9,7 @@ export default function JBorderTop() {
 			initial={{ opacity: 0, scaleX: 0 }}
 			animate={{ opacity: 1, scaleX: 1 }}
 			transition={silkSpring}>
-			<div className="relative h-px w-full bg-gradient-to-r from-transparent via-neutral-700 to-transparent" />
+			<div className="relative h-px w-full bg-gradient-to-r from-transparent via-neutral-700/60 via-5% to-transparent" />
 		</motion.div>
 	);
 }

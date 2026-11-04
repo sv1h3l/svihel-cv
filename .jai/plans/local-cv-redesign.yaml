@@ -1,0 +1,18 @@
+title: Prémiový minimalistický redesign CV
+direction: Tmavý typografický layout s teplým jantarovým akcentem
+steps:
+  - status: PENDING
+    scope: Zachytit výchozí stav na desktopu a mobilu v CZ a EN.
+  - status: PENDING
+    scope: Sjednotit šířku, typografii, mezery, barvy, rádiusy a stavy fokusu. Upravit hero a přesunout kontakt k hlavnímu nadpisu.
+  - status: PENDING
+    scope: Zobrazit praxi jako chronologické řádky, zvýraznit dva vybrané projekty a kompaktně seskupit zbývající obsah.
+  - status: PENDING
+    scope: Sjednotit pohyb, respektovat omezení animací a doplnit správu fokusu a klávesnice v galerii.
+  - status: PENDING
+    scope: Rozdělit stránku podle sekcí, sjednotit typy dat, validovat CZ a EN při statickém generování a optimalizovat portrét.
+  - status: PENDING
+    scope: Ověřit TypeScript, lokální build a obě jazykové verze na šířkách 360, 768 a 1440 px včetně klávesnice a omezeného pohybu.
+constraints:
+  - Zachovat JSON klíče a hodnoty, odkazy, galerii a Pages Router.
+  - Lokální build spustit samostatným next build bez nasazení.

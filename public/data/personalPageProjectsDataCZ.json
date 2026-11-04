@@ -2,6 +2,7 @@
 	"companyHella": {
 		"header": "Společnost",
 		"label": "HELLA AUTOTECHNIK NOVA, s.r.o.",
+		"description": "HELLA AUTOTECHNIK NOVA je součástí skupiny FORVIA HELLA, mezinárodního dodavatele automobilového průmyslu zaměřeného na světelnou techniku a elektroniku.\n\nV Mohelnici vyvíjí, vyrábí a testuje automobilové světlomety. Práce zahrnuje konstrukci, optiku a elektroniku i výrobu plastových dílů a montáž světelných modulů.\n\nSoučástí areálu jsou také zkušební laboratoře a prototypová dílna. České týmy se podílejí na mezinárodních projektech automobilového osvětlení.",
 		"company": true,
 		"job": "MES Full-Stack vývojář",
 		"firstCard": true,
@@ -15,6 +16,8 @@
 	"projectUnitExplorer": {
 		"header": "Projekt",
 		"label": "Unit Explorer",
+		"displayDescription": "Jedná se o progresivní webovou aplikaci určenou k detailnímu zobrazení informací o konkrétním světlometu. Aplikace poskytuje přehled o průběhu testování, naměřených hodnotách, jednotlivých komponentách a dalších technických parametrech. I když je primárně optimalizována pro mobilní zařízení, je plně kompatibilní i s desktopovými platformami.",
+		"technologies": ["HTML", "CSS", "Vaadin", "Java"],
 		"company": false,
 		"firstCard": false,
 		"values": [
@@ -24,6 +27,8 @@
 	"projectProjectServer": {
 		"header": "Projekt",
 		"label": "Project Server",
+		"displayDescription": "Jedná se o progresivní webovou aplikaci určenou pro spouštění JNLP projektů a sledování jejich běhu na různých zařízeních ve firmě. Aplikace nahrazuje zastaralý projektový server, který byl kompletně přepracován a rozšířen o nové funkce. Primárním zaměřením aplikace je desktopové použití, nicméně je funkční i na mobilních zařízeních.",
+		"technologies": ["HTML", "CSS", "Vaadin", "Java"],
 		"company": false,
 		"firstCard": false,
 		"values": [
@@ -33,6 +38,7 @@
 	"selfEmployment": {
 		"header": "Vedlejší činnost",
 		"label": "Jakub Švihel Technologies",
+		"description": "Zakázkový vývoj webových aplikací a digitálních řešení.",
 		"company": true,
 		"job": "Full-Stack vývojář",
 		"firstCard": true,
@@ -45,6 +51,8 @@
 	"oKrokNapred": {
 		"header": "Projekt",
 		"label": "O krok napřed",
+		"displayDescription": "Webová stránka poskytuje přehledné a srozumitelné informace o rakovině, její prevenci a možnostech léčby. Tento neziskový projekt je realizován s cílem pomoci široké veřejnosti. Stránka je optimalizována pro snadnou navigaci a rychlý přístup k důležitým informacím.",
+		"technologies": ["React", "Next.js", "TypeScript", "Tailwind CSS", "Firebase"],
 		"company": false,
 		"firstCard": false,
 		"values": [
@@ -54,6 +62,7 @@
 	"universityPalacky": {
 		"header": "Instituce",
 		"label": "Univerzita Palackého v Olomouci",
+		"description": "Univerzita v Olomouci, kde jsem studoval informatiku.",
 		"company": true,
 		"firstCard": true,
 		"values": [
@@ -63,6 +72,8 @@
 	"diplomaThesis": {
 		"header": "Projekt",
 		"label": "Diplomová práce",
+		"displayDescription": "V rámci diplomové práce byla navržena a implementována webová aplikace KlikFit, která umožňuje vytváření, správu a zobrazování individuálních tréninkových plánů, sledování sportovního pokroku a komunikaci mezi uživateli. Tréninkové plány lze vytvářet manuálně nebo automaticky na základě uživatelsky definovaných parametrů.",
+		"technologies": ["React", "Next.js", "Material UI", "Tailwind CSS", "TypeScript", "Node.js", "MySQL"],
 		"company": false,
 		"firstCard": false,
 		"values": [
@@ -72,6 +83,8 @@
 	"bachelorThesis": {
 		"header": "Projekt",
 		"label": "Bakalářská práce",
+		"displayDescription": "Jako bakalářskou práci jsem vytvořil hazardní desktopovou hru s RPG prvky a tématikou Star Wars, která je založena na konceptu již existujících her (Pazaak, Gladiatus, Shakes and Fidget, ...), avšak s originálním provedením. V rámci práce jsem se zabýval nejen implementací samotné hry, ale také analýzou herních technologií a metodiky vývoje. Hra implementuje algoritmus počítačového protihráče, který je schopen analyzovat situaci a vytvořit strategii během karetní partie.",
+		"technologies": ["Java", "DALL·E 2", "Photoshop"],
 		"company": false,
 		"firstCard": false,
 		"values": [
@@ -81,6 +94,7 @@
 	"gymnasiumNovyJicin": {
 		"header": "Instituce",
 		"label": "Gymnázium Nový Jičín",
+		"description": "Gymnázium v Novém Jičíně, kde jsem získal středoškolské vzdělání.",
 		"company": true,
 		"firstCard": false,
 		"values": [
@@ -94,6 +108,24 @@
 		"firstCard": false,
 		"values": [
 			"Téma a popis maturitní práce — placeholder k doplnění."
+		]
+	},
+	"atreoDigital": {
+		"header": "Společnost",
+		"label": "Atreo Digital s.r.o.",
+		"description": "Atreo Digital je ostravská společnost zaměřená na vývoj webů a webových aplikací.\n\nSpecializuje se na komplexnější systémy vytvářené na míru potřebám klientů a pomáhá jim s výběrem vhodných technologií.\n\nPři vývoji klade důraz na průběžnou komunikaci a transparentní informace o stavu projektu, čase a rozpočtu.",
+		"company": true,
+			"job": "Full-Stack vývojář",
+		"firstCard": false,
+		"values": ["Vývoj a údržba frontendové i backendové části aplikací.", "Kontrola kódu, testování a nasazování změn.", "Analýza a implementace výpočetních modelů."]
+	},
+	"projectMonery": {
+		"header": "Projekt",
+		"label": "Monery",
+		"company": false,
+		"firstCard": false,
+		"values": [
+			"Aplikace pro sledování a analýzu investičního portfolia napříč brokery."
 		]
 	}
 }

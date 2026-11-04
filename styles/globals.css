@@ -6,7 +6,7 @@
 	html {
 		scroll-behavior: smooth;
 		/* Moderní plynulé škálování písma místo skokových media queries */
-		font-size: clamp(12px, 1vw + 10px, 17.5px);
+		font-size: 16px;
 	}
 
 	body {
@@ -60,3 +60,60 @@
  * POZNÁMKA: Všechny tvé .h-1/24 a .min-w-xs třídy byly smazány z tohoto souboru.
  * Proč? Patří do tailwind.config.js (viz krok 2).
  */
+
+@media (prefers-reduced-motion: reduce) {
+	html { scroll-behavior: auto; }
+}
+
+.status-indicator {
+	position: relative;
+	display: inline-block;
+	flex: none;
+	width: 5px;
+	height: 5px;
+	border-radius: 9999px;
+	background: currentColor;
+}
+
+.status-indicator::after {
+	content: '';
+	position: absolute;
+	inset: -2px;
+	border: 1px solid currentColor;
+	border-radius: inherit;
+	opacity: 0.2;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.status-indicator::after {
+		animation: status-pulse 2.8s ease-out infinite;
+	}
+}
+
+@keyframes status-pulse {
+	0% { transform: scale(0.6); opacity: 0.35; }
+	75%, 100% { transform: scale(1.45); opacity: 0; }
+}
+
+@supports (text-box-trim: trim-end) {
+	.font-mono {
+		text-box-trim: trim-end;
+		text-box-edge: cap alphabetic;
+	}
+}
+
+.material-symbols-rounded {
+	font-family: 'Material Symbols Rounded';
+	font-weight: normal;
+	font-style: normal;
+	font-size: 20px;
+	line-height: 1;
+	letter-spacing: normal;
+	text-transform: none;
+	display: inline-block;
+	white-space: nowrap;
+	word-wrap: normal;
+	direction: ltr;
+	font-feature-settings: 'liga';
+	-webkit-font-smoothing: antialiased;
+}
