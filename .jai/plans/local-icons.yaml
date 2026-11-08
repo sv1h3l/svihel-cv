@@ -1,0 +1,4 @@
+steps:
+  inspect: DONE
+  implement: DONE
+  verify: FAILED

@@ -29,7 +29,7 @@ const contentVariants: Variants = {
 const JButton: React.FC<JButtonProps> = ({ href, lang, disabled, children, className, onClick, title, childrenClassName }) => {
 	const baseClassName = `
 		group relative isolate overflow-hidden flex items-center justify-center leading-none font-medium
-		backdrop-blur-xl border
+		backdrop-blur-xl border transition-colors duration-300 ease-out
 		focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/40
 		${lang ? 'border-white/[0.08] shadow-[0_2px_6px_-2px_rgba(0,0,0,0.5),inset_0_1px_0_0_rgba(255,255,255,0.08)] bg-amber-500/[0.06] text-amber-200/80 hover:border-amber-500/30 hover:bg-amber-500/[0.09]' : 'border-neutral-700/70 bg-gradient-to-b from-[#222222] to-[#151515] text-neutral-200 shadow-[0_8px_20px_-12px_rgba(0,0,0,0.8)] hover:border-neutral-600/70'}
 		${disabled ? 'opacity-30 cursor-not-allowed' : 'cursor-pointer'}

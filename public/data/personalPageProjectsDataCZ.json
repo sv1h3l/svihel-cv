@@ -1,131 +1,224 @@
 {
 	"companyHella": {
 		"header": "Společnost",
-		"label": "HELLA AUTOTECHNIK NOVA, s.r.o.",
-		"description": "HELLA AUTOTECHNIK NOVA je součástí skupiny FORVIA HELLA, mezinárodního dodavatele automobilového průmyslu zaměřeného na světelnou techniku a elektroniku.\n\nV Mohelnici vyvíjí, vyrábí a testuje automobilové světlomety. Práce zahrnuje konstrukci, optiku a elektroniku i výrobu plastových dílů a montáž světelných modulů.\n\nSoučástí areálu jsou také zkušební laboratoře a prototypová dílna. České týmy se podílejí na mezinárodních projektech automobilového osvětlení.",
+		"label": "Forvia Hella",
+		"links": ["https://www.hella.com/cz/"],
+		"period": "2022 - 2025",
+		"description": "Forvia Hella je globální technologický lídr v oblasti automobilové elektroniky a světelné techniky. Vývojová a výrobní centra v ČR představují klíčový uzel pro mezinárodní inovace, digitalizaci procesů a budování datově řízené výroby. Zázemí společnosti propojuje vývoj s rozsáhlou výrobní infrastrukturou, což klade mimořádné nároky na stabilitu interního softwaru, podnikovou architekturu a spolehlivost procesních dat.",
 		"company": true,
 		"job": "MES Full-Stack vývojář",
 		"firstCard": true,
 		"values": [
-			"Implementace a podpora softwaru pro výrobní MES systém.",
-			"Vývoj progresivních webových aplikací pro zefektivnění výroby světlometů.",
-			"Konzultace v oblasti vývoje a podpory MES systému.",
-			"Spolupráce na mezinárodních projektech, komunikace v anglickém jazyce."
+			"Full-stack vývoj progresivních webových aplikací zaměřených na digitalizaci procesů, zefektivnění práce a sběr výrobních dat.",
+			"Návrh, implementace a podpora systému MES v prostředí s kritickými nároky na dostupnost a striktní automotive standardy.",
+			"Integrace moderních webových rozhraní na stávající výrobní hardware a průmyslové linky.",
+			"Spolupráce na mezinárodních projektech v globálních týmech s komunikací v angličtině."
 		]
 	},
 	"projectUnitExplorer": {
 		"header": "Projekt",
 		"label": "Unit Explorer",
-		"displayDescription": "Jedná se o progresivní webovou aplikaci určenou k detailnímu zobrazení informací o konkrétním světlometu. Aplikace poskytuje přehled o průběhu testování, naměřených hodnotách, jednotlivých komponentách a dalších technických parametrech. I když je primárně optimalizována pro mobilní zařízení, je plně kompatibilní i s desktopovými platformami.",
-		"technologies": ["HTML", "CSS", "Vaadin", "Java"],
+		"displayDescription": "Progresivní webová aplikace určená pro detailní diagnostiku a sledování životního cyklu světlometů ve výrobním procesu.",
+		"technologies": ["JavaScript", "Vaadin", "Java", "Spring Boot", "PostgreSQL"],
 		"company": false,
 		"firstCard": false,
 		"values": [
-			"Jedná se o progresivní webovou aplikaci určenou k detailnímu zobrazení informací o konkrétním světlometu. Aplikace poskytuje přehled o průběhu testování, naměřených hodnotách, jednotlivých komponentách a dalších technických parametrech. I když je primárně optimalizována pro mobilní zařízení, je plně kompatibilní i s desktopovými platformami. Frontend je realizován pomocí HTML, CSS a Vaadin, zatímco backend je v programovacím jazyce Java."
+			"Zajištění kompletní sledovatelnosti dílů – přehled o testování, naměřených telemetrických datech a kusovníku komponent v reálném čase.",
+			"Zjednodušení interních auditů kvality a rychlého dohledání problematických výrobních šarží či komponent.",
+			"Responzivní rozhraní optimalizované primárně pro mobilní a průmyslové terminály na linkách s plnou podporou desktopu.",
+			"Konsolidace a validace dat z různých testovacích stanic do jednoho uceleného a přehledného výstupu.",
+			"Důraz na stabilitu a odolnost aplikace vůči výpadkům s ohledem na nepřetržitý provoz montážních linek."
 		]
 	},
 	"projectProjectServer": {
 		"header": "Projekt",
 		"label": "Project Server",
-		"displayDescription": "Jedná se o progresivní webovou aplikaci určenou pro spouštění JNLP projektů a sledování jejich běhu na různých zařízeních ve firmě. Aplikace nahrazuje zastaralý projektový server, který byl kompletně přepracován a rozšířen o nové funkce. Primárním zaměřením aplikace je desktopové použití, nicméně je funkční i na mobilních zařízeních.",
-		"technologies": ["HTML", "CSS", "Vaadin", "Java"],
+		"displayDescription": "Modernizovaná centrální webová platforma nahrazující zastaralý projektový server pro správu, vzdálené spouštění a monitoring běhu JNLP aplikací na stanicích napříč podnikem.",
+		"technologies": ["JavaScript", "Vaadin", "Java", "Spring Boot", "PostgreSQL"],
 		"company": false,
 		"firstCard": false,
 		"values": [
-			"Jedná se o progresivní webovou aplikaci určenou pro spouštění JNLP projektů a sledování jejich běhu na různých zařízeních ve firmě. Aplikace nahrazuje zastaralý projektový server, který byl kompletně přepracován a rozšířen o nové funkce. Primárním zaměřením aplikace je desktopové použití, nicméně je funkční i na mobilních zařízeních. Frontend aplikace je postaven na technologiích HTML, CSS a Vaadin, zatímco backend je implementován v Javě."
+			"Modernizace a kompletní redesign architektury do stabilního a škálovatelného webového řešení.",
+			"Centralizovaný vzdálený dohled a monitoring stavu stovek klientských výrobních terminálů v reálném čase.",
+			"Zajištění bezpečného a spolehlivého běhu kritického softwaru výrobních linek."
+		]
+	},
+	"atreoDigital": {
+		"header": "Společnost",
+		"label": "Atreo Digital",
+		"links": ["https://atreo.cz/cs"],
+		"period": "2022 - dosud",
+		"description": "Ostravská technologická společnost zaměřená na zakázkový vývoj digitálních produktů na míru, praktickou implementaci AI a procesní automatizaci. Specializuje se na budování komplexních webových aplikací, interních systémů a propojování firemních nástrojů s důrazem na moderní architekturu, bezpečnost dat a dlouhodobou škálovatelnost.",
+		"company": true,
+		"job": "Full-Stack vývojář",
+		"firstCard": false,
+		"values": [
+			"Full-stack vývoj klientských webových aplikací a interních systémů s využitím AI-first workflow pro zrychlení dodávky kódu při zachování přísné technické kontroly.",
+			"Analýza byznysových požadavků klientů, návrh datových modelů a implementace algoritmů a výpočetních logik na míru.",
+			"Průběžný refaktoring a systematické odstraňování úzkých hrdel v existujících klientských řešeních.",
+			"Důraz na kvalitu a stabilitu kódu skrze pravidelné code reviews, testování a spolehlivé nasazování do produkce."
+		]
+	},
+	"projectMonery": {
+		"header": "Projekt",
+		"label": "Monery",
+		"links": ["https://monery.io/"],
+		"displayDescription": "Komplexní fintech platforma pro správu, vizualizaci a detailní analytiku investičních portfolií napříč různými brokery.",
+		"technologies": ["TypeScript", "Next.js", "Tailwind CSS", "NestJS", "PostgreSQL", "Redis", "Docker", "Git", "CI/CD"],
+		"company": false,
+		"firstCard": false,
+		"values": [
+			"Analýza výpočetních modelů a implementace algoritmů pro přesné vyhodnocování výkonnosti portfolia, dividendových výnosů a daňových podkladů.",
+			"Propojení interního datového modelu s externími zdroji tržních dat pro automatické načítání cen aktiv, historických měnových kurzů a fundamentálních ukazatelů.",
+			"Vývoj robustních parserů pro zpracování a sjednocení exportů transakcí z různých brokerů a platforem.",
+			"Návrh a implementace analytických dashboardů zaměřených na intuitivní prezentaci komplexních finančních ukazatelů a struktury portfolia."
+		]
+	},
+	"projectIdeaStatica": {
+		"header": "Projekt",
+		"label": "IDEA StatiCa",
+		"links": ["https://www.ideastatica.com/cz"],
+		"displayDescription": "Kompletní replatforming a modernizace webové platformy pro globálního lídra v oblasti softwaru pro stavební inženýrství a statiku.",
+		"technologies": ["TypeScript", "Next.js", "Tailwind CSS", "Docker", "Git", "CI/CD"],
+		"company": false,
+		"firstCard": false,
+		"values": [
+			"Technické vedení malého týmu (2 frontend vývojáři, 1 backend vývojář a QA tester), převod byznysových požadavků do technických úkolů a koordinace jejich řešení.",
+			"Aktivní frontendový vývoj klíčových částí aplikace, návrh modulární komponentové architektury a optimalizace rychlosti načítání.",
+			"Dohled nad kvalitou a jednotností kódu skrze pravidelná code reviews, správa verzování v Gitu a realizace nasazování do produkce."
+		]
+	},
+	"projectXTuning": {
+		"header": "Projekt",
+		"label": "XTuning",
+		"links": ["https://www.xtuning.cz/"],
+		"displayDescription": "Platforma pro diagnostiku a úpravy vozidel pro zákazníky a administrátory.",
+		"technologies": ["TypeScript", "Next.js", "Tailwind CSS", "NestJS", "PostgreSQL", "Drizzle ORM", "Docker"],
+		"company": false,
+		"firstCard": false,
+		"values": [
+			"Analýza požadavků a návrh uživatelských procesů pro správu zákazníků, objednávek a dostupných vylepšení vozidel.",
+			"Návrh funkcí pro diagnostiku vozidel, zobrazení chybových kódů a práci s úpravami řídicí jednotky motoru.",
+			"Vývoj frontendu s důrazem na znovupoužitelné komponenty, vícejazyčnost a oddělení zákaznické a administrátorské části.",
+			"Vývoj backendu a datového modelu pro správu objednávek a produktů."
 		]
 	},
 	"selfEmployment": {
-		"header": "Vedlejší činnost",
-		"label": "Jakub Švihel Technologies",
-		"description": "Zakázkový vývoj webových aplikací a digitálních řešení.",
+		"header": "Freelance",
+		"label": "Jakub Švihel Tech",
+		"period": "2023 - dosud",
+		"description": "Zakázkový vývoj moderních webových aplikací a digitálních produktů na klíč. Poskytování kompletního technologického zastřešení pro firmy i jednotlivce – od úvodní byznysové analýzy přes grafický návrh a samotný vývoj až po správu infrastruktury.",
 		"company": true,
-		"job": "Full-Stack vývojář",
+		"job": "Product Engineer",
 		"firstCard": true,
 		"values": [
-			"Tvorba zakázkových webových aplikací a stránek pro firmy i jednotlivce.",
-			"Zprostředkování digitalizace podnikání a zlepšení online prezentace.",
-			"Poskytování komplexních služeb od návrhu UX/UI designu, přes full-stack vývoj až po finální nasazení a správu."
+			"End-to-end dodávka projektů od úvodního vyjednání zakázky a specifikace požadavků až po finální předání a spuštění.",
+			"Tvorba vizuálního stylu a návrh uživatelského rozhraní se zaměřením na intuitivní ovládání a responzivitu.",
+			"Návrh systémové architektury, výběr vhodného technologického stacku a precizní full-stack implementace.",
+			"Nastavení infrastruktury, produkční nasazení (hosting, domény, CI/CD) a dlouhodobá technická podpora se správou systémů."
+		]
+	},
+	"projectMoonea": {
+		"header": "Projekt",
+		"label": "Moonea",
+		"displayDescription": "Moderní e-commerce platforma zaměřená na udržitelný životní styl, ekologické dětské hračky a bio sortiment.",
+		"technologies": ["TypeScript", "Next.js", "React", "Tailwind CSS", "Medusa.js", "PostgreSQL"],
+		"company": false,
+		"firstCard": false,
+		"values": [
+			"Návrh a realizace minimalistického rozhraní s důrazem na čistou vizuální identitu a přehlednou prezentaci produktů.",
+			"Vývoj flexibilního backendového řešení pro kompletní správu produktového katalogu, objednávek a zákaznických dat.",
+			"Implementace celého procesu objednávky včetně integrace platebních metod a dopravních služeb."
+		]
+	},
+	"projectRealEstate": {
+		"header": "Projekt",
+		"label": "Weby realitních makléřů",
+		"links": ["https://jan-bartek.cz/", "https://renatakorsen.cz/"],
+		"displayDescription": "Sada jednostránkových webů pro makléře sítě CENTURY 21, postavená na jednotné modulární architektuře.",
+		"technologies": ["TypeScript", "Next.js", "React", "Tailwind CSS"],
+		"company": false,
+		"firstCard": false,
+		"values": [
+			"Návrh a vývoj znovupoužitelné komponentové struktury umožňující efektivní přizpůsobení obsahu a vizuálu pro jednotlivé makléře.",
+			"Striktní dodržení globálních vizuálních standardů a design manuálu značky CENTURY 21 při zachování čistého a věcného stylu."
 		]
 	},
 	"oKrokNapred": {
 		"header": "Projekt",
 		"label": "O krok napřed",
-		"displayDescription": "Webová stránka poskytuje přehledné a srozumitelné informace o rakovině, její prevenci a možnostech léčby. Tento neziskový projekt je realizován s cílem pomoci široké veřejnosti. Stránka je optimalizována pro snadnou navigaci a rychlý přístup k důležitým informacím.",
+		"displayDescription": "Neziskový informační web zaměřený na prevenci, edukaci a šíření ověřených informací o onkologických onemocněních pro širokou veřejnost.",
 		"technologies": ["React", "Next.js", "TypeScript", "Tailwind CSS", "Firebase"],
 		"company": false,
 		"firstCard": false,
 		"values": [
-			"Webová stránka poskytuje přehledné a srozumitelné informace o rakovině, její prevenci a možnostech léčby. Tento neziskový projekt je realizován s cílem pomoci široké veřejnosti. Stránka je optimalizována pro snadnou navigaci a rychlý přístup k důležitým informacím. K jejímu vývoji jsou použity technologie React, Next.js, TypeScript, Tailwind CSS a Firebase."
+			"Návrh čistého a přístupného rozhraní uzpůsobeného pro snadnou čitelnost a rychlou orientaci návštěvníků.",
+			"Využití statického generování stránek pro okamžité načítání a optimalizaci pro vyhledávače.",
+			"Využití Firebase pro ukládání dat a zajištění bezúdržbového běhu webu s nulovými provozními náklady pro neziskovku."
 		]
 	},
 	"universityPalacky": {
 		"header": "Instituce",
 		"label": "Univerzita Palackého v Olomouci",
-		"description": "Univerzita v Olomouci, kde jsem studoval informatiku.",
+		"links": ["https://www.inf.upol.cz/"],
+		"period": "2020 - 2025",
+		"description": "Univerzitní studium zaměřené na moderní metody návrhu a vývoje software, pokročilé programování a realizaci rozsáhlých softwarových projektů. Důraz byl kladen na softwarovou architekturu, týmový vývoj, algoritmické myšlení a řešení komplexních technických výzev s přesahem do praxe.",
 		"company": true,
+		"job": "Aplikovaná informatika",
 		"firstCard": true,
 		"values": [
-			"Katedra informatiky, Univerzita Palackého v Olomouci — placeholder k doplnění."
+			"Navazující magisterské studium specializované na vývoj software a rozsáhlé softwarové systémy.",
+			"Důraz na softwarovou architekturu, algoritmické myšlení, týmovou spolupráci a řešení komplexních inženýrských výzev s přesahem do praxe."
 		]
 	},
 	"diplomaThesis": {
 		"header": "Projekt",
-		"label": "Diplomová práce",
-		"displayDescription": "V rámci diplomové práce byla navržena a implementována webová aplikace KlikFit, která umožňuje vytváření, správu a zobrazování individuálních tréninkových plánů, sledování sportovního pokroku a komunikaci mezi uživateli. Tréninkové plány lze vytvářet manuálně nebo automaticky na základě uživatelsky definovaných parametrů.",
-		"technologies": ["React", "Next.js", "Material UI", "Tailwind CSS", "TypeScript", "Node.js", "MySQL"],
+		"label": "Diplomová práce – KlikFit",
+		"displayDescription": "Komplexní full-stack webová platforma pro automatizovanou i manuální tvorbu individuálních tréninkových plánů, sledování sportovního pokroku a komunikaci mezi trenéry a klienty.",
+		"technologies": ["TypeScript", "Next.js", "React", "Node.js", "Express", "MySQL", "WebSockets", "Tailwind CSS", "Material UI"],
 		"company": false,
 		"firstCard": false,
 		"values": [
-			"V rámci diplomové práce byla navržena a implementována webová aplikace KlikFit, která umožňuje vytváření, správu a zobrazování individuálních tréninkových plánů, sledování sportovního pokroku a komunikaci mezi uživateli. Tréninkové plány lze vytvářet manuálně nebo automaticky na základě uživatelsky definovaných parametrů. Aplikace je postavena na technologiích React, Next.js, MaterialUI, Tailwind, TypeScript, Node.js a MySQL."
+			"Vývoj víceúrovňového generovacího algoritmu pro automatickou tvorbu tréninkových plánů na základě prioritních bodů, logických návazností cviků a zadaných výkonnostních limitů.",
+			"Návrh škálovatelné architektury podle vzoru MVC s oddělením klientského rozhraní a backendového REST API napojeného na relační databázi.",
+			"Implementace modulu pro sledování progresu pomocí dynamických grafů a obousměrného real-time chatu s možností párování uživatelů přes QR kódy."
 		]
 	},
 	"bachelorThesis": {
 		"header": "Projekt",
-		"label": "Bakalářská práce",
-		"displayDescription": "Jako bakalářskou práci jsem vytvořil hazardní desktopovou hru s RPG prvky a tématikou Star Wars, která je založena na konceptu již existujících her (Pazaak, Gladiatus, Shakes and Fidget, ...), avšak s originálním provedením. V rámci práce jsem se zabýval nejen implementací samotné hry, ale také analýzou herních technologií a metodiky vývoje. Hra implementuje algoritmus počítačového protihráče, který je schopen analyzovat situaci a vytvořit strategii během karetní partie.",
-		"technologies": ["Java", "DALL·E 2", "Photoshop"],
+		"label": "Bakalářská práce – Paziaatus",
+		"displayDescription": "Vývoj desktopové hry kombinující tahový karetní systém Pazaak (ze světa Star Wars) s RPG mechanikami titulu Gladiatus a Shakes & Fidget.",
+		"technologies": ["Java", "JavaFX", "H2 Database", "Maven", "DALL·E", "Photopea"],
 		"company": false,
 		"firstCard": false,
 		"values": [
-			"Jako bakalářskou práci jsem vytvořil hazardní desktopovou hru s RPG prvky a tématikou Star Wars, která je založena na konceptu již existujících her (Pazaak, Gladiatus, Shakes and Fidget, ...), avšak s originálním provedením. V rámci práce jsem se zabýval nejen implementací samotné hry, ale také analýzou herních technologií a metodiky vývoje. Hra implementuje algoritmus počítačového protihráče, který je schopen analyzovat situaci a vytvořit strategii během karetní partie. Herní logika je napsána v programovacím jazyce Java a vizuální prvky jsem vytvořil pomocí modelu DALLE-E 2 a grafickém editoru Photoshop."
+			"Implementace rozhodovacího algoritmu pro počítačem řízeného oponenta, který analyzuje stav partie, vyhodnocuje pravděpodobnosti a strategicky dávkuje speciální karty.",
+			"Objektový návrh architektury (MVC), integrace databáze pro vlastnosti předmětů, perzistence herních stavů a využití samostatného vlákna pro real-time úbytek životních potřeb postavy.",
+			"Návrh uživatelského rozhraní s vlastním systémem škálování a tvorba dvou stovek herních assetů pomocí generativního modelu DALL·E."
 		]
 	},
 	"gymnasiumNovyJicin": {
 		"header": "Instituce",
 		"label": "Gymnázium Nový Jičín",
-		"description": "Gymnázium v Novém Jičíně, kde jsem získal středoškolské vzdělání.",
+		"links": ["https://www.gnj.cz/"],
+		"period": "2016 - 2020",
+		"description": "Čtyřleté gymnaziální studium, které položilo základy v algoritmizaci, matematickém myšlení a analytickém řešení problémů.",
 		"company": true,
+		"job": "Všeobecné středoškolské vzdělání",
 		"firstCard": false,
-		"values": [
-			"Gymnázium Nový Jičín — placeholder k doplnění."
-		]
+		"values": ["Všeobecné středoškolské vzdělání se zaměřením na přírodní vědy a IT.", "Získání teoretických i praktických základů algoritmizace, matematického aparátu a logického řešení problémů."]
 	},
 	"maturitaThesis": {
 		"header": "Projekt",
-		"label": "Maturitní práce",
+		"label": "Maturitní práce – Budík se světelným výstupem",
+		"displayDescription": "Návrh a kompletní fyzická realizace světelného budíku, který postupnou světelnou stimulací potlačuje tvorbu melatoninu a napomáhá přirozenému probouzení.",
+		"technologies": ["C++", "Arduino", "CAD", "3D tisk"],
 		"company": false,
 		"firstCard": false,
 		"values": [
-			"Téma a popis maturitní práce — placeholder k doplnění."
-		]
-	},
-	"atreoDigital": {
-		"header": "Společnost",
-		"label": "Atreo Digital s.r.o.",
-		"description": "Atreo Digital je ostravská společnost zaměřená na vývoj webů a webových aplikací.\n\nSpecializuje se na komplexnější systémy vytvářené na míru potřebám klientů a pomáhá jim s výběrem vhodných technologií.\n\nPři vývoji klade důraz na průběžnou komunikaci a transparentní informace o stavu projektu, čase a rozpočtu.",
-		"company": true,
-			"job": "Full-Stack vývojář",
-		"firstCard": false,
-		"values": ["Vývoj a údržba frontendové i backendové části aplikací.", "Kontrola kódu, testování a nasazování změn.", "Analýza a implementace výpočetních modelů."]
-	},
-	"projectMonery": {
-		"header": "Projekt",
-		"label": "Monery",
-		"company": false,
-		"firstCard": false,
-		"values": [
-			"Aplikace pro sledování a analýzu investičního portfolia napříč brokery."
+			"Vývoj vestavěného firmwaru s modulárním rozdělením kódu pro obsluhu uživatelského rozhraní na LCD displeji a přesné měření času pomocí RTC modulu.",
+			"Návrh obvodového zapojení, integrace tranzistoru pro regulaci intenzity výkonové LED diody a ruční kompletace včetně pájení spojů.",
+			"Vlastní návrh dvoudílného šasi a realizace metodou 3D tisku z materiálu PLA."
 		]
 	}
 }

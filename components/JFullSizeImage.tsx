@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import JIcon from './JIcon';
 import JButton from './JButton';
 
@@ -13,14 +13,14 @@ interface FullSizeImageProps {
 const spring = { type: 'spring' as const, stiffness: 350, damping: 25 };
 
 export default function JFullSizeImage({ imagesSrcs, setShowImage }: FullSizeImageProps) {
-	const [currentIndex, setCurrentIndex] = useState(0);
+	const [{ currentIndex, direction }, setGallery] = useState({ currentIndex: 0, direction: 1 });
+	const reducedMotion = useReducedMotion();
 
-	const showNextImage = () => {
-		setCurrentIndex((prevIndex) => (prevIndex + 1) % imagesSrcs.length);
-	};
-
-	const showPrevImage = () => {
-		setCurrentIndex((prevIndex) => (prevIndex - 1 + imagesSrcs.length) % imagesSrcs.length);
+	const navigate = (step: number) => {
+		setGallery(({ currentIndex: index }) => ({
+			currentIndex: (index + step + imagesSrcs.length) % imagesSrcs.length,
+			direction: step,
+		}));
 	};
 
 	useEffect(() => {
@@ -41,9 +41,9 @@ export default function JFullSizeImage({ imagesSrcs, setShowImage }: FullSizeIma
 			if (event.key === 'Escape') {
 				setShowImage(false);
 			} else if (event.key === 'ArrowLeft') {
-				setCurrentIndex((prevIndex) => (prevIndex - 1 + imagesSrcs.length) % imagesSrcs.length);
+				setGallery(({ currentIndex: index }) => ({ currentIndex: (index - 1 + imagesSrcs.length) % imagesSrcs.length, direction: -1 }));
 			} else if (event.key === 'ArrowRight') {
-				setCurrentIndex((prevIndex) => (prevIndex + 1) % imagesSrcs.length);
+				setGallery(({ currentIndex: index }) => ({ currentIndex: (index + 1) % imagesSrcs.length, direction: 1 }));
 			}
 		};
 
@@ -70,22 +70,23 @@ export default function JFullSizeImage({ imagesSrcs, setShowImage }: FullSizeIma
 				</JButton>
 			</div>
 
-			<motion.div
-				className="relative flex justify-center items-center max-h-screen p-4 sm:p-12 w-full"
-				initial={{ opacity: 0, scale: 0.98 }}
-				animate={{ opacity: 1, scale: 1 }}
-				transition={spring}>
-				<AnimatePresence
-					mode="wait"
-					initial={false}>
+			<div className="absolute inset-x-0 top-16 bottom-28 overflow-hidden sm:top-20 sm:bottom-32">
+				<AnimatePresence initial={false} custom={direction}>
 					<motion.div
 						key={currentIndex}
-						initial={{ opacity: 0, x: 24 }}
-						animate={{ opacity: 1, x: 0 }}
-						exit={{ opacity: 0, x: -24 }}
-						transition={spring}>
+						custom={direction}
+						variants={{
+							enter: (step: number) => ({ x: reducedMotion ? 0 : `${step * 100}%`, opacity: reducedMotion ? 0 : 1 }),
+							center: { x: 0, opacity: 1 },
+							exit: (step: number) => ({ x: reducedMotion ? 0 : `${step * -100}%`, opacity: reducedMotion ? 0 : 1 }),
+						}}
+						initial="enter"
+						animate="center"
+						exit="exit"
+						transition={reducedMotion ? { duration: 0 } : { duration: 0.6, ease: 'easeInOut' }}
+						className="absolute inset-0 flex items-center justify-center px-4 sm:px-12">
 						<Image
-							className="w-auto h-auto rounded-2xl object-contain max-h-[82vh] border border-neutral-800 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8)]"
+							className="h-auto max-h-full w-auto max-w-full rounded-2xl border border-neutral-800 object-contain shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8)]"
 							src={`/images/${imagesSrcs[currentIndex]}.webp`}
 							alt={`Full sized image ${currentIndex + 1}`}
 							width={1920}
@@ -94,12 +95,13 @@ export default function JFullSizeImage({ imagesSrcs, setShowImage }: FullSizeIma
 						/>
 					</motion.div>
 				</AnimatePresence>
+			</div>
 
 				{imagesSrcs.length > 1 && (
-					<div className="absolute bottom-6 sm:bottom-10 left-1/2 transform -translate-x-1/2 bg-neutral-900/90 backdrop-blur-md border border-neutral-700/70 rounded-full px-5 py-2 flex items-center gap-5 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.6)]">
+					<div className="absolute bottom-[max(1.5rem,env(safe-area-inset-bottom))] left-1/2 -translate-x-1/2 bg-neutral-900/90 backdrop-blur-md border border-neutral-700/70 rounded-full px-5 py-2 flex items-center gap-5 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.6)]">
 						<motion.button
 							type="button"
-							onClick={showPrevImage}
+							onClick={() => navigate(-1)}
 							whileHover={{ scale: 1.05 }}
 							whileTap={{ scale: 0.9 }}
 							transition={spring}
@@ -114,7 +116,7 @@ export default function JFullSizeImage({ imagesSrcs, setShowImage }: FullSizeIma
 
 						<motion.button
 							type="button"
-							onClick={showNextImage}
+							onClick={() => navigate(1)}
 							whileHover={{ scale: 1.05 }}
 							whileTap={{ scale: 0.9 }}
 							transition={spring}
@@ -124,7 +126,6 @@ export default function JFullSizeImage({ imagesSrcs, setShowImage }: FullSizeIma
 						</motion.button>
 					</div>
 				)}
-			</motion.div>
 		</motion.div>,
 		document.body,
 	);

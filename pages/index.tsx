@@ -35,7 +35,9 @@ interface ProjectsData {
 	header: string;
 	label: string;
 	company: boolean;
-	job: string;
+	job?: string;
+	period?: string;
+	links?: string[];
 	firstCard: boolean;
 	values: string[];
 }
@@ -44,6 +46,10 @@ interface PersonalPageProjectsData {
 	companyHella: ProjectsData;
 	atreoDigital: ProjectsData;
 	projectMonery: ProjectsData;
+	projectIdeaStatica?: ProjectsData;
+	projectXTuning?: ProjectsData;
+	projectMoonea?: ProjectsData;
+	projectRealEstate?: ProjectsData;
 	projectUnitExplorer: ProjectsData;
 	projectProjectServer: ProjectsData;
 	selfEmployment: ProjectsData;
@@ -110,38 +116,8 @@ function ContactLinks({ isCzech }: { isCzech: boolean }) {
 	const contacts = [
 		{ label: '+420 733 249 479', href: 'tel:+420733249479', value: '+420733249479', icon: <JIcon name="call" className="text-neutral-400" /> },
 		{ label: 'sv1h3l.j@gmail.com', href: 'mailto:sv1h3l.j@gmail.com', value: 'sv1h3l.j@gmail.com', icon: <JIcon name="mail" className="text-neutral-400" /> },
-		{ label: 'LinkedIn', href: 'https://www.linkedin.com/in/svihel-jakub', value: 'https://www.linkedin.com/in/svihel-jakub', icon: <svg
-									className="size-4 shrink-0 stroke-neutral-400"
-									viewBox="0 0 24 24"
-									fill="none"
-									strokeWidth="1.5"
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									aria-hidden="true">
-									<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-									<rect
-										width="4"
-										height="12"
-										x="2"
-										y="9"
-									/>
-									<circle
-										cx="4"
-										cy="4"
-										r="2"
-									/>
-								</svg> },
-		{ label: 'GitHub', href: 'https://github.com/sv1h3l', value: 'https://github.com/sv1h3l', icon: <svg
-									className="size-4 shrink-0 stroke-neutral-400"
-									viewBox="0 0 24 24"
-									fill="none"
-									strokeWidth="1.5"
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									aria-hidden="true">
-									<path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-									<path d="M9 18c-4.51 2-5-2-7-2" />
-								</svg> },
+		{ label: 'LinkedIn', href: 'https://www.linkedin.com/in/svihel-jakub', value: 'https://www.linkedin.com/in/svihel-jakub', icon: <JIcon name="linkedin" className="size-4" /> },
+		{ label: 'GitHub', href: 'https://github.com/sv1h3l', value: 'https://github.com/sv1h3l', icon: <JIcon name="github" className="size-4" /> },
 	];
 
 	async function copy(value: string) {
@@ -257,7 +233,7 @@ export default function Index({
 
 				<motion.main variants={entranceVariants} initial={reducedMotion ? false : "hidden"} animate="show" className="px-4 sm:px-6 lg:px-8 py-12 sm:py-12 flex flex-col items-center max-w-4xl mx-auto w-full">
 					<motion.header
-						className="relative isolate xs:max-w-[22rem] sm:max-w-[32rem] md:max-w-[35rem] w-full rounded-3xl p-10 sm:p-8 md:p-10 mb-6 sm:mb-6 bg-gradient-to-b from-neutral-900/80 via-neutral-900/50 to-neutral-950/80 border border-neutral-800/80 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.7)] backdrop-blur-xl transition-colors duration-700 ease-out overflow-hidden"
+						className="tab-surface relative isolate xs:max-w-[22rem] sm:max-w-[32rem] md:max-w-[35rem] w-full rounded-3xl p-10 sm:p-8 md:p-10 mb-6 sm:mb-6 border border-neutral-800/75 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04),0_12px_32px_-20px_rgba(0,0,0,0.8)] overflow-hidden"
 						variants={heroVariants}>
 						<span className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
 
@@ -282,7 +258,7 @@ export default function Index({
 								<div className="relative size-28 sm:size-36 rounded-full overflow-hidden border border-white/[0.06]">
 									<Image
 										className="object-cover "
-										src="/images/cv-pic.png"
+										src="/images/cv-pic.webp"
 										alt="Jakub Švihel"
 										fill
 										priority
@@ -431,6 +407,8 @@ export default function Index({
 								<JList
 									header={personalPageProjectsData.companyHella.header}
 									label={personalPageProjectsData.companyHella.label}
+									links={personalPageProjectsData.companyHella.links}
+									period={personalPageProjectsData.companyHella.period}
 									description={personalPageProjectsData.companyHella.description}
 									company={personalPageProjectsData.companyHella.company}
 									job={personalPageProjectsData.companyHella.job}
@@ -449,8 +427,9 @@ export default function Index({
 									firstCard={personalPageProjectsData.projectUnitExplorer.firstCard}
 									values={personalPageProjectsData.projectUnitExplorer.values}
 									displayDescription={personalPageProjectsData.projectUnitExplorer.displayDescription}
-									technologies={personalPageProjectsData.projectUnitExplorer.technologies}
-								/>
+									technologies={personalPageProjectsData.projectUnitExplorer.technologies}>
+									<JFullSizeImageButton imagesSrcs={['ue1', 'ue2', 'ue3', 'ue4', 'ue5']} />
+								</JList>
 
 								<JList
 									header={personalPageProjectsData.projectProjectServer.header}
@@ -461,13 +440,15 @@ export default function Index({
 									firstCard={personalPageProjectsData.projectProjectServer.firstCard}
 									values={personalPageProjectsData.projectProjectServer.values}
 									displayDescription={personalPageProjectsData.projectProjectServer.displayDescription}
-									technologies={personalPageProjectsData.projectProjectServer.technologies}
-								/>
+									technologies={personalPageProjectsData.projectProjectServer.technologies}>
+									<JFullSizeImageButton imagesSrcs={['ps1', 'ps2', 'ps3']} />
+								</JList>
 								</JProjects>
 
 								<JList
 									header={personalPageProjectsData.selfEmployment.header}
 									label={personalPageProjectsData.selfEmployment.label}
+									period={personalPageProjectsData.selfEmployment.period}
 									description={personalPageProjectsData.selfEmployment.description}
 									company={personalPageProjectsData.selfEmployment.company}
 									job={personalPageProjectsData.selfEmployment.job}
@@ -478,6 +459,9 @@ export default function Index({
 								/>
 
 								<JProjects isCzech={isCzech}>
+								{[personalPageProjectsData.projectMoonea, personalPageProjectsData.projectRealEstate].map((project) => project && (
+									<JList key={project.label} {...project} isCzech={isCzech} showProjectLabel={false} />
+								))}
 								<JList
 									header={personalPageProjectsData.oKrokNapred.header}
 									showProjectLabel={false}
@@ -501,6 +485,8 @@ export default function Index({
 								<JList
 									header={personalPageProjectsData.atreoDigital.header}
 									label={personalPageProjectsData.atreoDigital.label}
+									links={personalPageProjectsData.atreoDigital.links}
+									period={personalPageProjectsData.atreoDigital.period}
 									description={personalPageProjectsData.atreoDigital.description}
 									job={personalPageProjectsData.atreoDigital.job}
 									company={personalPageProjectsData.atreoDigital.company}
@@ -513,15 +499,18 @@ export default function Index({
 									header={personalPageProjectsData.projectMonery.header}
 									showProjectLabel={false}
 									label={personalPageProjectsData.projectMonery.label}
+									links={personalPageProjectsData.projectMonery.links}
 									company={personalPageProjectsData.projectMonery.company}
 									firstCard={personalPageProjectsData.projectMonery.firstCard}
 									values={personalPageProjectsData.projectMonery.values}
+									displayDescription={personalPageProjectsData.projectMonery.displayDescription}
+									technologies={personalPageProjectsData.projectMonery.technologies}
 									isCzech={isCzech}
-									lastCard>
-									<JButton href="https://monery.io/" title="Open Monery">
-										<JIcon name="arrow_outward" className="text-neutral-400" />
-									</JButton>
-								</JList>
+									lastCard={!personalPageProjectsData.projectIdeaStatica && !personalPageProjectsData.projectXTuning}
+								/>
+								{[personalPageProjectsData.projectIdeaStatica, personalPageProjectsData.projectXTuning].map((project) => project && (
+									<JList key={project.label} {...project} isCzech={isCzech} showProjectLabel={false} />
+								))}
 								</JProjects>
 							</>
 						)}
@@ -540,7 +529,10 @@ export default function Index({
 								<JList
 									header={personalPageProjectsData.universityPalacky.header}
 									label={personalPageProjectsData.universityPalacky.label}
+									links={personalPageProjectsData.universityPalacky.links}
+									period={personalPageProjectsData.universityPalacky.period}
 									description={personalPageProjectsData.universityPalacky.description}
+									job={personalPageProjectsData.universityPalacky.job}
 									company={personalPageProjectsData.universityPalacky.company}
 									firstCard={personalPageProjectsData.universityPalacky.firstCard}
 									values={personalPageProjectsData.universityPalacky.values}
@@ -598,7 +590,10 @@ export default function Index({
 								<JList
 									header={personalPageProjectsData.gymnasiumNovyJicin.header}
 									label={personalPageProjectsData.gymnasiumNovyJicin.label}
+									links={personalPageProjectsData.gymnasiumNovyJicin.links}
+									period={personalPageProjectsData.gymnasiumNovyJicin.period}
 									description={personalPageProjectsData.gymnasiumNovyJicin.description}
+									job={personalPageProjectsData.gymnasiumNovyJicin.job}
 									company={personalPageProjectsData.gymnasiumNovyJicin.company}
 									firstCard={personalPageProjectsData.gymnasiumNovyJicin.firstCard}
 									values={personalPageProjectsData.gymnasiumNovyJicin.values}
@@ -614,6 +609,8 @@ export default function Index({
 									company={personalPageProjectsData.maturitaThesis.company}
 									firstCard={personalPageProjectsData.maturitaThesis.firstCard}
 									values={personalPageProjectsData.maturitaThesis.values}
+									displayDescription={personalPageProjectsData.maturitaThesis.displayDescription}
+									technologies={personalPageProjectsData.maturitaThesis.technologies}
 									lastCard
 								/>
 								</JProjects>

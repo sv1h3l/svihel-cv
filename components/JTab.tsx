@@ -14,8 +14,6 @@ interface TabProps {
 	revealOnScroll?: boolean;
 }
 
-const silkSpring = { type: 'spring' as const, stiffness: 260, damping: 30 };
-
 const sectionVariants: Variants = {
 	hidden: { opacity: 0, y: -8 },
 	show: {
@@ -43,20 +41,14 @@ export default function JTab({ labelCZ, labelEN, index, children, show, isCzech,
 	return (
 		<motion.section
 			className={`
-				relative isolate w-full max-w-4xl overflow-hidden rounded-3xl mt-6 sm:mt-8 p-4 sm:p-7 lg:p-8
-				bg-gradient-to-b from-[#161515]/[0.85] via-[#101010]/[0.75] to-[#0c0c0c]/[0.85]
+				tab-surface relative isolate w-full max-w-4xl overflow-hidden rounded-3xl mt-8 sm:mt-10 p-4 sm:p-7 lg:p-8
 				border border-neutral-800/75
-				shadow-[0_4px_24px_-8px_rgba(0,0,0,0.55)]
-				backdrop-blur-xl transition-colors duration-700 ease-out
+				shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04),0_12px_32px_-20px_rgba(0,0,0,0.8)]
 				${lastTab ? 'mb-10 lg:mb-16' : ''}
 			`}
 			variants={revealOnScroll ? undefined : sectionVariants}
 			animate={show ? undefined : "hidden"}>
 			<span className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
-
-			<div className="pointer-events-none absolute -top-24 -right-24 size-60 rounded-full bg-amber-500/[0.03] blur-3xl" />
-
-			<div className="pointer-events-none absolute -bottom-24 -left-24 size-48 rounded-full bg-white/[0.02] blur-2xl" />
 
 			<motion.header
 				variants={contentVariants}
@@ -88,7 +80,7 @@ export default function JTab({ labelCZ, labelEN, index, children, show, isCzech,
 				</AnimatePresence>
 			</motion.header>
 
-			<motion.div variants={revealOnScroll ? undefined : contentVariants} className="relative my-5 h-px w-full bg-gradient-to-r from-transparent via-neutral-700/60 via-5% to-transparent" />
+			<motion.div variants={revealOnScroll ? undefined : contentVariants} className="relative my-4 h-px w-full bg-gradient-to-r from-transparent via-neutral-700/60 via-5% to-transparent" />
 
 			<motion.div variants={revealOnScroll ? undefined : contentVariants} className="relative z-10 text-neutral-300 leading-relaxed">{children}</motion.div>
 		</motion.section>

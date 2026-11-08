@@ -2,6 +2,8 @@
 	"companyHella": {
 		"header": "Company",
 		"label": "Forvia Hella",
+		"links": ["https://www.hella.com/cz/"],
+		"period": "2022 - 2025",
 		"description": "HELLA AUTOTECHNIK NOVA is part of FORVIA HELLA, an international automotive supplier focused on lighting technology and electronics.\n\nIts Mohelnice site develops, manufactures and tests automotive headlights. Its work spans engineering, optics and electronics as well as plastic components and lighting module assembly.\n\nThe site also includes testing laboratories and a prototype workshop. Czech teams contribute to international automotive lighting projects.",
 		"company": true,
 		"job": "MES Full-Stack Developer",
@@ -38,6 +40,7 @@
 	"selfEmployment": {
 		"header": "Secondary activity",
 		"label": "Jakub Švihel Technologies",
+		"period": "2023 - present",
 		"description": "Custom web application development and digital solutions.",
 		"company": true,
 		"job": "Full-Stack Developer",
@@ -62,6 +65,8 @@
 	"universityPalacky": {
 		"header": "Institution",
 		"label": "Palacký University Olomouc",
+		"links": ["https://www.inf.upol.cz/"],
+		"period": "2020 - 2025",
 		"description": "A university in Olomouc where I studied computer science.",
 		"company": true,
 		"firstCard": true,
@@ -92,6 +97,8 @@
 	"gymnasiumNovyJicin": {
 		"header": "Institution",
 		"label": "Gymnázium Nový Jičín",
+		"links": ["https://www.gnj.cz/"],
+		"period": "2016 - 2020",
 		"description": "A secondary school in Nový Jičín where I completed my studies.",
 		"company": true,
 		"firstCard": false,
@@ -107,6 +114,8 @@
 	"atreoDigital": {
 		"header": "Company",
 		"label": "Atreo Digital s.r.o.",
+		"links": ["https://atreo.cz/cs"],
+		"period": "2022 - present",
 		"description": "Atreo Digital is an Ostrava-based company focused on developing websites and web applications.\n\nIt specialises in complex systems tailored to client needs and helps clients choose suitable technologies.\n\nIts development process emphasises ongoing communication and transparency about project progress, timelines and budgets.",
 		"company": true,
 		"job": "Full-Stack Developer",
@@ -116,6 +125,7 @@
 	"projectMonery": {
 		"header": "Project",
 		"label": "Monery",
+		"links": ["https://monery.io/"],
 		"displayDescription": "A web application designed to aggregate, track, and analyze investment portfolios across multiple brokerages in a unified dashboard. The platform translates raw transaction data into actionable financial metrics, asset allocation breakdowns, and performance analytics.",
 		"technologies": ["React", "TypeScript", "Node.js", "REST API"],
 		"company": false,

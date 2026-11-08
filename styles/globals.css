@@ -65,12 +65,22 @@
 	html { scroll-behavior: auto; }
 }
 
+.tab-surface {
+	background-color: #101010;
+	background-image:
+		radial-gradient(ellipse at 95% 0%, rgba(245, 158, 11, 0.025), transparent 70%),
+		linear-gradient(180deg, rgba(255, 255, 255, 0.018), transparent);
+	background-size: 100% 24rem, 100% 20rem;
+	background-position: top;
+	background-repeat: no-repeat;
+}
+
 .status-indicator {
 	position: relative;
 	display: inline-block;
 	flex: none;
-	width: 5px;
-	height: 5px;
+	width: 6px;
+	height: 6px;
 	border-radius: 9999px;
 	background: currentColor;
 }
@@ -102,18 +112,3 @@
 	}
 }
 
-.material-symbols-rounded {
-	font-family: 'Material Symbols Rounded';
-	font-weight: normal;
-	font-style: normal;
-	font-size: 20px;
-	line-height: 1;
-	letter-spacing: normal;
-	text-transform: none;
-	display: inline-block;
-	white-space: nowrap;
-	word-wrap: normal;
-	direction: ltr;
-	font-feature-settings: 'liga';
-	-webkit-font-smoothing: antialiased;
-}

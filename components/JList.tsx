@@ -1,6 +1,10 @@
 import React from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import JBorderTop from './JBorderTop';
+import JBadge from './JBadge';
+import JButton from './JButton';
+import JIcon from './JIcon';
+import JSkillPill from './JSkillPill';
 import { statusBadgeClass, statusStyles } from './statusStyles';
 
 interface JListProps {
@@ -11,6 +15,8 @@ interface JListProps {
 	technologies?: string[];
 	company: boolean;
 	job?: string;
+	period?: string;
+	links?: string[];
 	firstCard: boolean;
 	lastCard?: boolean;
 	showProjectLabel?: boolean;
@@ -20,9 +26,19 @@ interface JListProps {
 	children?: React.ReactNode;
 }
 
-export default function JList({ header, label, description, displayDescription, technologies, company, job, firstCard, lastCard, borderTop, values, children, isCzech, showProjectLabel = true }: JListProps) {
+export default function JList({ header, label, description, displayDescription, technologies, company, job, period, links, firstCard, lastCard, borderTop, values, children, isCzech, showProjectLabel = true }: JListProps) {
 	const reducedMotion = useReducedMotion();
-	const spacing = `${firstCard ? 'mt-0' : 'mt-8 sm:mt-10'} ${lastCard ? 'mb-2' : 'mb-9'}`;
+	const spacing = `${firstCard || borderTop ? 'mt-0' : 'mt-8 sm:mt-10'} ${lastCard ? 'mb-2' : 'mb-9'}`;
+	const actions = (children || Boolean(links?.length)) && (
+		<div className="mr-1 flex shrink-0 items-center gap-2 [&_a]:!size-[30px] [&_button]:!size-[30px]">
+			{links?.map((link) => (
+				<JButton key={link} href={link} title={new URL(link).hostname}>
+					<JIcon name="arrow_outward" className="text-neutral-400" />
+				</JButton>
+			))}
+			{children}
+		</div>
+	);
 
 	return (
 		<motion.div
@@ -33,11 +49,17 @@ export default function JList({ header, label, description, displayDescription, 
 			transition={{ duration: 0.55, ease: 'easeOut' }}>
 			{borderTop && <JBorderTop />}
 
-			<div className={`flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between ${borderTop ? 'pt-8' : ''}`}>
+			<div className={`flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between ${borderTop ? 'pt-8 sm:pt-10' : ''}`}>
 				<div className={company ? "min-w-0 w-full" : "min-w-0"}>
 					<div className="flex flex-col items-start gap-2.5">
-						{(company || showProjectLabel) && <span className={`uppercase ${statusBadgeClass} ${company ? statusStyles.planned : statusStyles.completed}`}>{company ? header : isCzech ? 'Projekty' : 'Projects'}</span>}
-						<h4 className={`leading-tight tracking-tight ${company ? 'text-lg sm:text-xl font-semibold text-neutral-100' : 'text-lg sm:text-xl font-medium text-neutral-200'}`}>{label}</h4>
+						{(company || showProjectLabel || period) && <div className="flex flex-wrap items-center gap-2">
+							{(company || showProjectLabel) && <span className={`uppercase ${statusBadgeClass} ${company ? statusStyles.planned : statusStyles.completed}`}>{company ? header : isCzech ? 'Projekty' : 'Projects'}</span>}
+							{period && <JBadge><span className="translate-y-px">{period}</span></JBadge>}
+						</div>}
+						<div className="flex w-full items-center justify-between gap-4">
+							<h4 className={`min-w-0 leading-tight tracking-tight ${company ? 'text-lg sm:text-xl font-semibold text-neutral-100' : 'text-lg sm:text-xl font-medium text-neutral-200'}`}>{label}</h4>
+							{company && actions}
+						</div>
 					</div>
 
 					{description && <div className="mt-3 max-w-2xl space-y-3 text-sm leading-relaxed text-neutral-400">{description.split('\n\n').map((paragraph, index) => <p key={index}>{paragraph}</p>)}</div>}
@@ -50,12 +72,19 @@ export default function JList({ header, label, description, displayDescription, 
 					)}
 				</div>
 
-				{children && <div className="flex items-center gap-2 self-start sm:self-center">{children}</div>}
+				{!company && actions}
 			</div>
 
 			<div className="mt-4 pl-4">
-				{company ?
-					<ul className="space-y-3 text-neutral-300">
+				{technologies && technologies.length > 0 && (
+					<ul className="mb-4 flex flex-wrap gap-2" aria-label={isCzech ? 'Použité technologie' : 'Technologies used'}>
+						{technologies.map((technology) => (
+							<li key={technology}><JSkillPill label={technology} /></li>
+						))}
+					</ul>
+				)}
+				{displayDescription && <p className="mb-4 text-sm leading-relaxed text-neutral-300/90">{displayDescription}</p>}
+				<ul className="space-y-3 text-neutral-300">
 						{values.map((value, index) => (
 							<li
 								key={index}
@@ -67,20 +96,8 @@ export default function JList({ header, label, description, displayDescription, 
 								<span className="text-sm leading-relaxed text-neutral-300/90">{value}</span>
 							</li>
 						))}
-					</ul>
-				:	<div className="space-y-3.5 text-sm leading-relaxed text-neutral-300/90">
-						{(displayDescription ? [displayDescription] : values).map((value, index) => (
-							<p key={index}>{value}</p>
-						))}
-					</div>
-				}
-				{technologies && technologies.length > 0 && (
-					<ul className="mt-4 flex flex-wrap gap-2" aria-label={isCzech ? 'Použité technologie' : 'Technologies used'}>
-						{technologies.map((technology) => (
-							<li key={technology} className="rounded-lg border border-neutral-700/70 bg-gradient-to-b from-[#222222] to-[#151515] px-3 py-1 text-xs font-medium text-neutral-300 shadow-[0_8px_20px_-12px_rgba(0,0,0,0.8)]">{technology}</li>
-						))}
-					</ul>
-				)}
+				</ul>
+
 			</div>
 		</motion.div>
 	);

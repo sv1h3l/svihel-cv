@@ -1,7 +1,9 @@
 import React from 'react';
 import { motion, type Variants } from 'framer-motion';
 import JIcon from './JIcon';
-import { statusBadgeClass, statusStyles } from './statusStyles';
+import JSkillPill from './JSkillPill';
+import { statusStyles } from './statusStyles';
+import JBadge, { neutralBadgeStyle } from './JBadge';
 
 interface GridRow {
 	key: string;
@@ -66,7 +68,7 @@ function statusTone(key: string) {
 
 	return {
 		dot: null,
-		container: 'border-neutral-800 bg-neutral-900 text-neutral-400 hover:border-neutral-700/60 hover:bg-neutral-800/50',
+		container: neutralBadgeStyle,
 		divider: 'bg-neutral-700/40',
 		icon: 'text-neutral-500',
 	};
@@ -78,8 +80,7 @@ export default function JGrid({ gridArray, revealOnScroll }: SkillsGridProps) {
 		const hasAction = Boolean(gridRow.tertiaryValue && gridRow.tertiaryValue !== 'disable');
 
 		const badge = (
-			<span
-				className={`${statusBadgeClass} ${tone.container}`}>
+			<JBadge className={tone.container}>
 				{tone.dot && (gridRow.key.includes('PROBÍHAJÍCÍ') || gridRow.key.includes('IN PROGRESS')) && <span className="status-indicator text-amber-400/60" aria-hidden="true" />}
 				<span className="translate-y-px">{gridRow.key}</span>
 				{hasAction && (
@@ -88,10 +89,10 @@ export default function JGrid({ gridArray, revealOnScroll }: SkillsGridProps) {
 							className={`w-px h-3 ${tone.divider}`}
 							aria-hidden="true"
 						/>
-						<JIcon name="arrow_outward" className={tone.icon} />
+						<JIcon name="arrow_outward" className={tone.icon} badge />
 					</>
 				)}
-			</span>
+			</JBadge>
 		);
 
 		if (!hasAction) {
@@ -133,13 +134,7 @@ export default function JGrid({ gridArray, revealOnScroll }: SkillsGridProps) {
 							{isCommaSeparatedList ?
 								<div className="flex flex-wrap gap-2 ">
 									{skillsList.map((skill, sIdx) => (
-										<motion.span
-											key={sIdx}
-											whileHover={{ y: -2 }}
-											transition={silkSpring}
-											className="inline-flex cursor-default select-none items-center justify-center rounded-lg border border-neutral-700/70 bg-gradient-to-b from-[#222222] to-[#151515] h-6 sm:h-[26px] px-3 text-xs font-medium leading-none text-neutral-300 shadow-[0_8px_20px_-12px_rgba(0,0,0,0.8)] hover:border-neutral-600/60">
-											{skill}
-										</motion.span>
+										<JSkillPill key={sIdx} label={skill} />
 									))}
 								</div>
 							:	<div>
