@@ -96,13 +96,13 @@
 
 @media (prefers-reduced-motion: no-preference) {
 	.status-indicator::after {
-		animation: status-pulse 2.8s ease-out infinite;
+		animation: status-pulse 1.5s ease-out infinite;
 	}
 }
 
 @keyframes status-pulse {
-	0% { transform: scale(0.6); opacity: 0.35; }
-	75%, 100% { transform: scale(1.45); opacity: 0; }
+	0% { transform: scale(0.6); opacity: 0.5; }
+	75%, 100% { transform: scale(1.65); opacity: 0; }
 }
 
 @supports (text-box-trim: trim-end) {

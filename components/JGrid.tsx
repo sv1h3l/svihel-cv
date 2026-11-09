@@ -8,6 +8,7 @@ import JBadge, { neutralBadgeStyle } from './JBadge';
 interface GridRow {
 	key: string;
 	goldValue?: string;
+	doNotSeparate?: string;
 	primaryValue: string;
 	secondaryValue?: string;
 	tertiaryValue?: string;
@@ -81,7 +82,12 @@ export default function JGrid({ gridArray, revealOnScroll }: SkillsGridProps) {
 
 		const badge = (
 			<JBadge className={tone.container}>
-				{tone.dot && (gridRow.key.includes('PROBÍHAJÍCÍ') || gridRow.key.includes('IN PROGRESS')) && <span className="status-indicator text-amber-400/60" aria-hidden="true" />}
+				{tone.dot && (gridRow.key.includes('PROBÍHAJÍCÍ') || gridRow.key.includes('IN PROGRESS')) && (
+					<span
+						className="status-indicator text-amber-400/60"
+						aria-hidden="true"
+					/>
+				)}
 				<span className="translate-y-px">{gridRow.key}</span>
 				{hasAction && (
 					<>
@@ -89,7 +95,11 @@ export default function JGrid({ gridArray, revealOnScroll }: SkillsGridProps) {
 							className={`w-px h-3 ${tone.divider}`}
 							aria-hidden="true"
 						/>
-						<JIcon name="arrow_outward" className={tone.icon} badge />
+						<JIcon
+							name="arrow_outward"
+							className={tone.icon}
+							badge
+						/>
 					</>
 				)}
 			</JBadge>
@@ -114,19 +124,19 @@ export default function JGrid({ gridArray, revealOnScroll }: SkillsGridProps) {
 	return (
 		<motion.div
 			className="flex flex-col gap-y-8 md:gap-y-6"
-			variants={containerVariants}
+			variants={revealOnScroll ? { hidden: {}, show: {} } : containerVariants}
 			initial="hidden"
-			animate={revealOnScroll ? "hidden" : "show"}>
+			animate={revealOnScroll ? 'hidden' : 'show'}
+			whileInView={revealOnScroll ? 'show' : undefined}
+			viewport={{ once: true, margin: '0px 0px -112px 0px' }}>
 			{gridArray.map((gridRow, index) => {
-				const isCommaSeparatedList = gridRow.primaryValue.includes(',') && !gridRow.goldValue;
+				const isCommaSeparatedList = (gridRow.primaryValue.includes(',') && !gridRow.goldValue) && !gridRow.doNotSeparate;
 				const skillsList = isCommaSeparatedList ? gridRow.primaryValue.split(',').map((s) => s.trim()) : [];
 
 				return (
 					<motion.div
 						key={index}
 						variants={rowVariants}
-						whileInView={revealOnScroll ? "show" : undefined}
-						viewport={{ once: true, margin: "0px 0px -48px 0px" }}
 						className="grid grid-cols-1 md:grid-cols-[minmax(140px,auto)_1fr] items-center gap-x-8 gap-y-3">
 						<div className="flex items-center gap-x-2.5 text-start md:justify-end md:text-end">{renderBadge(gridRow)}</div>
 
@@ -134,7 +144,10 @@ export default function JGrid({ gridArray, revealOnScroll }: SkillsGridProps) {
 							{isCommaSeparatedList ?
 								<div className="flex flex-wrap gap-2 ">
 									{skillsList.map((skill, sIdx) => (
-										<JSkillPill key={sIdx} label={skill} />
+										<JSkillPill
+											key={sIdx}
+											label={skill}
+										/>
 									))}
 								</div>
 							:	<div>

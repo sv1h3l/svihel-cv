@@ -11,6 +11,7 @@ interface FullSizeImageProps {
 }
 
 const spring = { type: 'spring' as const, stiffness: 350, damping: 25 };
+const responsiveImages = new Set(['o_krok_napred-desktop', 'sports']);
 
 export default function JFullSizeImage({ imagesSrcs, setShowImage }: FullSizeImageProps) {
 	const [{ currentIndex, direction }, setGallery] = useState({ currentIndex: 0, direction: 1 });
@@ -22,6 +23,14 @@ export default function JFullSizeImage({ imagesSrcs, setShowImage }: FullSizeIma
 			direction: step,
 		}));
 	};
+
+	useEffect(() => {
+		if (imagesSrcs.length < 2) return;
+		const nextImage = new window.Image();
+		const nextName = imagesSrcs[(currentIndex + 1) % imagesSrcs.length];
+		const useSmallerImage = window.matchMedia('(max-width: 768px)').matches && responsiveImages.has(nextName);
+		nextImage.src = `/images/${nextName}${useSmallerImage ? '-1280' : ''}.webp`;
+	}, [currentIndex, imagesSrcs]);
 
 	useEffect(() => {
 		const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
@@ -85,6 +94,10 @@ export default function JFullSizeImage({ imagesSrcs, setShowImage }: FullSizeIma
 						exit="exit"
 						transition={reducedMotion ? { duration: 0 } : { duration: 0.6, ease: 'easeInOut' }}
 						className="absolute inset-0 flex items-center justify-center px-4 sm:px-12">
+						<picture className="flex h-full w-full items-center justify-center">
+							{responsiveImages.has(imagesSrcs[currentIndex]) && (
+								<source media="(max-width: 768px)" srcSet={`/images/${imagesSrcs[currentIndex]}-1280.webp`} />
+							)}
 						<Image
 							className="h-auto max-h-full w-auto max-w-full rounded-2xl border border-neutral-800 object-contain shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8)]"
 							src={`/images/${imagesSrcs[currentIndex]}.webp`}
@@ -93,6 +106,7 @@ export default function JFullSizeImage({ imagesSrcs, setShowImage }: FullSizeIma
 							height={1080}
 							priority
 						/>
+						</picture>
 					</motion.div>
 				</AnimatePresence>
 			</div>

@@ -30,7 +30,7 @@ export default function JList({ header, label, description, displayDescription, 
 	const reducedMotion = useReducedMotion();
 	const spacing = `${firstCard || borderTop ? 'mt-0' : 'mt-8 sm:mt-10'} ${lastCard ? 'mb-2' : 'mb-9'}`;
 	const actions = (children || Boolean(links?.length)) && (
-		<div className="mr-1 flex shrink-0 items-center gap-2 [&_a]:!size-[30px] [&_button]:!size-[30px]">
+		<div className="ml-auto mr-1 flex shrink-0 items-center gap-2 [&_a]:!size-[30px] [&_button]:!size-[30px]">
 			{links?.map((link) => (
 				<JButton key={link} href={link} title={new URL(link).hostname}>
 					<JIcon name="arrow_outward" className="text-neutral-400" />
@@ -45,20 +45,20 @@ export default function JList({ header, label, description, displayDescription, 
 			className={`relative ${spacing}`}
 			initial={reducedMotion ? false : { opacity: 0, y: -8 }}
 			whileInView={{ opacity: 1, y: 0 }}
-			viewport={{ once: true, margin: "0px 0px -48px 0px" }}
+			viewport={{ once: true, margin: "0px 0px -112px 0px" }}
 			transition={{ duration: 0.55, ease: 'easeOut' }}>
 			{borderTop && <JBorderTop />}
 
-			<div className={`flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between ${borderTop ? 'pt-8 sm:pt-10' : ''}`}>
-				<div className={company ? "min-w-0 w-full" : "min-w-0"}>
+			<div className={borderTop ? 'pt-8 sm:pt-10' : ''}>
+				<div className="min-w-0 w-full">
 					<div className="flex flex-col items-start gap-2.5">
 						{(company || showProjectLabel || period) && <div className="flex flex-wrap items-center gap-2">
 							{(company || showProjectLabel) && <span className={`uppercase ${statusBadgeClass} ${company ? statusStyles.planned : statusStyles.completed}`}>{company ? header : isCzech ? 'Projekty' : 'Projects'}</span>}
 							{period && <JBadge><span className="translate-y-px">{period}</span></JBadge>}
 						</div>}
-						<div className="flex w-full items-center justify-between gap-4">
-							<h4 className={`min-w-0 leading-tight tracking-tight ${company ? 'text-lg sm:text-xl font-semibold text-neutral-100' : 'text-lg sm:text-xl font-medium text-neutral-200'}`}>{label}</h4>
-							{company && actions}
+						<div className="flex w-full flex-wrap items-center gap-x-4 gap-y-2">
+							<h4 className={`max-w-full leading-tight tracking-tight [overflow-wrap:anywhere] ${company ? 'text-lg sm:text-xl font-semibold text-neutral-100' : 'text-lg sm:text-xl font-medium text-neutral-200'}`}>{label}</h4>
+							{actions}
 						</div>
 					</div>
 
@@ -71,8 +71,6 @@ export default function JList({ header, label, description, displayDescription, 
 						</div>
 					)}
 				</div>
-
-				{!company && actions}
 			</div>
 
 			<div className="mt-4 pl-4">

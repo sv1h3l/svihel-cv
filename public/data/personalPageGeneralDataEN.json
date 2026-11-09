@@ -6,25 +6,38 @@
 			"key": "2023 - 2025",
 			"goldValue": "Msc.",
 			"primaryValue": "Applied Computer Science, Software Development",
-			"secondaryValue": "Department of Computer Science, Palacký University, Olomouc"
+			"secondaryValue": "Department of Computer Science, Palacký University, Olomouc",
+			"doNotSeparate": true
 		},
 		{
 			"key": "2020 - 2023",
 			"goldValue": "Bc.",
 			"primaryValue": "Computer Science, Programming and software development",
-			"secondaryValue": "Department of Computer Science, Palacký University, Olomouc"
+			"secondaryValue": "Department of Computer Science, Palacký University, Olomouc",
+			"doNotSeparate": true
+		},
+		{
+			"key": "2016 - 2020",
+			"primaryValue": "General Secondary Education, Natural Sciences & IT",
+			"secondaryValue": "Grammar School, Nový Jičín",
+			"doNotSeparate": true
 		}
 	],
 	"employment": [
 		{
-			"key": "2025 - 2026",
+			"key": "2025 - Present",
 			"primaryValue": "Full-Stack Developer",
-			"secondaryValue": "Atreo Digital s.r.o."
+			"secondaryValue": "Atreo Digital"
+		},
+		{
+			"key": "2023 - Present",
+			"primaryValue": "Product Engineer",
+			"secondaryValue": "Jakub Švihel Tech"
 		},
 		{
 			"key": "2022 - 2025",
 			"primaryValue": "MES Full-Stack Developer",
-			"secondaryValue": "HELLA AUTOTECHNIK NOVA, s.r.o."
+			"secondaryValue": "Forvia Hella"
 		}
 	],
 	"certificates": [

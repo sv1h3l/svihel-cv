@@ -5,26 +5,39 @@
 		{
 			"key": "2023 - 2025",
 			"goldValue": "Mgr.",
-			"primaryValue": "Mgr. Aplikovaná informatika, Vývoj softwaru",
-			"secondaryValue": "Katedra informatiky, Univerzita Palackého, Olomouc"
+			"primaryValue": "Aplikovaná informatika, Vývoj softwaru",
+			"secondaryValue": "Katedra informatiky, Univerzita Palackého, Olomouc",
+			"doNotSeparate": true
 		},
 		{
 			"key": "2020 - 2023",
 			"goldValue": "Bc.",
 			"primaryValue": "Informatika, Programování a vývoj softwaru",
-			"secondaryValue": "Katedra informatiky, Univerzita Palackého, Olomouc"
+			"secondaryValue": "Katedra informatiky, Univerzita Palackého, Olomouc",
+			"doNotSeparate": true
+		},
+		{
+			"key": "2016 - 2020",
+			"primaryValue": "Všeobecné střední vzdělávání, přírodní vědy a IT",
+			"secondaryValue": "Gymnázium, Nový Jičín",
+			"doNotSeparate": true
 		}
 	],
 	"employment": [
 		{
-			"key": "2025 - 2026",
+			"key": "2025 - dosud",
 			"primaryValue": "Full-Stack vývojář",
-			"secondaryValue": "Atreo Digital s.r.o."
+			"secondaryValue": "Atreo Digital"
+		},
+		{
+			"key": "2023 - dosud",
+			"primaryValue": "Product Engineer",
+			"secondaryValue": "Jakub Švihel Tech"
 		},
 		{
 			"key": "2022 - 2025",
 			"primaryValue": "MES Full-Stack vývojář",
-			"secondaryValue": "HELLA AUTOTECHNIK NOVA, s.r.o."
+			"secondaryValue": "Forvia Hella"
 		}
 	],
 	"certificates": [

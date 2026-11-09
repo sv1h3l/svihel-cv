@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import dynamic from 'next/dynamic';
 import { AnimatePresence } from 'framer-motion';
 import JIcon from './JIcon';
 import JButton from './JButton';
-import JFullSizeImage from './JFullSizeImage';
+
+const JFullSizeImage = dynamic(() => import('./JFullSizeImage'));
 
 interface JFullSizeImageButtonProps {
 	imagesSrcs: string[];

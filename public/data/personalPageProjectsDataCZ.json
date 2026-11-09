@@ -147,6 +147,7 @@
 	"oKrokNapred": {
 		"header": "Projekt",
 		"label": "O krok napřed",
+		"links": ["https://okroknapred.web.app"],
 		"displayDescription": "Neziskový informační web zaměřený na prevenci, edukaci a šíření ověřených informací o onkologických onemocněních pro širokou veřejnost.",
 		"technologies": ["React", "Next.js", "TypeScript", "Tailwind CSS", "Firebase"],
 		"company": false,
